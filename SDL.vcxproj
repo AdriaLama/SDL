@@ -20,12 +20,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
-    <ClCompile Include="source\GameObject.cpp" />
+    <ClCompile Include="source\ImageRenderer.cpp" />
     <ClCompile Include="source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\AnimatedImageObject.h" />
+    <ClInclude Include="source\AnimatedImageRenderer.h" />
     <ClInclude Include="source\Game.h" />
-    <ClInclude Include="source\GameObject.h" />
+    <ClInclude Include="source\ImageObject.h" />
+    <ClInclude Include="source\ImageRenderer.h" />
+    <ClInclude Include="source\Object.h" />
+    <ClInclude Include="source\Renderer.h" />
+    <ClInclude Include="source\RenderManager.h" />
+    <ClInclude Include="source\TextObject.h" />
+    <ClInclude Include="source\TextRenderer.h" />
+    <ClInclude Include="source\Transform.h" />
     <ClInclude Include="source\vector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
