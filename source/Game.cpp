@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "ImageObject.h"
+#include "InputManager.h"
 
 void Game::Init()
 {
@@ -35,11 +36,7 @@ void Game::CreateWindowAndRenderer()
 
 void Game::HandleEvents()
 {
-	SDL_Event event;
-
-	while (SDL_PollEvent(&event))
-		if (event.type == SDL_EVENT_QUIT)
-			_isRunning = false;
+	_isRunning = !IM->Listen();
 }
 
 

@@ -21,7 +21,9 @@
   <ItemGroup>
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\ImageRenderer.cpp" />
+    <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\RenderManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AnimatedImageObject.h" />
@@ -29,6 +31,7 @@
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\ImageObject.h" />
     <ClInclude Include="source\ImageRenderer.h" />
+    <ClInclude Include="source\InputManager.h" />
     <ClInclude Include="source\Object.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
