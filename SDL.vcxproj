@@ -19,13 +19,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\AABB.cpp" />
     <ClCompile Include="source\Game.cpp" />
     <ClCompile Include="source\ImageRenderer.cpp" />
     <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\RenderManager.cpp" />
+    <ClCompile Include="source\RigidBody.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\AABB.h" />
     <ClInclude Include="source\AnimatedImageObject.h" />
     <ClInclude Include="source\AnimatedImageRenderer.h" />
     <ClInclude Include="source\Game.h" />
@@ -35,6 +38,7 @@
     <ClInclude Include="source\Object.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
+    <ClInclude Include="source\RigidBody.h" />
     <ClInclude Include="source\TestObject.h" />
     <ClInclude Include="source\TextObject.h" />
     <ClInclude Include="source\TextRenderer.h" />
