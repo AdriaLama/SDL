@@ -14,7 +14,8 @@ class Renderer {
 	public:
 		Renderer(Transform* transform, std::string resourcePath)
 			: _transform(transform), _resourcePath(resourcePath) {}
-		virtual void Update() = 0;
+		~Renderer() {}
+		virtual void Update(float dt) = 0;
 		virtual void Render() = 0;
 		virtual void SetDestinationRect(SDL_FRect rect) {
 			_destinationRect = rect;

@@ -6,18 +6,39 @@
 
 class Object
 {
+private:
+	bool _isPendingDestroy = false;
+	
 protected:
-	Vector2 _position;
-	Renderer* _renderer;
-
+	Renderer * _renderer = nullptr;
+	Transform * _transform;
 public:
-	Object() { _position = Vector2(); _renderer = nullptr; }
-	void SetPosition(Vector2 position)
+	Object()
 	{
-		_position = position;
-		_renderer->SetDestinationRect({ _position.x, _position.y, 100.f, 100.f });
+		 _transform = new Transform();
 	}
-	Vector2 GetPosition() const { return _position; }
-	virtual void Update() { _renderer->Update(); }
-	virtual void Render(SDL_Renderer* renderer){ _renderer->Render(renderer); }
+	
+	~Object()
+	{
+		 delete _transform;
+		 _transform = nullptr;
+		
+		 delete _renderer;
+		 _renderer = nullptr;
+	}
+	
+		virtual void Update()
+		{
+		 _renderer->Update(0.02f); 
+		}
+	
+		virtual void Render()
+		{
+		 _renderer->Render();
+		}
+	
+	Transform * GetTransform() { return _transform; }
+	
+	bool IsPendingDestroy() const { return _isPendingDestroy; }
+	virtual void Destroy() { _isPendingDestroy = true; }
 };

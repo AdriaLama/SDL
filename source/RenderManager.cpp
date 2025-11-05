@@ -73,7 +73,7 @@ void RenderManager::LoadTexture(std::string path)
 	assert(_textures[path]);
 }
 
-void RenderManager::GetTexture(std::string path)
+SDL_Texture* RenderManager::GetTexture(std::string path)
 {
 	if (_textures.find(path) != _textures.end()) {
 		return _textures[path];

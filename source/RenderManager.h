@@ -21,9 +21,9 @@ public:
 	void ClearScreen();
 	void RenderScreen();
 	
-	SDL_Renderer * GetRenderer() { return _renderer; }
+	SDL_Renderer* GetRenderer() { return _renderer; }
 	void LoadTexture(std::string path);
-	SDL_Texture * GetTexture(std::string path);
+	SDL_Texture* GetTexture(std::string path);
 	
  private:
 	RenderManager() = default;
