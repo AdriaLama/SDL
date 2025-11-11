@@ -35,9 +35,11 @@ public:
 	
 		virtual void Update()
 		{
-			if (_physics != nullptr)
+			if (_physics != nullptr) {
 				_physics->Update(0.02f);
-				_renderer->Update(0.02f);
+			}
+			_renderer->Update(0.02f);
+				
 		}
 	
 		virtual void Render()

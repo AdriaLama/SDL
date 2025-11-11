@@ -1,5 +1,6 @@
 #include "ImageObject.h"
 #include "RenderManager.h"
+#include "InputManager.h"
 
 class TestObject : public ImageObject
 {
@@ -11,9 +12,9 @@ public:
 		Vector2 randomPosition = Vector2(rand() % RM->WINDOW_WIDTH, rand() % RM->WINDOW_HEIGHT);
 		_transform->position = randomPosition;
 		_transform->scale = Vector2(0.5f, 0.5f);
-		_transform->rotation = 30.f;
+		_transform->rotation = 180.f;
 		_physics->SetLinearDrag(0.1f);
-		_physics->SetAngularDrag(2.f);
+		_physics->SetAngularDrag(1.1f);
 	}
 
 	void Update() override
@@ -23,9 +24,9 @@ public:
 			_physics->AddForce(Vector2(0.f, 0.01f));
 		}
 		
-		else if (IM->GetEvent(SDLK_R, DOWN))
+		else if (IM->GetEvent(SDLK_R, HOLD))
 		{
-			_physics->AddTorque(1.f);
+			_physics->AddTorque(200.f);
 		}
 		
 		Object::Update();

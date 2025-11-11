@@ -1,3 +1,4 @@
+#pragma once
 #include <SDL3/SDL.h>
 #include <SDL3_ttf/SDL_ttf.h>
 #include <map>
@@ -25,7 +26,7 @@ public:
 	void LoadTexture(std::string path);
 	SDL_Texture* GetTexture(std::string path);
 	
- private:
+private:
 	RenderManager() = default;
 	RenderManager(RenderManager&) = delete;
 	RenderManager & operator=(const RenderManager&) = delete;

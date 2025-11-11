@@ -42,7 +42,7 @@ void RigidBody::Update(float dt)
 	  _angularAcceleration = 0.0f;
 	
 		
-	  Vector2 offset = (Vector2(_transform -> size.x, -_transform->size.y) / 2.0f) * _transform -> scale;
+	  Vector2 offset = (Vector2(-_transform -> size.x, -_transform->size.y) / 2.0f) * _transform -> scale;
 	
 	  for (AABB* collider : _colliders)
 	  {

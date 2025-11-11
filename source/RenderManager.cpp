@@ -22,7 +22,7 @@ void RenderManager::CreateWindowAndRenderer()
 {
 	if (!SDL_CreateWindowAndRenderer(
 		" Test main ",
-		 512, 512,
+		 WINDOW_WIDTH,WINDOW_HEIGHT,
 		 SDL_WINDOW_RESIZABLE,
 		 & _window,
 		 & _renderer
