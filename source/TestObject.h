@@ -13,7 +13,7 @@ public:
 		_transform->position = randomPosition;
 		_transform->scale = Vector2(0.5f, 0.5f);
 		_transform->rotation = 180.f;
-		_physics->SetLinearDrag(0.1f);
+		_physics->SetLinearDrag(1.f);
 		_physics->SetAngularDrag(1.1f);
 	}
 
@@ -21,10 +21,10 @@ public:
 	{
 		if (IM->GetEvent(SDLK_S, DOWN))
 		{
-			_physics->AddForce(Vector2(0.f, 0.01f));
+			_physics->AddForce(Vector2(0.f, 200.f));
 		}
 		
-		else if (IM->GetEvent(SDLK_R, HOLD))
+		if (IM->GetEvent(SDLK_R, HOLD))
 		{
 			_physics->AddTorque(200.f);
 		}

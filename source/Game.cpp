@@ -2,17 +2,18 @@
 #include "ImageObject.h"
 #include "InputManager.h"
 #include "RenderManager.h"
-#include "TestObject.h"
+#include "SceneManager.h"
+#include "Gameplay.h"
+#include <cassert>
 
 void Game::Init()
 {
 	RM->Init();
 	RM->LoadTexture("resources/image.png");
+	assert(SM.AddScene("Gameplay", new Gameplay()));
+	assert(SM.InitFirstScene("Gameplay"));
 	_isRunning = true;
-	TestObject* test1 = new TestObject();
-	_gameObjects.push_back(test1);
-	TestObject* test2 = new TestObject();
-	_gameObjects.push_back(test2);
+	
 }
 
 void Game::InitSDL()
@@ -41,18 +42,17 @@ void Game::HandleEvents()
 
 void Game::Update()
 {
-	for (Object* go : _gameObjects)
-		go->Update();
+
+	SM.UpdateCurrentScene();
+
 }
 
 void Game::Render()
 {
-	RM->ClearScreen();
-	
-	for (Object* go : _gameObjects)
-		go->Render();
-	
-	RM->RenderScreen();
+
+	 RM -> ClearScreen();
+	 SM.GetCurrentScene()->Render();
+	 RM -> RenderScreen();
 }
 
 void Game::Release()

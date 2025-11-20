@@ -9,7 +9,7 @@ bool InputManager::Listen()
       if (it->second == DOWN)
 	  {
 		//...ara estarà sent aguantada.
-			it -> second == HOLD;
+			it -> second = HOLD;
 	  }
 		// Si en el frame anterior just s'ha deixat de prémer la tecla ...
 	  else if (it->second == UP)
