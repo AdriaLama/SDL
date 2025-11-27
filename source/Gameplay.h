@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "TestObject.h"
+#include "TextObject.h"
 
 class Gameplay : public Scene
 {
@@ -9,11 +10,11 @@ public:
 	
 	void OnEnter() override
 	{
-		TestObject* test1 = new TestObject();
-		_objects.push_back(test1);
-		TestObject* test2 = new TestObject();
-		_objects.push_back(test2);
-		
+		SPAWNER.SpawnObjects(new TestObject());
+		SPAWNER.SpawnObjects(new TestObject());
+		TextObject* text = new TextObject("Hola");
+		text->GetTransform()->position = { 100.f, 100.f };
+		_ui.push_back(text);
 	}
 	
 		void OnExit() override { Scene::OnExit(); }

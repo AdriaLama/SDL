@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "Spawner.h"
 #include <vector>
 
 class Scene {
@@ -10,6 +11,9 @@ public:
 	Scene() = default;
 	virtual void OnEnter() = 0;
 	virtual void OnExit() {
+
+		SPAWNER.ClearSpawner();
+
 		for (Object* o : _objects)
 			delete o;
 
@@ -42,13 +46,18 @@ public:
 			 }
 		}
 		
+		//2) SPAWNING
+		while (SPAWNER.AreObjectsPendingSpawn())
+			_objects.push_back(SPAWNER.GetSpawnedObject());
+
+		//3) Actualizar
 		for (Object* o : _objects)
 			 o->Update();
 		
 		for (Object* u : _ui)
 			 u->Update();
 		
-		// 3) Comprovar col·lisions
+		//4) Comprovar col·lisions
 		int size = _objects.size();
 		for (int i = 0; i < size; i++)
 		{

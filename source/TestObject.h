@@ -13,13 +13,13 @@ public:
 		_transform->position = randomPosition;
 		_transform->scale = Vector2(0.5f, 0.5f);
 		_transform->rotation = 180.f;
-		_physics->SetLinearDrag(1.f);
-		_physics->SetAngularDrag(1.1f);
+		_physics->SetLinearDrag(0.1f);
+		_physics->SetAngularDrag(0.5f);
 	}
 
 	void Update() override
 	{
-		if (IM->GetEvent(SDLK_S, DOWN))
+		if (IM->GetEvent(SDLK_S, HOLD))
 		{
 			_physics->AddForce(Vector2(0.f, 200.f));
 		}
