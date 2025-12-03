@@ -1,7 +1,7 @@
 #pragma once 
 #include "SDL3/SDL.h"
 #include <math.h>
-# define TM TimeManager::Instance()
+#define TM TimeManager::Instance()
 
 class TimeManager
 {
