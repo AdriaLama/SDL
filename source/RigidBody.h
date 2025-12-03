@@ -34,7 +34,7 @@ public:
 	   void AddTorque(float amount) { _angularAcceleration += amount; }
 	   Vector2 const GetVelocity() { return _velocity; }
 	   void SetVelocity(Vector2 velocity) { _velocity = velocity; }
-	   void SetLinearDrag(float linearDrag) { linearDrag = linearDrag; }
+	   void SetLinearDrag(float linearDrag) { _linearDrag = linearDrag; }
 	   void SetAngularDrag(float angularDrag) { _angularDrag = angularDrag; }
 	
 	   bool CheckCollision(const RigidBody* other);

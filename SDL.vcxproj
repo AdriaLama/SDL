@@ -37,6 +37,7 @@
     <ClInclude Include="source\ImageRenderer.h" />
     <ClInclude Include="source\InputManager.h" />
     <ClInclude Include="source\Object.h" />
+    <ClInclude Include="source\Player.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
     <ClInclude Include="source\RigidBody.h" />
