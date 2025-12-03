@@ -4,6 +4,7 @@
 #include "RenderManager.h"
 #include "SceneManager.h"
 #include "Gameplay.h"
+#include "MenuScene.h"
 #include <cassert>
 
 void Game::Init()
@@ -14,7 +15,8 @@ void Game::Init()
 	RM->LoadTexture("resources/bullet.png");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
 	assert(SM.AddScene("Gameplay", new Gameplay()));
-	assert(SM.InitFirstScene("Gameplay"));
+	assert(SM.AddScene("MenuScene", new MenuScene()));
+	assert(SM.InitFirstScene("MenuScene"));
 	_isRunning = true;
 	
 }
@@ -29,7 +31,7 @@ void Game::CreateWindowAndRenderer()
 {
 	if (!SDL_CreateWindowAndRenderer(
 		"Test",
-		512, 512,
+		RM->WINDOW_WIDTH, RM->WINDOW_HEIGHT,
 		SDL_WINDOW_RESIZABLE,
 		&_window,
 		&_renderer
