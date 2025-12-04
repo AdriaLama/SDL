@@ -13,6 +13,7 @@ void Game::Init()
 	RM->LoadTexture("resources/image.png");
 	RM->LoadTexture("resources/player.png");
 	RM->LoadTexture("resources/bullet.png");
+	RM->LoadTexture("resources/backgroundGameplay.png");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
