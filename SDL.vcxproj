@@ -33,6 +33,7 @@
     <ClInclude Include="source\AnimatedImageRenderer.h" />
     <ClInclude Include="source\BackgroundGameplay.h" />
     <ClInclude Include="source\Bullet.h" />
+    <ClInclude Include="source\Enemy.h" />
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\Gameplay.h" />
     <ClInclude Include="source\ImageObject.h" />

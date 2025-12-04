@@ -1,6 +1,7 @@
 #pragma once
 #include "Scene.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "BackgroundGameplay.h"
 #include "TestObject.h"
 #include "TextObject.h"
@@ -17,6 +18,7 @@ public:
 		_objects.push_back(background1);
 		_objects.push_back(background2);
 		SPAWNER.SpawnObjects(new Player());
+		SPAWNER.SpawnObjects(new Enemy());
 		
 	}
 	
