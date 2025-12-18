@@ -5,6 +5,7 @@
 #include "SceneManager.h"
 #include "Gameplay.h"
 #include "MenuScene.h"
+#include "AudioManager.h"
 #include <cassert>
 
 void Game::Init()
@@ -15,6 +16,8 @@ void Game::Init()
 	RM->LoadTexture("resources/bullet.png");
 	RM->LoadTexture("resources/backgroundGameplay.png");
 	RM->LoadTexture("resources/enemy.png");
+	AM->LoadSoundsData("resources/audio/music/froggerSong.wav");
+	AM->LoadSoundsData("resources/audio/sfx/defeat.wav");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
@@ -66,5 +69,6 @@ void Game::Release()
 {
 	SDL_DestroyRenderer(_renderer);
 	SDL_DestroyWindow(_window);
+	AM->HaltAudio();
 	SDL_Quit();
 }
