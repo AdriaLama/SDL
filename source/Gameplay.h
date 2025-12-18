@@ -5,6 +5,7 @@
 #include "BackgroundGameplay.h"
 #include "TestObject.h"
 #include "TextObject.h"
+#include "AudioManager.h"
 
 class Gameplay : public Scene
 {
@@ -19,6 +20,10 @@ public:
 		_objects.push_back(background2);
 		SPAWNER.SpawnObjects(new Player());
 		SPAWNER.SpawnObjects(new Enemy());
+
+		AM->PlaySound("resources/audio/sfx/defeat.wav");
+		AM->PlaySound("resources/audio/music/froggerSong.wav");
+		
 		
 	}
 	
