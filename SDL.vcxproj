@@ -52,6 +52,7 @@
     <ClInclude Include="source\Spawner.h" />
     <ClInclude Include="source\Stream.h" />
     <ClInclude Include="source\TestObject.h" />
+    <ClInclude Include="source\TextAnimation.h" />
     <ClInclude Include="source\TextObject.h" />
     <ClInclude Include="source\TextRenderer.h" />
     <ClInclude Include="source\TimeManager.h" />
