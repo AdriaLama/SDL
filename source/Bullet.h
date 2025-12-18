@@ -31,4 +31,5 @@ public:
 		}
 	}
 
+	void OnCollisionEnter(Object* object);
 };

@@ -97,10 +97,19 @@ public:
 
 		//Creamos el thread
 		threadsDone.push_back(std::atomic<bool>(false));
-		std::thread thread(&AudioManager::PlaySoundCallback, this, path, (threadsDone.size() - 1));
+		std::thread thread(&AudioManager::PlaySoundCallback, this, path, (threadsDone.size() - 1), false);
 		thread.detach();
 	}
 
+	void PlaySoundLooping(std::string path) {
+		if (_soundsData.find(path) == _soundsData.end())
+			return;
+
+		//Creamos el thread
+		threadsDone.push_back(std::atomic<bool>(false));
+		std::thread thread(&AudioManager::PlaySoundCallback, this, path, (threadsDone.size() - 1), true);
+		thread.detach();
+	}
 	void Mute() {
 		if (_muted)
 			return;

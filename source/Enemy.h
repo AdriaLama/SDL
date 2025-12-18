@@ -23,5 +23,5 @@ public:
 		Object::Update();
 	}
 
-	
+	void OnCollisionEnter(Object* object);
 };
