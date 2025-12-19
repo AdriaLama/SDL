@@ -10,7 +10,7 @@ Chomper::Chomper(Vector2 spawnPosition, int indexInLine)
     lineCenter = spawnPosition;
     radius = 30.f;
     angularSpeed = 2.5f;
-    angle = indexInLine * 0.5f; // Offset each chomper
+    angle = indexInLine * 0.5f; 
     leftDrift = 50.f;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = CIRCLE_MOVE;
@@ -21,9 +21,7 @@ void Chomper::Behaviour()
     if (currentState == CIRCLE_MOVE)
     {
         angle += angularSpeed * TM.GetDeltaTime();
-        // Move line center to the left
         lineCenter.x -= leftDrift * TM.GetDeltaTime();
-        // Circle around the moving center
         _transform->position.x = lineCenter.x + cos(angle) * radius;
         _transform->position.y = lineCenter.y + sin(angle) * radius;
     }
