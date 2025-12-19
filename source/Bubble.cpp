@@ -45,11 +45,13 @@ void Bubble::Behaviour()
        
         if (spawnedUpBubbles && _transform->position.y < RM->WINDOW_HEIGHT - 200.f) 
         {
-            _physics->AddForce(Vector2(400.f, 300.f));
+            _physics->AddForce(Vector2(1300.f, 1300.f));
+            _physics->SetLinearDrag(5.f);
         }
         else if (!spawnedUpBubbles && _transform->position.y > 200.f) 
         {
-            _physics->AddForce(Vector2(400.f, -300.f));
+            _physics->AddForce(Vector2(1300.f, -1300.f));
+            _physics->SetLinearDrag(5.f);
         }
         else 
         {
