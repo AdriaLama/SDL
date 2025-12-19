@@ -1,6 +1,65 @@
 #include "Bubble.h"
+#include "TimeManager.h"
 
 void Bubble::Behaviour()
 {
+   
+    if (currentState == SIMPLE_MOVE)
+    {
+        if (_transform->position.x > RM->WINDOW_WIDTH / 3.f)
+        {
+            _physics->AddForce(Vector2(-400.f, 0.f));
+            _physics->SetLinearDrag(1.f);
+        }
+        else
+        {
+            currentState = CIRCLE_MOVE;
+            circleCenter = _transform->position; 
+            angle = 0.f; 
+        }
+    }
 
+    
+    else if (currentState == CIRCLE_MOVE)
+    {
+        float radius = 100.f; 
+        float speed = 3.f;  
+
+        angle += speed * TM.GetDeltaTime();
+
+        
+        _transform->position.x = circleCenter.x + cos(angle) * radius;
+        _transform->position.y = circleCenter.y + sin(angle) * radius;
+        _physics->SetAngularDrag(10.f);
+
+        
+        if (angle >= 5.23f) 
+        {
+            currentState = RETURN;
+        }
+    }
+
+ 
+    else if (currentState == RETURN)
+    {
+       
+        if (spawnedUpBubbles && _transform->position.y < RM->WINDOW_HEIGHT - 200.f) 
+        {
+            _physics->AddForce(Vector2(400.f, 300.f));
+        }
+        else if (!spawnedUpBubbles && _transform->position.y > 200.f) 
+        {
+            _physics->AddForce(Vector2(400.f, -300.f));
+        }
+        else 
+        {
+            _physics->AddForce(Vector2(1300.f, 0.f));
+            _physics->SetLinearDrag(5.f);
+        }
+    }
+}
+
+void Bubble::Update() {
+    Enemy::Update(); 
+    Behaviour();
 }

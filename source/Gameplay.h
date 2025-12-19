@@ -20,7 +20,18 @@ public:
 		_objects.push_back(background1);
 		_objects.push_back(background2);
 		SPAWNER.SpawnObjects(new Player());
-		SPAWNER.SpawnObjects(new Bubble(Vector2(750.0f, 300.0f)));
+		
+		for (int i = 0; i < 4; i++)
+		{
+			float delaySpawn = i * 0.5f; 
+			SPAWNER.SpawnObjects(new Bubble(Vector2(RM->WINDOW_WIDTH - 100 + (i * 80.f), 200.f)));
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			float delay = i * 0.5f;
+			SPAWNER.SpawnObjects(new Bubble(Vector2(RM->WINDOW_WIDTH - 100 + (i * 80.f), RM->WINDOW_HEIGHT - 200.f)));
+		}
 
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");

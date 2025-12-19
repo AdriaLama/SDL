@@ -17,7 +17,6 @@ class Enemy : public ImageObject
 {
 protected:
     int health;
-    bool spawnedUp;
     State currentState;
 public:
     Enemy()
