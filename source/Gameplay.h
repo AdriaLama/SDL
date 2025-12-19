@@ -9,6 +9,7 @@
 #include "TestObject.h"
 #include "TextObject.h"
 #include "AudioManager.h"
+#include "HorizontalMedusa.h"
 
 class Gameplay : public Scene
 {
@@ -17,6 +18,8 @@ public:
 	
 	void OnEnter() override
 	{
+		srand(time(nullptr));
+
 		BackgroundGameplay* background1 = new BackgroundGameplay(0.f);  
 		BackgroundGameplay* background2 = new BackgroundGameplay(680.f); 
 		_objects.push_back(background1);
@@ -25,10 +28,7 @@ public:
 		GAME_MANAGER.SetPlayer(player); 
 		SPAWNER.SpawnObjects((Object*)player);  
 
-		
-		
-		SPAWNER.SpawnObjects(new KillerWhale(Vector2(RM->WINDOW_WIDTH - 700.f , RM->WINDOW_HEIGHT - 50.f)));
-		SPAWNER.SpawnObjects(new KillerWhale(Vector2(RM->WINDOW_WIDTH - 300.f ,  50.f)));
+	
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");
 		
