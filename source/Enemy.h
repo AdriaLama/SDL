@@ -15,6 +15,9 @@ public:
 
 		_physics->SetLinearDrag(10.f);
 		_physics->SetAngularDrag(0.5f);
+		Vector2 colliderSize = Vector2(10.0f, 10.0f); 
+		AABB* bulletCollider = new AABB(Vector2(0.f, 0.f), colliderSize);
+		_physics->AddCollider(bulletCollider);
 	}
 
 	void Update() override
