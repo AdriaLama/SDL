@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Bubble.h"
 #include "BackgroundGameplay.h"
 #include "TestObject.h"
 #include "TextObject.h"
@@ -19,7 +20,7 @@ public:
 		_objects.push_back(background1);
 		_objects.push_back(background2);
 		SPAWNER.SpawnObjects(new Player());
-		SPAWNER.SpawnObjects(new Enemy());
+		SPAWNER.SpawnObjects(new Bubble(Vector2(750.0f, 300.0f)));
 
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");

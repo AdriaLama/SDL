@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AABB.cpp" />
+    <ClCompile Include="source\Bubble.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\Game.cpp" />
@@ -36,6 +37,7 @@
     <ClInclude Include="source\AtomicWrapper.h" />
     <ClInclude Include="source\AudioManager.h" />
     <ClInclude Include="source\BackgroundGameplay.h" />
+    <ClInclude Include="source\Bubble.h" />
     <ClInclude Include="source\Bullet.h" />
     <ClInclude Include="source\Enemy.h" />
     <ClInclude Include="source\Game.h" />
