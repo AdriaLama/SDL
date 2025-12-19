@@ -65,7 +65,8 @@ public:
 			  {
 				 if (_objects[i]->GetRigidBody()->CheckCollision(_objects[j]->GetRigidBody()))
 			     {
-				 // ...
+						_objects[i]->OnCollisionEnter(_objects[j]);
+						_objects[j]->OnCollisionEnter(_objects[i]);
 				 }
 			  }
 		}

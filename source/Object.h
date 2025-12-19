@@ -52,4 +52,7 @@ public:
 
 	bool IsPendingDestroy() const { return _isPendingDestroy; }
 	virtual void Destroy() { _isPendingDestroy = true; }
+
+	virtual void OnCollisionEnter(Object* other) {}
+
 };
