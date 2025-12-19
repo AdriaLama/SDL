@@ -6,6 +6,9 @@ void Enemy::OnCollisionEnter(Object* object)
 	Bullet* bullet = dynamic_cast<Bullet*>(object);
 
 	if (bullet != nullptr) {
-		Destroy();
+		health--;
+			if (health <= 0) {
+				Destroy();
+			}
 	}
 }

@@ -1,30 +1,33 @@
+#pragma once
 #include "ImageObject.h"
 #include "RenderManager.h"
-#include "InputManager.h"
+#include "Spawner.h"
+#include "TimeManager.h"
+
+enum State
+{
+    STAY,
+    SIMPLE_MOVE,
+    CIRCLE_MOVE,
+    CHASE,
+    RETURN
+};
 
 class Enemy : public ImageObject
 {
+protected:
+    int health;
+    bool spawnedUp;
+    State currentState;
 public:
-	Enemy()
-		: ImageObject("resources/enemy.png", Vector2(0.f, 0.f), Vector2(500.f, 500.f))
-	{
+    Enemy()
+        : ImageObject("resources/enemy.png", Vector2(0.f, 0.f), Vector2(50.f, 50.f))
+    {
 
-		Vector2 beginPosition = Vector2(RM->WINDOW_WIDTH / 1.3f, RM->WINDOW_HEIGHT / 2.f);
-		_transform->position = beginPosition;
-		_transform->scale = Vector2(3.5f, 3.5f);
 
-		_physics->SetLinearDrag(10.f);
-		_physics->SetAngularDrag(0.5f);
-		Vector2 colliderSize = Vector2(10.0f, 10.0f); 
-		AABB* bulletCollider = new AABB(Vector2(0.f, 0.f), colliderSize);
-		_physics->AddCollider(bulletCollider);
-	}
+    }
 
-	void Update() override
-	{
-		
-		Object::Update();
-	}
-
-	void OnCollisionEnter(Object* object);
+    int GetHealth() const { return health; }
+    void OnCollisionEnter(Object* other) override;
+    virtual void Behaviour() = 0;
 };
