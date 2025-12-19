@@ -12,7 +12,7 @@ Amoeba::Amoeba(Vector2 spawnPos)
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = SIMPLE_MOVE;
     health = 8;
-    spawnedUp = true;
+    
     circleTimer = 0.0f;
     circleCount = 0;
     isCopy = false;
@@ -30,7 +30,7 @@ Amoeba::Amoeba(Vector2 spawnPos, int index, bool copy, Amoeba* parent)
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = CIRCLE_MOVE;
     health = 1;
-    spawnedUp = true;
+    
     circleTimer = 0.0f;
     circleCount = 0;
     isCopy = copy;

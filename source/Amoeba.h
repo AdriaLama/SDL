@@ -15,6 +15,7 @@ private:
     int copyIndex;
     Amoeba* parentAmoeba;
 
+
 public:
     Amoeba(Vector2 spawnPos);
     Amoeba(Vector2 spawnPos, int index, bool copy, Amoeba* parent);
