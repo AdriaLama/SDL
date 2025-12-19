@@ -31,5 +31,5 @@ public:
 		}
 	}
 
-	void OnCollisionEnter(Object* object);
+	void OnCollisionEnter(Object* object) override;
 };
