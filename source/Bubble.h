@@ -2,6 +2,10 @@
 
 class Bubble : public Enemy
 {
+private:
+    Vector2 circleCenter;
+    float angle;
+    bool spawnedUpBubbles;
 public:
     Bubble(Vector2(spawnPosition))
         : Enemy()
@@ -11,10 +15,11 @@ public:
 
         _transform->size = Vector2(100.f, 100.f);
         _transform->position = spawnPosition;
+
         if (spawnPosition.y < RM->WINDOW_HEIGHT / 2.f)
-            spawnedUp = true;
+            spawnedUpBubbles = true;
         else
-            spawnedUp = false;
+            spawnedUpBubbles = false;
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = SIMPLE_MOVE;
@@ -22,6 +27,6 @@ public:
 
         
     }
-
+    void Update() override;
     void Behaviour() override;
 };
