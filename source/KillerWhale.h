@@ -1,31 +1,31 @@
 #include "Enemy.h"
 
-class Bubble : public Enemy
+class KillerWhale : public Enemy
 {
 private:
     Vector2 circleCenter;
     float angle;
-    bool spawnedUpBubbles;
+    bool spawnedUpWhale;
 public:
-    Bubble(Vector2(spawnPosition))
+    KillerWhale(Vector2(spawnPosition))
         : Enemy()
     {
 
         _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
 
-        _transform->size = Vector2(100.f, 100.f);
+        _transform->size = Vector2(125.f, 125.f);
         _transform->position = spawnPosition;
 
         if (spawnPosition.y < RM->WINDOW_HEIGHT / 2.f)
-            spawnedUpBubbles = true;
+            spawnedUpWhale = true;
         else
-            spawnedUpBubbles = false;
+            spawnedUpWhale = false;
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
-        currentState = SIMPLE_MOVE;
-        health = 1;
+        currentState = STAY;
+        health = 5;
 
-        
+
     }
     void Update() override;
     void Behaviour() override;

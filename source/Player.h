@@ -1,3 +1,4 @@
+#pragma once
 #include "ImageObject.h"
 #include "Bullet.h"
 #include "RenderManager.h"
@@ -52,6 +53,7 @@ public:
 		Object::Update();
 		ClampPosition();
 	}
+
 
 private:
 	void ClampPosition()
