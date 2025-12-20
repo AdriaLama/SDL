@@ -37,6 +37,7 @@
     <ClCompile Include="source\InputManager.cpp" />
     <ClCompile Include="source\KillerWhale.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Missiles.cpp" />
     <ClCompile Include="source\Nuke.cpp" />
     <ClCompile Include="source\RenderManager.cpp" />
     <ClCompile Include="source\RigidBody.cpp" />
@@ -71,6 +72,7 @@
     <ClInclude Include="source\InputManager.h" />
     <ClInclude Include="source\KillerWhale.h" />
     <ClInclude Include="source\MenuScene.h" />
+    <ClInclude Include="source\Missiles.h" />
     <ClInclude Include="source\Nuke.h" />
     <ClInclude Include="source\Object.h" />
     <ClInclude Include="source\Player.h" />
