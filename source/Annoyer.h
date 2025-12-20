@@ -4,7 +4,7 @@
 #include <ctime>
 #include "GameManager.h"
 
-class Beholder : public Enemy
+class Annoyer : public Enemy
 {
 private:
     float _moveTimer;
@@ -23,11 +23,12 @@ private:
     const float SLOW_SPEED = 200.0f;
     const float INITIAL_MOVE_AMOUNT = 150.0f;
     const float Y_ALIGNMENT_THRESHOLD = 30.0f;  
+
     Vector2 GetLeftDirection();
     Vector2 GetDirectionToPlayer();
 
 public:
-    Beholder(Vector2 spawnPosition);
+    Annoyer(Vector2 spawnPosition);
     void Update() override;
     void Behaviour() override;
 };
