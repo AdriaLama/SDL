@@ -1,11 +1,9 @@
 #include "Enemy.h"
 
-class KillerWhale : public Enemy
+class Nuke : public Enemy
 {
-private:
-    bool spawnedUpWhale;
 public:
-    KillerWhale(Vector2(spawnPosition))
+    Nuke(Vector2(spawnPosition))
         : Enemy()
     {
 
@@ -14,15 +12,8 @@ public:
         _transform->size = Vector2(125.f, 125.f);
         _transform->position = spawnPosition;
 
-        if (spawnPosition.y < RM->WINDOW_HEIGHT / 2.f)
-            spawnedUpWhale = true;
-        else
-            spawnedUpWhale = false;
-
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = STAY;
-        health = 5;
-
 
     }
     void Update() override;
