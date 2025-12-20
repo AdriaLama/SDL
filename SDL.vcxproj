@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClCompile Include="source\AABB.cpp" />
     <ClCompile Include="source\Amoeba.cpp" />
+    <ClCompile Include="source\Angrygons.cpp" />
     <ClCompile Include="source\Beholder.cpp" />
     <ClCompile Include="source\Bubble.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
     <ClInclude Include="source\Amoeba.h" />
+    <ClInclude Include="source\Angrygons.h" />
     <ClInclude Include="source\AnimatedImageObject.h" />
     <ClInclude Include="source\AnimatedImageRenderer.h" />
     <ClInclude Include="source\AtomicWrapper.h" />
