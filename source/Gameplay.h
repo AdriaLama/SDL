@@ -11,6 +11,7 @@
 #include "TextObject.h"
 #include "AudioManager.h"
 #include "HorizontalMedusa.h"
+#include "Ufo.h"
 
 class Gameplay : public Scene
 {
@@ -27,21 +28,10 @@ public:
 		_objects.push_back(background2);
 		Player* player = new Player();
 		GAME_MANAGER.SetPlayer(player); 
-		SPAWNER.SpawnObjects((Object*)player);  
+		SPAWNER.SpawnObjects((Object*)player); 	
 
-		
-		
-
-		for (int i = 1; i <= 6; i++) 
-		{ 
-			if (i == 1) {
-				SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f), Vector2(100.f, 100.f)));
-			}
-		
-			SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f - (i * 60.f)), Vector2(50.f, 50.f)));
-		}
-	
-
+		UFO* ufo = new UFO();
+		SPAWNER.SpawnObjects((Object*)ufo);
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");
 		
