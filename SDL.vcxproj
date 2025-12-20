@@ -39,11 +39,13 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\Missiles.cpp" />
     <ClCompile Include="source\Nuke.cpp" />
+    <ClCompile Include="source\PowerUp.cpp" />
     <ClCompile Include="source\RenderManager.cpp" />
     <ClCompile Include="source\RigidBody.cpp" />
     <ClCompile Include="source\Ufo.cpp" />
     <ClCompile Include="source\Torpedo.cpp" />
     <ClCompile Include="source\VerticalMedusa.cpp" />
+    <ClCompile Include="source\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
@@ -76,6 +78,7 @@
     <ClInclude Include="source\Nuke.h" />
     <ClInclude Include="source\Object.h" />
     <ClInclude Include="source\Player.h" />
+    <ClInclude Include="source\PowerUp.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
     <ClInclude Include="source\RigidBody.h" />
@@ -93,6 +96,7 @@
     <ClInclude Include="source\Ufo.h" />
     <ClInclude Include="source\vector2.h" />
     <ClInclude Include="source\VerticalMedusa.h" />
+    <ClInclude Include="source\WaveManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
