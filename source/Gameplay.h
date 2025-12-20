@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Bubble.h"
+#include "Circler.h"
 #include "KillerWhale.h"
 #include "BackgroundGameplay.h"
 #include "GameManager.h"
@@ -28,7 +29,19 @@ public:
 		GAME_MANAGER.SetPlayer(player); 
 		SPAWNER.SpawnObjects((Object*)player);  
 
+		
+		
+
+		for (int i = 1; i <= 6; i++) 
+		{ 
+			if (i == 1) {
+				SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f), Vector2(100.f, 100.f)));
+			}
+		
+			SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f - (i * 60.f)), Vector2(50.f, 50.f)));
+		}
 	
+
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");
 		
