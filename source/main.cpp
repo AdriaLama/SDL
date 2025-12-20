@@ -23,7 +23,7 @@ int main()
 	while (game.IsRunning())
 	{
 		TM.Update();
-		std::cout << TM.GetDeltaTime() << std::endl;
+		
 		if (TM.ShouldUpdateGame()) {
 			game.HandleEvents();
 			game.Update();

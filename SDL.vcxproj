@@ -41,6 +41,7 @@
     <ClCompile Include="source\Nuke.cpp" />
     <ClCompile Include="source\RenderManager.cpp" />
     <ClCompile Include="source\RigidBody.cpp" />
+    <ClCompile Include="source\RoboKrabs.cpp" />
     <ClCompile Include="source\Ufo.cpp" />
     <ClCompile Include="source\Torpedo.cpp" />
     <ClCompile Include="source\VerticalMedusa.cpp" />
@@ -79,6 +80,7 @@
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
     <ClInclude Include="source\RigidBody.h" />
+    <ClInclude Include="source\RoboKrabs.h" />
     <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\SceneManager.h" />
     <ClInclude Include="source\Spawner.h" />
