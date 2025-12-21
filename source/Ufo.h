@@ -17,4 +17,5 @@ public:
     UFO();
     void Behaviour() override;
     void Update() override;
+    void OnCollisionEnter(Object* other);
 };
