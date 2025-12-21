@@ -16,10 +16,11 @@ public:
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = SIMPLE_MOVE;
-        health = 2;
+        health = 1;
         velocityX = (rand() % 1500) + 1300;
 
     }
     void Update() override;
     void Behaviour() override;
+    void OnCollisionEnter(Object* object) override;
 };

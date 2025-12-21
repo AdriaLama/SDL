@@ -29,4 +29,5 @@ public:
     }
     void Update() override;
     void Behaviour() override;
+    void OnCollisionEnter(Object* object) override;
 };

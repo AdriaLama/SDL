@@ -23,11 +23,12 @@ public:
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = SIMPLE_MOVE;
-
+        health = 10;
         loopCount = 0;
         radius = 200.f;
 
     }
     void Update() override;
     void Behaviour() override;
+    void OnCollisionEnter(Object* object) override;
 };

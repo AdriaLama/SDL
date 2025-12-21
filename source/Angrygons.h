@@ -31,4 +31,5 @@ public:
     Angrygons(Vector2 startPos);
     void Behaviour() override;
     void Update() override;
+    void OnCollisionEnter(Object* object) override;
 };

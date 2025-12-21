@@ -1,5 +1,7 @@
 #include "Bubble.h"
 #include "TimeManager.h"
+#include "Bullet.h"
+#include "ScoreManager.h"
 
 void Bubble::Behaviour()
 {
@@ -58,6 +60,21 @@ void Bubble::Behaviour()
             _physics->AddForce(Vector2(1300.f, 0.f));
             _physics->SetLinearDrag(5.f);
         }
+    }
+}
+
+void Bubble::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }
 

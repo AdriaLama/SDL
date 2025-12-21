@@ -1,6 +1,7 @@
 #include "Amoeba.h"
 #include "TimeManager.h"
 #include "Bullet.h"
+#include "ScoreManager.h"
 
 Amoeba::Amoeba(Vector2 spawnPos)
     : Enemy()
@@ -68,6 +69,7 @@ void Amoeba::OnCollisionEnter(Object* object)
 {
     Bullet* bullet = dynamic_cast<Bullet*>(object);
     if (bullet != nullptr) {
+
         health--;
         if (health <= 0) {
             
@@ -75,6 +77,8 @@ void Amoeba::OnCollisionEnter(Object* object)
                 parentAmoeba->health--; 
                 parentAmoeba->RemoveCopyReference(this);
                 parentAmoeba = nullptr;
+                HUD_MANAGER.AddScore(150);
+
             }
             Destroy();
         }

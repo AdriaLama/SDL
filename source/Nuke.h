@@ -11,11 +11,12 @@ public:
 
         _transform->size = Vector2(125.f, 125.f);
         _transform->position = spawnPosition;
-
+        health = 5;
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = STAY;
 
     }
     void Update() override;
     void Behaviour() override;
+    void OnCollisionEnter(Object* object) override;
 };

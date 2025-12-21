@@ -91,7 +91,7 @@ void PowerUp::ApplyPowerUp(Player* player)
     switch (_type)
     {
     case PowerUpType::SCORE_BONUS:
-        HUD_MANAGER.AddScore(500);
+        HUD_MANAGER.AddScore(1000);
         break;
 
     case PowerUpType::CANNON_ENERGY:

@@ -1,6 +1,8 @@
 #include "Angrygons.h"
 #include "RenderManager.h"
 #include <cmath>
+#include "Bullet.h"
+#include "ScoreManager.h"
 
 Angrygons::Angrygons(Vector2 startPos)
     : Enemy()
@@ -14,7 +16,7 @@ Angrygons::Angrygons(Vector2 startPos)
     stateTimer = 0.0f;
     spinAngle = 0.0f;
     spinRadius = 155.0f;
-    health = 3;
+    health = 1;
 }
 
 void Angrygons::InitializeSpin()
@@ -150,6 +152,22 @@ void Angrygons::Update()
     stateTimer += TM.GetDeltaTime();
     Behaviour();
     Object::Update();
+}
+
+void Angrygons::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
+    }
+
 }
 
 void Angrygons::PerformSpin(float deltaTime)

@@ -1,6 +1,8 @@
 #include "Chomper.h"
 #include "TimeManager.h"
 #include <cmath>
+#include "Bullet.h"
+#include "ScoreManager.h"
 Chomper::Chomper(Vector2 spawnPosition, int indexInLine)
     : Enemy()
 {
@@ -14,7 +16,7 @@ Chomper::Chomper(Vector2 spawnPosition, int indexInLine)
     leftDrift = 50.f;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = CIRCLE_MOVE;
-    health = 2;
+    health = 1;
 }
 void Chomper::Behaviour()
 {
@@ -24,6 +26,20 @@ void Chomper::Behaviour()
         lineCenter.x -= leftDrift * TM.GetDeltaTime();
         _transform->position.x = lineCenter.x + cos(angle) * radius;
         _transform->position.y = lineCenter.y + sin(angle) * radius;
+    }
+}
+void Chomper::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }
 void Chomper::Update()
