@@ -1,5 +1,6 @@
 #include "Nuke.h"
 #include "GameManager.h"
+#include "ScoreManager.h"
 
 void Nuke::Behaviour()
 {
@@ -21,6 +22,21 @@ void Nuke::Behaviour()
     {
           _physics->AddForce(Vector2(0.f, -2300.f));
           _physics->SetLinearDrag(10.f);
+    }
+}
+
+void Nuke::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(750);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }
 

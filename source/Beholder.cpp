@@ -1,6 +1,7 @@
 #include "Beholder.h"
 #include "RenderManager.h"
 #include "TimeManager.h"
+#include "ScoreManager.h"
 
 Beholder::Beholder(Vector2 spawnPosition)
     : Enemy()
@@ -8,7 +9,7 @@ Beholder::Beholder(Vector2 spawnPosition)
     _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
     _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPosition;
-    health = 3;
+    health = 1;
     currentState = SIMPLE_MOVE; 
     _moveTimer = 0.0f;
     _stopTimer = 0.0f;
@@ -101,5 +102,20 @@ void Beholder::Behaviour()
 
     default:
         break;
+    }
+}
+
+void Beholder::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }

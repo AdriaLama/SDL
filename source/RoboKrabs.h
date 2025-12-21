@@ -6,9 +6,9 @@
 class RoboKrabs : public Enemy
 {
 private:
-   
+
     float jumpTimer = 0.f;
-    float jumpCooldown = 3.f; 
+    float jumpCooldown = 3.f;
     bool spawnedLeftKrabs;
 
 public:
@@ -24,8 +24,10 @@ public:
         _transform->position = spawnPosition;
         currentState = SIMPLE_MOVE;
         jumpCooldown = (rand() % 3) + 1;
+        health = 1;
     }
 
     void Behaviour();
     void Update() override;
+    void OnCollisionEnter(Object* object) override;
 };

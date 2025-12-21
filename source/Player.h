@@ -207,21 +207,19 @@ private:
 	void Shoot()
 	{
 		Vector2 spawnPos = _transform->position;
-		SPAWNER.SpawnObjects(new Bullet(spawnPos));
+		SPAWNER.SpawnObjects(new Bullet(spawnPos, BulletType::NORMAL));
 
 		if (_hasCannons && _cannonEnergy >= _cannonEnergyConsumption)
 		{
 			Vector2 cannonOffset = Vector2(0.f, 20.f);
-			SPAWNER.SpawnObjects(new Bullet(spawnPos + cannonOffset));
-			SPAWNER.SpawnObjects(new Bullet(spawnPos - cannonOffset));
+			SPAWNER.SpawnObjects(new Bullet(spawnPos + cannonOffset, BulletType::CANNON));
 			_cannonEnergy -= _cannonEnergyConsumption;
 		}
 
 		if (_hasLaser && _laserEnergy >= _laserEnergyConsumption)
 		{
 			Vector2 laserOffset = Vector2(0.f, 30.f);
-			SPAWNER.SpawnObjects(new Bullet(spawnPos + laserOffset));
-			SPAWNER.SpawnObjects(new Bullet(spawnPos - laserOffset));
+			SPAWNER.SpawnObjects(new Bullet(spawnPos - laserOffset, BulletType::LASER));
 			_laserEnergy -= _laserEnergyConsumption;
 		}
 

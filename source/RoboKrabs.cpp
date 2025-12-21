@@ -1,5 +1,6 @@
 #include "RoboKrabs.h"
 #include "GameManager.h"
+#include "ScoreManager.h"
 
 void RoboKrabs::Behaviour()
 {
@@ -71,4 +72,19 @@ void RoboKrabs::Update()
 {
     Enemy::Update();
     Behaviour();
+}
+
+void RoboKrabs::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
+    }
 }

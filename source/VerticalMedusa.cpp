@@ -1,5 +1,6 @@
 #include "VerticalMedusa.h"
 #include "TimeManager.h"
+#include "ScoreManager.h"
 
 VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
     : Enemy()
@@ -15,7 +16,7 @@ VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
 
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = SIMPLE_MOVE;
-    health = 2;
+    health = 1;
 }
 
 void VerticalMedusa::Behaviour()
@@ -44,6 +45,21 @@ void VerticalMedusa::Behaviour()
                 stopTimer = 0.f;
             }
         }
+    }
+}
+
+void VerticalMedusa::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }
 

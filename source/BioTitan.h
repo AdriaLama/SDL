@@ -28,4 +28,5 @@ public:
     void Update() override;
     void Behaviour();
     void ShootBullet();
+    void OnCollisionEnter(Object* object) override;
 };

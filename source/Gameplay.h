@@ -10,6 +10,7 @@
 #include "GameManager.h"
 #include "TestObject.h"
 #include "TextObject.h"
+#include "Torpedo.h"
 #include "AudioManager.h"
 #include "HorizontalMedusa.h"
 #include "ScoreManager.h"
@@ -36,7 +37,17 @@ public:
 		_objects.push_back(HUD_MANAGER.GetScoreText());
 		_objects.push_back(HUD_MANAGER.GetHighScoreText());
 		_objects.push_back(HUD_MANAGER.GetShieldText());
-		_objects.push_back(HUD_MANAGER.GetLivesText());
+		/*_objects.push_back(HUD_MANAGER.GetLivesText());*/
+		_objects.push_back(HUD_MANAGER.GetCannonText());
+		_objects.push_back(HUD_MANAGER.GetLaserText());
+
+		for (int i = 0; i < 8; i++)
+		{
+			float randomY = (rand() % RM->WINDOW_HEIGHT - 200) + 200;
+
+			SPAWNER.SpawnObjects(new Torpedo(Vector2(RM->WINDOW_WIDTH + 100.f, randomY)));
+		}
+
 
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");

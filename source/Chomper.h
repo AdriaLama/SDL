@@ -12,4 +12,5 @@ public:
     Chomper(Vector2 spawnPosition, int indexInLine);
     void Update() override;
     void Behaviour() override;
+    void OnCollisionEnter(Object* object) override;
 };

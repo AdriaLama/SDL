@@ -16,6 +16,8 @@ void Game::Init()
 	RM->LoadTexture("resources/bullet.png");
 	RM->LoadTexture("resources/backgroundGameplay.png");
 	RM->LoadTexture("resources/enemy.png");
+	RM->LoadTexture("resources/laser.png");
+	RM->LoadTexture("resources/cannon.png");
 	AM->LoadSoundsData("resources/audio/music/froggerSong.wav");
 	AM->LoadSoundsData("resources/audio/sfx/defeat.wav");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");

@@ -1,5 +1,6 @@
 #include "KillerWhale.h"
 #include "GameManager.h"
+#include "ScoreManager.h"
 
 void KillerWhale::Behaviour()
 {
@@ -29,6 +30,21 @@ void KillerWhale::Behaviour()
             _physics->SetLinearDrag(10.f);
         }
            
+    }
+}
+
+void KillerWhale::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(750);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }
 

@@ -1,6 +1,8 @@
 #include "Daniels.h"
 #include "RenderManager.h"
 #include <cmath>
+#include "Bullet.h"
+#include "ScoreManager.h"
 
 Daniels::Daniels(bool fromTop)
     : Enemy()
@@ -98,5 +100,20 @@ void Daniels::Behaviour()
     }
     default:
         break;
+    }
+}
+
+void Daniels::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }

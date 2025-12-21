@@ -30,4 +30,5 @@ public:
     Beholder(Vector2 spawnPosition);
     void Update() override;
     void Behaviour() override;
+    void OnCollisionEnter(Object* object) override;
 };

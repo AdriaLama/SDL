@@ -1,4 +1,6 @@
 #include "Circler.h"
+#include "Bullet.h"
+#include "ScoreManager.h"
 
 void Circler::Behaviour()
 {
@@ -99,6 +101,21 @@ void Circler::Behaviour()
     {
         _physics->AddForce(Vector2(0.f, -800.f));
         _physics->SetLinearDrag(5.f);
+    }
+}
+
+void Circler::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(150);
+            this->Destroy();
+        }
+        bullet->Destroy();
     }
 }
 

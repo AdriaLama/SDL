@@ -2,6 +2,7 @@
 #include "BioTitan.h"
 #include "BioTitanBullets.h"
 #include "GameManager.h"
+#include "ScoreManager.h"
 
 void BioTitan::Behaviour()
 {
@@ -45,6 +46,21 @@ void BioTitan::ShootBullet()
     float maxY = _transform->position.y + (_transform->size.y / 2.f);
     float randomY = minY + (rand() % (int)(maxY - minY));
     SPAWNER.SpawnObjects(new BioTitanBullets(Vector2(_transform->position.x, randomY)));
+}
+
+void BioTitan::OnCollisionEnter(Object* object)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(object);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(1000);
+            this->Destroy();
+        }
+        bullet->Destroy();
+    }
 }
 
 void BioTitan::Update()
