@@ -1,14 +1,21 @@
-#include "Bullet.h"
 #include "Enemy.h"
+#include "Bullet.h"
+#include "GameManager.h"
+#include "ScoreManager.h"
 
-void Enemy::OnCollisionEnter(Object* object)
+void Enemy::OnCollisionEnter(Object* other)
 {
-	Bullet* bullet = dynamic_cast<Bullet*>(object);
+    Bullet* bullet = dynamic_cast<Bullet*>(other);
+    if (bullet)
+    {
+        health--;
 
-	if (bullet != nullptr) {
-		health--;
-			if (health <= 0) {
-				Destroy();
-			}
-	}
+        if (health <= 0)
+        {            
+            int points = 100;
+            HUD_MANAGER.AddScore(points);
+            this->Destroy();
+        }       
+        bullet->Destroy();
+    }
 }

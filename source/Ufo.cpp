@@ -1,5 +1,7 @@
 #include "Ufo.h"
 #include <iostream>
+#include "Bullet.h"
+#include "ScoreManager.h"
 
 UFO::UFO()
     : Enemy()
@@ -75,4 +77,18 @@ void UFO::Update()
 {
     Enemy::Update();
     Behaviour();
+}
+void UFO::OnCollisionEnter(Object* other)
+{
+    Bullet* bullet = dynamic_cast<Bullet*>(other);
+    if (bullet)
+    {
+        health--;
+        if (health <= 0)
+        {
+            HUD_MANAGER.AddScore(300); // UFOs dan 300 puntos
+            this->Destroy();
+        }
+        bullet->Destroy();
+    }
 }

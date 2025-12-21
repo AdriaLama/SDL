@@ -46,7 +46,6 @@
     <ClCompile Include="source\Ufo.cpp" />
     <ClCompile Include="source\Torpedo.cpp" />
     <ClCompile Include="source\VerticalMedusa.cpp" />
-    <ClCompile Include="source\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
@@ -86,6 +85,7 @@
     <ClInclude Include="source\RoboKrabs.h" />
     <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\SceneManager.h" />
+    <ClInclude Include="source\ScoreManager.h" />
     <ClInclude Include="source\Spawner.h" />
     <ClInclude Include="source\Stream.h" />
     <ClInclude Include="source\TestObject.h" />
