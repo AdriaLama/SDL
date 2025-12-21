@@ -86,7 +86,7 @@ void UFO::OnCollisionEnter(Object* other)
         health--;
         if (health <= 0)
         {
-            HUD_MANAGER.AddScore(300); // UFOs dan 300 puntos
+            HUD_MANAGER.AddScore(300); 
             this->Destroy();
         }
         bullet->Destroy();
