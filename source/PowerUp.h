@@ -7,37 +7,35 @@ enum class PowerUpType {
     SCORE_BONUS,
     CANNON_ENERGY,
     LASER_ENERGY,
-    ENGINE_BOOST,
+    ENGINE_BOOST,  
+    SHIELD_ENERGY,
     TWIN_TURRETS,
-    SHIELD_ENERGY
+    COUNT // Para saber cuántos tipos hay
 };
 
 class PowerUp : public ImageObject {
 private:
     PowerUpType _type;
-    int _chargeLevel;
-    int _maxCharges;
-    bool _isFullyCharged;
     float _despawnTimer;
-    const float _maxDespawnTime = 10.0f;
+    const float _maxDespawnTime = 15.0f;
     float _pulseTimer;
     float _originalScale;
     float _rotationSpeed;
 
 public:
-    PowerUp(Vector2 position, PowerUpType type);
+    PowerUp(Vector2 position, PowerUpType type = PowerUpType::SCORE_BONUS);
     void Update() override;
     void OnCollisionEnter(Object* other) override;
     void OnHit();
     void ApplyPowerUp(Player* player);
-
-    bool IsFullyCharged() const { return _isFullyCharged; }
+    void CycleToNextType();
     PowerUpType GetType() const { return _type; }
-    int GetChargeLevel() const { return _chargeLevel; }
+
+    // Ya no se usa GetRandomType() - lo elimino o lo dejo deprecado
+    // static PowerUpType GetRandomType();
 
 private:
     std::string GetTexturePathForType(PowerUpType type);
     Vector2 GetSourceOffsetForType(PowerUpType type);
-    int GetMaxChargesForType(PowerUpType type);
-    void UpdateSpriteForChargeLevel();
+    void UpdateSpriteForType();
 };

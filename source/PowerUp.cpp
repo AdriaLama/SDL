@@ -4,40 +4,35 @@
 #include "Bullet.h"
 #include <cmath>
 #include "ScoreManager.h"
+#include <cstdlib>
 
 PowerUp::PowerUp(Vector2 position, PowerUpType type)
     : ImageObject(GetTexturePathForType(type), GetSourceOffsetForType(type), Vector2(64.f, 64.f)),
     _type(type),
-    _chargeLevel(0),
-    _maxCharges(GetMaxChargesForType(type)),
-    _isFullyCharged(false),
     _despawnTimer(0.f),
     _pulseTimer(0.f),
-    _originalScale(1.0f),
+    _originalScale(1.2f),
     _rotationSpeed(50.f)
 {
     _transform->position = position;
     _transform->scale = Vector2(_originalScale, _originalScale);
     AABB* collider = new AABB(_transform->position, Vector2(64.f, 64.f));
     _physics->AddCollider(collider);
-    UpdateSpriteForChargeLevel();
+    UpdateSpriteForType();
 }
 
 void PowerUp::Update()
 {
     _despawnTimer += TM.GetDeltaTime();
-    if (_despawnTimer >= _maxDespawnTime && !_isFullyCharged)
+    if (_despawnTimer >= _maxDespawnTime)
     {
         Destroy();
         return;
     }
 
-    if (_isFullyCharged)
-    {
-        _pulseTimer += TM.GetDeltaTime() * 3.f;
-        float pulse = 1.0f + sin(_pulseTimer) * 0.15f;
-        _transform->scale = Vector2(_originalScale * pulse, _originalScale * pulse);
-    }
+    _pulseTimer += TM.GetDeltaTime() * 3.f;
+    float pulse = 1.0f + sin(_pulseTimer) * 0.15f;
+    _transform->scale = Vector2(_originalScale * pulse, _originalScale * pulse);
 
     _transform->rotation += _rotationSpeed * TM.GetDeltaTime();
     if (_transform->rotation >= 360.f)
@@ -48,7 +43,6 @@ void PowerUp::Update()
 
 void PowerUp::OnCollisionEnter(Object* other)
 {
-    
     Bullet* bullet = dynamic_cast<Bullet*>(other);
     if (bullet != nullptr)
     {
@@ -57,9 +51,8 @@ void PowerUp::OnCollisionEnter(Object* other)
         return;
     }
 
-    
     Player* player = GAME_MANAGER.GetPlayer();
-    if (other == player && _isFullyCharged)
+    if (other == player)
     {
         ApplyPowerUp(player);
         Destroy();
@@ -68,19 +61,19 @@ void PowerUp::OnCollisionEnter(Object* other)
 
 void PowerUp::OnHit()
 {
-    if (_isFullyCharged)
-        return;
+    CycleToNextType();
+}
 
-    _chargeLevel++;
-
-    if (_chargeLevel >= _maxCharges)
+void PowerUp::CycleToNextType()
+{
+    if (_type != PowerUpType::TWIN_TURRETS)
     {
-        _chargeLevel = _maxCharges;
-        _isFullyCharged = true;
-        _originalScale = 1.3f; 
-    }
+        int currentType = static_cast<int>(_type);
+        currentType = currentType + 1;
+        _type = static_cast<PowerUpType>(currentType);
 
-    UpdateSpriteForChargeLevel();
+        UpdateSpriteForType();
+    }
 }
 
 void PowerUp::ApplyPowerUp(Player* player)
@@ -116,6 +109,8 @@ void PowerUp::ApplyPowerUp(Player* player)
     }
 }
 
+// Método GetRandomType() ELIMINADO - ya no es necesario
+
 std::string PowerUp::GetTexturePathForType(PowerUpType type)
 {
     return "resources/image.png";
@@ -142,42 +137,30 @@ Vector2 PowerUp::GetSourceOffsetForType(PowerUpType type)
     }
 }
 
-int PowerUp::GetMaxChargesForType(PowerUpType type)
-{
-    
-    switch (type)
-    {
-    case PowerUpType::SCORE_BONUS:
-        return 1; 
-    case PowerUpType::CANNON_ENERGY:
-        return 2; 
-    case PowerUpType::LASER_ENERGY:
-        return 3; 
-    case PowerUpType::ENGINE_BOOST:
-        return 4; 
-    case PowerUpType::TWIN_TURRETS:
-        return 5; 
-    case PowerUpType::SHIELD_ENERGY:
-        return 6; 
-    default:
-        return 5;
-    }
-}
-
-void PowerUp::UpdateSpriteForChargeLevel()
+void PowerUp::UpdateSpriteForType()
 {
     if (_renderer)
     {
-        float chargePercent = (float)_chargeLevel / (float)_maxCharges;
-        Uint8 brightness = (Uint8)(100 + 155 * chargePercent);
-
-        if (_isFullyCharged)
+        switch (_type)
         {
+        case PowerUpType::SCORE_BONUS:
+            _renderer->SetColor({ 255, 215, 0, 255 });
+            break;
+        case PowerUpType::CANNON_ENERGY:
+            _renderer->SetColor({ 255, 100, 100, 255 });
+            break;
+        case PowerUpType::LASER_ENERGY:
+            _renderer->SetColor({ 100, 100, 255, 255 });
+            break;
+        case PowerUpType::ENGINE_BOOST:
+            _renderer->SetColor({ 255, 165, 0, 255 });
+            break;
+        case PowerUpType::TWIN_TURRETS:
+            _renderer->SetColor({ 200, 100, 255, 255 });
+            break;
+        case PowerUpType::SHIELD_ENERGY:
             _renderer->SetColor({ 100, 255, 100, 255 });
-        }
-        else
-        {           
-            _renderer->SetColor({ brightness, brightness, brightness, 255 });
+            break;
         }
     }
 }

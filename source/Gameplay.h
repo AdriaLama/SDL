@@ -32,7 +32,7 @@ public:
 		Player* player = new Player();
 		GAME_MANAGER.SetPlayer(player);
 		SPAWNER.SpawnObjects((Object*)player);
-		SPAWNER.SpawnObjects(new PowerUp(Vector2(900.f, 300.f), PowerUpType::LASER_ENERGY));
+		
 		HUD_MANAGER.Initialize();
 		_objects.push_back(HUD_MANAGER.GetScoreText());
 		_objects.push_back(HUD_MANAGER.GetHighScoreText());
@@ -40,6 +40,7 @@ public:
 		/*_objects.push_back(HUD_MANAGER.GetLivesText());*/
 		_objects.push_back(HUD_MANAGER.GetCannonText());
 		_objects.push_back(HUD_MANAGER.GetLaserText());
+		SPAWNER.SpawnObjects(new PowerUp(Vector2(400.0f, 100.0f)));
 
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");

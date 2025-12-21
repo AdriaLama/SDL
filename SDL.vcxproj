@@ -104,7 +104,7 @@
     <ClInclude Include="source\Ufo.h" />
     <ClInclude Include="source\vector2.h" />
     <ClInclude Include="source\VerticalMedusa.h" />
-    <ClInclude Include="source\WaveManager.h" />
+    <ClInclude Include="source\LevelLoad.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
