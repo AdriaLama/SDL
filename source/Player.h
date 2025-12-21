@@ -6,7 +6,7 @@
 #include "TimeManager.h"
 #include "Spawner.h"
 #include "Enemy.h"
-#include "ScoreManager.h"
+
 
 class Player : public ImageObject
 {
@@ -182,7 +182,7 @@ public:
 	}
 
 
-	void AddScore(int amount) { HUD_MANAGER.AddScore(amount);}
+	void AddScore(int amount) { _score += amount; }
 	int GetScore() const { return _score; }
 	int GetShields() const { return _shields; }
 	int GetMaxShields() const { return _maxShields; }
