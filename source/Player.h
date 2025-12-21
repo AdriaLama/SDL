@@ -23,8 +23,8 @@ private:
 	float _laserEnergy;
 	float _maxCannonEnergy;
 	float _maxLaserEnergy;
-	const float _cannonEnergyConsumption = 2.0f; 
-	const float _laserEnergyConsumption = 3.0f;  
+	const float _cannonEnergyConsumption = 2.0f;
+	const float _laserEnergyConsumption = 3.0f;
 	float _movementSpeedMultiplier;
 	float _turretAngle;
 	float _distanceTravelled;
@@ -70,7 +70,7 @@ public:
 
 	void Update() override
 	{
-		
+
 		if (_isImmune)
 		{
 			_immunityTimer += TM.GetDeltaTime();
@@ -80,7 +80,7 @@ public:
 				_immunityTimer = 0.f;
 			}
 		}
-		
+
 		if (_hasCannons && _cannonEnergy <= 0.f)
 		{
 			_hasCannons = false;
@@ -95,7 +95,7 @@ public:
 			_currentCooldown -= TM.GetDeltaTime();
 		}
 
-		
+
 		float speed = 3000.f * _movementSpeedMultiplier;
 
 		if (IM->GetEvent(SDLK_W, HOLD) && _transform->position.y > 0)
@@ -148,26 +148,21 @@ public:
 			OnPlayerDeath();
 		}
 	}
-
 	void OnPlayerDeath()
 	{
 		Destroy();
 	}
-
-	
 	void ReplenishCannonEnergy() {
 		_cannonEnergy = _maxCannonEnergy;
 		_hasCannons = true;
 	}
-
 	void ReplenishLaserEnergy() {
 		_laserEnergy = _maxLaserEnergy;
 		_hasLaser = true;
 	}
-
 	void UpgradeEngines() {
 		_movementSpeedMultiplier += 0.2f;
-		
+	
 		if (_movementSpeedMultiplier > 2.5f) {
 			_movementSpeedMultiplier = 2.5f;
 		}
@@ -180,7 +175,6 @@ public:
 	void ReplenishShields() {
 		_shields = _maxShields;
 	}
-
 
 	void AddScore(int amount) { _score += amount; }
 	int GetScore() const { return _score; }
@@ -213,11 +207,8 @@ private:
 	void Shoot()
 	{
 		Vector2 spawnPos = _transform->position;
-
-		
 		SPAWNER.SpawnObjects(new Bullet(spawnPos));
 
-		
 		if (_hasCannons && _cannonEnergy >= _cannonEnergyConsumption)
 		{
 			Vector2 cannonOffset = Vector2(0.f, 20.f);
@@ -226,7 +217,6 @@ private:
 			_cannonEnergy -= _cannonEnergyConsumption;
 		}
 
-		
 		if (_hasLaser && _laserEnergy >= _laserEnergyConsumption)
 		{
 			Vector2 laserOffset = Vector2(0.f, 30.f);
@@ -235,7 +225,6 @@ private:
 			_laserEnergy -= _laserEnergyConsumption;
 		}
 
-		
 		if (_hasTwinTurrets)
 		{
 			ShootTurrets();
@@ -246,11 +235,14 @@ private:
 	{
 		Vector2 turretOffset = Vector2(-40.f, 0.f);
 		Vector2 turretPos1 = _transform->position + turretOffset + Vector2(0.f, -25.f);
-		Vector2 turretPos2 = _transform->position + turretOffset + Vector2(0.f, 25.f);	
+		Vector2 turretPos2 = _transform->position + turretOffset + Vector2(0.f, 25.f);
+
 		float radians = _turretAngle * (3.14159f / 180.f);
 		Vector2 direction = Vector2(cos(radians), sin(radians));
+
 		Bullet* turretBullet1 = new Bullet(turretPos1);
 		Bullet* turretBullet2 = new Bullet(turretPos2);
+
 		SPAWNER.SpawnObjects(turretBullet1);
 		SPAWNER.SpawnObjects(turretBullet2);
 	}
@@ -263,12 +255,10 @@ private:
 		_distanceTravelled += abs(deltaX);
 		_lastXPosition = _transform->position.x;
 
-		
 		if (_distanceTravelled >= 100.f)
 		{
 			_turretAngle += (deltaX > 0 ? -45.f : 45.f);
 			_distanceTravelled = 0.f;
-
 			while (_turretAngle < 0.f) _turretAngle += 360.f;
 			while (_turretAngle >= 360.f) _turretAngle -= 360.f;
 		}

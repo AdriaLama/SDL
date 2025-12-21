@@ -31,7 +31,7 @@ public:
 		Player* player = new Player();
 		GAME_MANAGER.SetPlayer(player);
 		SPAWNER.SpawnObjects((Object*)player);
-		SPAWNER.SpawnObjects(new PowerUp(Vector2(800.f, 200.f), PowerUpType::SCORE_BONUS));
+		SPAWNER.SpawnObjects(new PowerUp(Vector2(900.f, 300.f), PowerUpType::LASER_ENERGY));
 		HUD_MANAGER.Initialize();
 		_objects.push_back(HUD_MANAGER.GetScoreText());
 		_objects.push_back(HUD_MANAGER.GetHighScoreText());
