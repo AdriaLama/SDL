@@ -24,6 +24,7 @@
     <ClCompile Include="source\Angrygons.cpp" />
     <ClCompile Include="source\Annoyer.cpp" />
     <ClCompile Include="source\Beholder.cpp" />
+    <ClCompile Include="source\BioTitan.cpp" />
     <ClCompile Include="source\Bubble.cpp" />
     <ClCompile Include="source\Bullet.cpp" />
     <ClCompile Include="source\Chainsaw.cpp" />
@@ -46,7 +47,6 @@
     <ClCompile Include="source\Ufo.cpp" />
     <ClCompile Include="source\Torpedo.cpp" />
     <ClCompile Include="source\VerticalMedusa.cpp" />
-    <ClCompile Include="source\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
@@ -59,6 +59,8 @@
     <ClInclude Include="source\AudioManager.h" />
     <ClInclude Include="source\BackgroundGameplay.h" />
     <ClInclude Include="source\Beholder.h" />
+    <ClInclude Include="source\BioTitan.h" />
+    <ClInclude Include="source\BioTitanBullets.h" />
     <ClInclude Include="source\Bubble.h" />
     <ClInclude Include="source\Bullet.h" />
     <ClInclude Include="source\Chainsaw.h" />
