@@ -1,6 +1,7 @@
 #include "Circler.h"
 #include "Bullet.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 void Circler::Behaviour()
 {
@@ -112,6 +113,7 @@ void Circler::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
+            WAVE_MANAGER.OnEnemyDestroyed();
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }
@@ -123,4 +125,10 @@ void Circler::Update()
 {
     Enemy::Update();
     Behaviour();
+
+    if (_transform->position.y > - 100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }

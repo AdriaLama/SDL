@@ -1,6 +1,7 @@
 #include "HorizontalMedusa.h"
 #include "Bullet.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 void HorizontalMedusa::Behaviour()
 {
@@ -17,6 +18,7 @@ void HorizontalMedusa::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
+            WAVE_MANAGER.OnEnemyDestroyed();
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }
@@ -28,7 +30,12 @@ void HorizontalMedusa::OnCollisionEnter(Object* object)
 void HorizontalMedusa::Update()
 {
 	Enemy::Update();
-	Enemy::Update();
 	Behaviour();
+
+    if (_transform->position.x < -100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }
 

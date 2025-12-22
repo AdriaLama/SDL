@@ -11,7 +11,7 @@
 class Player : public ImageObject
 {
 private:
-	float _shootCooldown = 0.3f;
+	float _shootCooldown = 0.2f;
 	float _currentCooldown;
 	int _shields;
 	int _maxShields;

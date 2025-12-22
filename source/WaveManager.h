@@ -3,7 +3,6 @@
 #include "LevelLoad.h"
 #include <vector>
 #include <string>
-
 #define WAVE_MANAGER WaveManager::Instance()
 
 class WaveManager
@@ -20,10 +19,11 @@ private:
         offsetMissile(80.0f),
         spawnYTimer(0.0f),
         enemiesSpawnedInCurrentWave(0),
-        isWaveActive(false)
+        activeEnemiesInWave(0),
+        isWaveActive(false),
+        waitingForNextWave(false)
     {
     }
-
     WaveManager(const WaveManager&) = delete;
     WaveManager& operator=(const WaveManager&) = delete;
 
@@ -34,10 +34,12 @@ private:
     float offsetMissile;
     float spawnTimer;
     float timeBetweenWaves;
-    std::vector<int> waveOrder;       
-    std::vector<int> amountEnemies;    
+    std::vector<int> waveOrder;
+    std::vector<int> amountEnemies;
     int enemiesSpawnedInCurrentWave;
+    int activeEnemiesInWave;  
     bool isWaveActive;
+    bool waitingForNextWave; 
     float spawnYTimer;
 
 public:
@@ -67,7 +69,9 @@ public:
             maxWaves = waveOrder.size();
             currentWave = 0;
             enemiesSpawnedInCurrentWave = 0;
+            activeEnemiesInWave = 0;
             isWaveActive = false;
+            waitingForNextWave = false;
             spawnTimer = 0.0f;
         }
     }
@@ -75,13 +79,27 @@ public:
     int GetCurrentWave() const { return currentWave; }
     bool IsWaveActive() const { return isWaveActive; }
 
+    void OnEnemySpawned()
+    {
+        activeEnemiesInWave++;
+    }
+
+    void OnEnemyDestroyed()
+    {
+        if (activeEnemiesInWave > 0)
+        {
+            activeEnemiesInWave--;
+        }
+    }
+
+    int GetActiveEnemies() const { return activeEnemiesInWave; }
+
     void Update();
 
 private:
     void SpawnCurrentWave();
     void WaitForNextWave();
 
-    
     void SpawnWaveBubble();
     void SpawnKillerWhale();
     void SpawnHorizontalMedusas();
