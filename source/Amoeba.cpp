@@ -74,6 +74,7 @@ void Amoeba::Update()
 
 void Amoeba::OnCollisionEnter(Object* object)
 {
+    if (isDying) return;
     Bullet* bullet = dynamic_cast<Bullet*>(object);
     if (bullet != nullptr) {
 
@@ -85,9 +86,10 @@ void Amoeba::OnCollisionEnter(Object* object)
                 parentAmoeba->RemoveCopyReference(this);
                 parentAmoeba = nullptr;
                 HUD_MANAGER.AddScore(150);
-                WAVE_MANAGER.OnEnemyDestroyed();
+                WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
 
             }
+            isDying = true;
             Destroy();
         }
     }

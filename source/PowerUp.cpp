@@ -34,10 +34,6 @@ void PowerUp::Update()
     float pulse = 1.0f + sin(_pulseTimer) * 0.15f;
     _transform->scale = Vector2(_originalScale * pulse, _originalScale * pulse);
 
-    _transform->rotation += _rotationSpeed * TM.GetDeltaTime();
-    if (_transform->rotation >= 360.f)
-        _transform->rotation -= 360.f;
-
     Object::Update();
 }
 
@@ -109,7 +105,7 @@ void PowerUp::ApplyPowerUp(Player* player)
     }
 }
 
-// Método GetRandomType() ELIMINADO - ya no es necesario
+
 
 std::string PowerUp::GetTexturePathForType(PowerUpType type)
 {

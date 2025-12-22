@@ -120,7 +120,8 @@ void Beholder::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
-            WAVE_MANAGER.OnEnemyDestroyed();
+            isDying = true;
+            WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }

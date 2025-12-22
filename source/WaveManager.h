@@ -21,7 +21,8 @@ private:
         enemiesSpawnedInCurrentWave(0),
         activeEnemiesInWave(0),
         isWaveActive(false),
-        waitingForNextWave(false)
+        waitingForNextWave(false),
+        lastEnemyPosition(Vector2(0.0f, 0.0f))
     {
     }
     WaveManager(const WaveManager&) = delete;
@@ -37,10 +38,15 @@ private:
     std::vector<int> waveOrder;
     std::vector<int> amountEnemies;
     int enemiesSpawnedInCurrentWave;
-    int activeEnemiesInWave;  
+    int activeEnemiesInWave;
     bool isWaveActive;
-    bool waitingForNextWave; 
+    bool waitingForNextWave;
     float spawnYTimer;
+
+    // Variables para power-ups
+    Vector2 lastEnemyPosition;
+    int totalEnemiesInWave;      // Total de enemigos spawneados en la wave
+    int enemiesKilledInWave;     // Enemigos eliminados (no escapados)
 
 public:
     static WaveManager& Instance()
@@ -73,6 +79,8 @@ public:
             isWaveActive = false;
             waitingForNextWave = false;
             spawnTimer = 0.0f;
+            totalEnemiesInWave = 0;
+            enemiesKilledInWave = 0;
         }
     }
 
@@ -82,13 +90,27 @@ public:
     void OnEnemySpawned()
     {
         activeEnemiesInWave++;
+        totalEnemiesInWave++;
     }
 
+    // Método para cuando un enemigo es DESTRUIDO (matado por el jugador)
+    void OnEnemyDestroyed(const Vector2& position)
+    {
+        if (activeEnemiesInWave > 0)
+        {
+            activeEnemiesInWave--;
+            enemiesKilledInWave++;
+            lastEnemyPosition = position;
+        }
+    }
+
+    // Sobrecarga para enemigos que salen de pantalla (NO fueron derrotados)
     void OnEnemyDestroyed()
     {
         if (activeEnemiesInWave > 0)
         {
             activeEnemiesInWave--;
+            // NO incrementamos enemiesKilledInWave porque escapó
         }
     }
 
@@ -99,7 +121,7 @@ public:
 private:
     void SpawnCurrentWave();
     void WaitForNextWave();
-
+    void SpawnPowerUpAtLastEnemy();
     void SpawnWaveBubble();
     void SpawnKillerWhale();
     void SpawnHorizontalMedusas();
