@@ -20,7 +20,7 @@ public:
             spawnedUpWhale = false;
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
-        currentState = STAY;
+        currentState = SIMPLE_MOVE;
         health = 5;
 
 

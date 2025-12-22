@@ -2,6 +2,7 @@
 #include "TimeManager.h"
 #include "Bullet.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 void Bubble::Behaviour()
 {
@@ -71,6 +72,7 @@ void Bubble::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
+            WAVE_MANAGER.OnEnemyDestroyed();
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }
@@ -79,6 +81,13 @@ void Bubble::OnCollisionEnter(Object* object)
 }
 
 void Bubble::Update() {
+
     Enemy::Update(); 
     Behaviour();
+
+    if (_transform->position.x < -200 || _transform->position.x > RM->WINDOW_WIDTH + 200 || _transform->position.y < -200 || _transform->position.y > RM->WINDOW_HEIGHT + 200)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }

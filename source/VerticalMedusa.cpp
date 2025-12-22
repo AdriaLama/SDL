@@ -1,6 +1,7 @@
 #include "VerticalMedusa.h"
 #include "TimeManager.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
     : Enemy()
@@ -67,4 +68,10 @@ void VerticalMedusa::Update()
 {
     Enemy::Update();
     Behaviour();
+
+    if (_transform->position.y < -100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }

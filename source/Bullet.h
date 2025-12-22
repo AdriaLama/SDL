@@ -33,7 +33,7 @@ public:
     void Update() override
     {
         DestroyBullet();
-        _physics->AddForce(Vector2(3000.f, 0.f));
+        _physics->AddForce(Vector2(4000.f, 0.f));
         Object::Update();
     }
 
