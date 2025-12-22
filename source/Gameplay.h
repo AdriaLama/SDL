@@ -28,10 +28,10 @@ public:
 		srand(time(nullptr));
 
 		// Setup backgrounds
-		BackgroundGameplay* background1 = new BackgroundGameplay(0.f);
-		BackgroundGameplay* background2 = new BackgroundGameplay(680.f);
-		_objects.push_back(background1);
-		_objects.push_back(background2);
+		BackgroundGameplay* bg1 = new BackgroundGameplay(0.f);      
+		BackgroundGameplay* bg2 = new BackgroundGameplay(1360.f);
+		_objects.push_back(bg1);
+		_objects.push_back(bg2);
 
 		// Setup player
 		Player* player = new Player();
