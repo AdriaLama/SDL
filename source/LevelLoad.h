@@ -11,18 +11,21 @@
 class LevelLoader
 {
 public:
-    bool LoadLevel(std::string& path, std::vector<int>& wave, std::vector<int>& amount)
+    bool LoadLevel(const std::string& path, std::vector<int>& wave, std::vector<int>& amount)
     {
         try {
-            rapidxml::file<> xmlFile(path.c_str());
+            rapidxml::file<> xmlFile(path.c_str());  
             rapidxml::xml_document<> doc;
             doc.parse<0>(xmlFile.data());
 
             rapidxml::xml_node<>* level = doc.first_node("level");
             if (!level) {
-                throw SDL_GetError();
+                std::cerr << "Error: No se encontró el nodo 'level' en el XML" << std::endl;
                 return false;
             }
+
+            wave.clear();
+            amount.clear();
 
             for (rapidxml::xml_node<>* waves = level->first_node("wave");
                 waves != nullptr;
@@ -32,18 +35,26 @@ public:
                 rapidxml::xml_node<>* amountNode = waves->first_node("amount");
 
                 if (!enemyIdNode || !enemyIdNode->value() || !amountNode || !amountNode->value()) {
+                    std::cerr << "Advertencia: Wave con datos incompletos" << std::endl;
                     continue;
                 }
 
-                wave.push_back(std::stoi(enemyIdNode->value()));
-                amount.push_back(std::stoi(amountNode->value()));
+                try {
+                    wave.push_back(std::stoi(enemyIdNode->value()));
+                    amount.push_back(std::stoi(amountNode->value()));
+                }
+                catch (const std::exception& e) {
+                    std::cerr << "Error al convertir valores: " << e.what() << std::endl;
+                    continue;
+                }
             }
 
+            std::cout << "? Cargadas " << wave.size() << " waves correctamente" << std::endl;
             return true;
 
         }
-        catch (std::exception& e) {
-            throw SDL_GetError();
+        catch (const std::exception& e) {
+            std::cerr << "Error al cargar nivel: " << e.what() << std::endl;
             return false;
         }
     }
