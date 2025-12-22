@@ -16,23 +16,29 @@
 #include "ScoreManager.h"
 #include "Ufo.h"  
 #include "PowerUp.h"
+#include "WaveManager.h"
 
 class Gameplay : public Scene
 {
 public:
 	Gameplay() = default;
+
 	void OnEnter() override
 	{
 		srand(time(nullptr));
+
+		// Setup backgrounds
 		BackgroundGameplay* background1 = new BackgroundGameplay(0.f);
 		BackgroundGameplay* background2 = new BackgroundGameplay(680.f);
 		_objects.push_back(background1);
 		_objects.push_back(background2);
 
+		// Setup player
 		Player* player = new Player();
 		GAME_MANAGER.SetPlayer(player);
 		SPAWNER.SpawnObjects((Object*)player);
-		
+
+		// Setup HUD
 		HUD_MANAGER.Initialize();
 		_objects.push_back(HUD_MANAGER.GetScoreText());
 		_objects.push_back(HUD_MANAGER.GetHighScoreText());
@@ -40,19 +46,29 @@ public:
 		/*_objects.push_back(HUD_MANAGER.GetLivesText());*/
 		_objects.push_back(HUD_MANAGER.GetCannonText());
 		_objects.push_back(HUD_MANAGER.GetLaserText());
-		SPAWNER.SpawnObjects(new PowerUp(Vector2(400.0f, 100.0f)));
 
+		// Load level with WaveManager
+		WAVE_MANAGER.LoadLevel("lvl1.xml");
+
+		// Audio
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");
 	}
 
-	void OnExit() override { Scene::OnExit(); }
+	void OnExit() override
+	{
+		Scene::OnExit();
+	}
 
 	void Update() override
 	{
 		HUD_MANAGER.Update();
+		WAVE_MANAGER.Update();  // Update wave spawning system
 		Scene::Update();
 	}
 
-	void Render() override { Scene::Render(); }
+	void Render() override
+	{
+		Scene::Render();
+	}
 };

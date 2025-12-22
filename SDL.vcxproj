@@ -48,6 +48,7 @@
     <ClCompile Include="source\Ufo.cpp" />
     <ClCompile Include="source\Torpedo.cpp" />
     <ClCompile Include="source\VerticalMedusa.cpp" />
+    <ClCompile Include="source\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
@@ -105,6 +106,7 @@
     <ClInclude Include="source\vector2.h" />
     <ClInclude Include="source\VerticalMedusa.h" />
     <ClInclude Include="source\LevelLoad.h" />
+    <ClInclude Include="source\WaveManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
