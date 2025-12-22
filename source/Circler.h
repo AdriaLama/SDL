@@ -11,6 +11,8 @@ private:
     float straightDistance;
     bool isDiagonal;  
     bool isStraight;
+    static bool circlerAlive; 
+
 public:
     Circler(Vector2(spawnPosition), Vector2(size))
         : Enemy()
@@ -26,9 +28,12 @@ public:
         health = 10;
         loopCount = 0;
         radius = 200.f;
+        circlerAlive = true;
 
     }
     void Update() override;
     void Behaviour() override;
     void OnCollisionEnter(Object* object) override;
+    static bool IsCirclerAlive() { return circlerAlive; }
+
 };

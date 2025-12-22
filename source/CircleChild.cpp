@@ -113,6 +113,13 @@ void CircleChild::Update()
     Enemy::Update();
     Behaviour();
 
+    if (!Circler::IsCirclerAlive())
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+        return;
+    }
+
     if (_transform->position.y < -300.f)
     {
         WAVE_MANAGER.OnEnemyDestroyed();

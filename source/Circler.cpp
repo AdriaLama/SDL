@@ -3,6 +3,8 @@
 #include "ScoreManager.h"
 #include "WaveManager.h"
 
+bool Circler::circlerAlive = false;
+
 void Circler::Behaviour()
 {
     if (currentState == SIMPLE_MOVE)
@@ -113,6 +115,7 @@ void Circler::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
+            circlerAlive = false; 
             WAVE_MANAGER.OnEnemyDestroyed();
             HUD_MANAGER.AddScore(150);
             this->Destroy();
