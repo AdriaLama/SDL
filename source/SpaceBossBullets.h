@@ -8,9 +8,11 @@ class SpaceBossBullets : public Enemy
 public:
     SpaceBossBullets(Vector2 spawnPosition) : Enemy()
     {
-        _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+        _renderer = new ImageRenderer(_transform, "resources/boss2.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
         _transform->position = spawnPosition;
         _transform->size = Vector2(75.f, 75.f);
+        _physics->AddCollider(new AABB(_transform->position, _transform->size));
+
     }
 
     void Update() override

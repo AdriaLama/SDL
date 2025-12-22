@@ -68,7 +68,7 @@ void WaveManager::SpawnCurrentWave()
 
     switch (enemyID)
     {
-    case 5:
+    case 1:
         SpawnWaveBubble();
         break;
     case 2:
@@ -80,7 +80,7 @@ void WaveManager::SpawnCurrentWave()
     case 4:
         SpawnVerticalMedusas();
         break;
-    case 1:
+    case 5:
         SpawnCircler();
         break;
     case 6:

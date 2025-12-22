@@ -29,7 +29,7 @@ Daniels::Daniels(bool fromTop)
     }
     _transform->position = startPosition;
     delete _renderer;
-    _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+    _renderer = new ImageRenderer(_transform, "resources/daniels.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
 }
 
 void Daniels::Update()

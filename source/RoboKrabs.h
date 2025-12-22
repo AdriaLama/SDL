@@ -14,7 +14,7 @@ private:
 public:
     RoboKrabs(Vector2 spawnPosition) : Enemy()
     {
-        _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+        _renderer = new ImageRenderer(_transform, "resources/roboKrabs.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
 
         _transform->size = Vector2(100.f, 100.f);
         if (spawnPosition.x < RM->WINDOW_WIDTH / 2.f)

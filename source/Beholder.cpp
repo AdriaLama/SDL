@@ -7,7 +7,7 @@
 Beholder::Beholder(Vector2 spawnPosition)
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
+    _renderer = new ImageRenderer(_transform, "resources/beholder.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
     _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPosition;
     health = 1;

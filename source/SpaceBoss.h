@@ -15,7 +15,7 @@ private:
 public:
     SpaceBoss(Vector2 spawnPosition) : Enemy()
     {
-        _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+        _renderer = new ImageRenderer(_transform, "resources/boss2.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
         _transform->size = Vector2(300.f, 300.f);
         _transform->position = spawnPosition;
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
