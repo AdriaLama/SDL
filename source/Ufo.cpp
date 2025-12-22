@@ -6,7 +6,7 @@
 UFO::UFO()
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(60.f, 40.f));
+    _renderer = new ImageRenderer(_transform, "resources/ufo.png", Vector2(0.f, 0.f), Vector2(60.f, 40.f));
     health = 1;
     currentState = SIMPLE_MOVE;
     moveTimer = 0.0f;

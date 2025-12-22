@@ -7,7 +7,7 @@
 Angrygons::Angrygons(Vector2 startPos)
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/enemy.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+    _renderer = new ImageRenderer(_transform, "resources/angrygons.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
     _transform->size = Vector2(50.f, 50.f);
     _transform->position = startPos;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));

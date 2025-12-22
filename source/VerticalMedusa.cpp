@@ -6,7 +6,7 @@
 VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/image.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+    _renderer = new ImageRenderer(_transform, "resources/verticalMedusa.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
     _transform->size = Vector2(90.f, 90.f);
     _transform->position = spawnPosition;
 
