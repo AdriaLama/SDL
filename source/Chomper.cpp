@@ -31,13 +31,15 @@ void Chomper::Behaviour()
 }
 void Chomper::OnCollisionEnter(Object* object)
 {
+    if (isDying) return;
     Bullet* bullet = dynamic_cast<Bullet*>(object);
     if (bullet)
     {
         health--;
         if (health <= 0)
         {
-            WAVE_MANAGER.OnEnemyDestroyed();
+            isDying = true;
+            WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }

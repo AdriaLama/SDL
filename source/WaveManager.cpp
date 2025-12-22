@@ -11,6 +11,7 @@
 #include "Beholder.h"
 #include "Amoeba.h"
 #include "BioTitan.h"
+#include "PowerUp.h"
 #include <cstdlib>
 
 void WaveManager::Update()
@@ -19,9 +20,17 @@ void WaveManager::Update()
 
     if (isWaveActive)
     {
-       
         if (activeEnemiesInWave <= 0)
-        {
+        {           
+           
+            if (enemiesKilledInWave == totalEnemiesInWave && totalEnemiesInWave > 0)
+            {
+          
+                SpawnPowerUpAtLastEnemy();
+            }
+                  
+            totalEnemiesInWave = 0;
+            enemiesKilledInWave = 0;
             isWaveActive = false;
             waitingForNextWave = true;
             spawnTimer = 0.0f;
@@ -62,8 +71,17 @@ void WaveManager::WaitForNextWave()
     }
 }
 
+void WaveManager::SpawnPowerUpAtLastEnemy()
+{
+    SPAWNER.SpawnObjects(new PowerUp(lastEnemyPosition));
+}
+
 void WaveManager::SpawnCurrentWave()
 {
+    // IMPORTANTE: Resetear los contadores al inicio de cada wave
+    totalEnemiesInWave = 0;
+    enemiesKilledInWave = 0;
+
     int enemyID = waveOrder[currentWave];
 
     switch (enemyID)
@@ -156,16 +174,13 @@ void WaveManager::SpawnVerticalMedusas()
 {
     int amount = amountEnemies[currentWave];
 
-  
     for (int i = 0; i < amount; i++)
     {
-      float randomX = (rand() % RM->WINDOW_WIDTH - 200) + 200;
-      SPAWNER.SpawnObjects(new VerticalMedusa(Vector2(randomX, RM->WINDOW_HEIGHT + 100.f)));
-      enemiesSpawnedInCurrentWave++;
-      OnEnemySpawned();
+        float randomX = (rand() % RM->WINDOW_WIDTH - 200) + 200;
+        SPAWNER.SpawnObjects(new VerticalMedusa(Vector2(randomX, RM->WINDOW_HEIGHT + 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
     }
-     
-    
 }
 
 void WaveManager::SpawnCircler()
@@ -184,7 +199,6 @@ void WaveManager::SpawnCircler()
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
-
 }
 
 void WaveManager::SpawnBeholder()
@@ -198,7 +212,6 @@ void WaveManager::SpawnBeholder()
         OnEnemySpawned();
     }
 
-  
     for (int i = 0; i < amount / 4; i++)
     {
         SPAWNER.SpawnObjects(new Beholder(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), 100.f)));
@@ -206,7 +219,6 @@ void WaveManager::SpawnBeholder()
         OnEnemySpawned();
     }
 
-   
     for (int i = 0; i < amount / 4; i++)
     {
         SPAWNER.SpawnObjects(new Beholder(Vector2(100.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
@@ -214,7 +226,6 @@ void WaveManager::SpawnBeholder()
         OnEnemySpawned();
     }
 
-    
     for (int i = 0; i < amount / 4; i++)
     {
         SPAWNER.SpawnObjects(new Beholder(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
@@ -229,7 +240,7 @@ void WaveManager::SpawnComper()
 
     for (int i = 0; i < amount; i++)
     {
-        SPAWNER.SpawnObjects(new Chomper(Vector2(RM->WINDOW_WIDTH + 100.f , RM->WINDOW_HEIGHT - (i * 60.f) - 200.f), i));
+        SPAWNER.SpawnObjects(new Chomper(Vector2(RM->WINDOW_WIDTH + 100.f, RM->WINDOW_HEIGHT - (i * 60.f) - 200.f), i));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
@@ -246,7 +257,6 @@ void WaveManager::SpawnAmoeba()
         OnEnemySpawned();
     }
 }
-
 
 void WaveManager::SpawnBoss()
 {

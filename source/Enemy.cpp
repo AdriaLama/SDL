@@ -11,7 +11,8 @@ void Enemy::OnCollisionEnter(Object* other)
         health--;
 
         if (health <= 0)
-        {            
+        {  
+            isDying = true;
             int points = 100;
             HUD_MANAGER.AddScore(points);
             this->Destroy();
