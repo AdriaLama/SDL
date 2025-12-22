@@ -19,7 +19,7 @@ public:
         _transform->size = Vector2(300.f, 300.f);
         _transform->position = spawnPosition;
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
-        currentState = STAY;
+        currentState = SIMPLE_MOVE;
         health = 25;
         shootCooldown = 2.f;
         bulletsPerBurst = 3 + (rand() % 5); 

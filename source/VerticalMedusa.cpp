@@ -57,6 +57,7 @@ void VerticalMedusa::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
+            WAVE_MANAGER.OnEnemyDestroyed();
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }

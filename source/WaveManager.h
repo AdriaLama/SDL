@@ -109,4 +109,5 @@ private:
     void SpawnComper();
     void SpawnAmoeba();
     void SpawnUfo();
+    void SpawnBoss();
 };

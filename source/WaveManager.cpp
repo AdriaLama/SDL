@@ -6,9 +6,11 @@
 #include "HorizontalMedusa.h"
 #include "VerticalMedusa.h"
 #include "Circler.h"
+#include "CircleChild.h"
+#include "Chomper.h"
 #include "Beholder.h"
 #include "Amoeba.h"
-#include "Ufo.h"
+#include "BioTitan.h"
 #include <cstdlib>
 
 void WaveManager::Update()
@@ -90,6 +92,9 @@ void WaveManager::SpawnCurrentWave()
     case 8:
         SpawnAmoeba();
         break;
+    case 9:
+        SpawnBoss();
+        break;
     default:
         break;
     }
@@ -128,7 +133,7 @@ void WaveManager::SpawnKillerWhale()
     }
     for (int i = 0; i < amount / 2; i++)
     {
-        SPAWNER.SpawnObjects(new KillerWhale(Vector2(RM->WINDOW_WIDTH + 600.f, 50.f)));
+        SPAWNER.SpawnObjects(new KillerWhale(Vector2(RM->WINDOW_WIDTH + 700.f, 50.f)));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
@@ -159,8 +164,7 @@ void WaveManager::SpawnVerticalMedusas()
       enemiesSpawnedInCurrentWave++;
       OnEnemySpawned();
     }
-      enemiesSpawnedInCurrentWave++;
-      OnEnemySpawned();
+     
     
 }
 
@@ -168,13 +172,17 @@ void WaveManager::SpawnCircler()
 {
     int amount = amountEnemies[currentWave];
 
-    for (int i = 1; i <= 6; i++)
+    for (int i = 1; i <= amount; i++)
     {
         if (i == 1) {
             SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f), Vector2(100.f, 100.f)));
+            enemiesSpawnedInCurrentWave++;
+            OnEnemySpawned();
         }
 
-        SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f - (i * 60.f)), Vector2(50.f, 50.f)));
+        SPAWNER.SpawnObjects(new CircleChild(Vector2(500.f, 0.f - (i * 60.f)), Vector2(50.f, 50.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
     }
 
 }
@@ -183,9 +191,33 @@ void WaveManager::SpawnBeholder()
 {
     int amount = amountEnemies[currentWave];
 
-    for (int i = 0; i < amount; i++)
+    for (int i = 0; i < amount / 4; i++)
     {
-        // Tu implementación aquí
+        SPAWNER.SpawnObjects(new Beholder(Vector2(100.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+  
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Beholder(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+   
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Beholder(Vector2(100.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Beholder(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
@@ -197,7 +229,7 @@ void WaveManager::SpawnComper()
 
     for (int i = 0; i < amount; i++)
     {
-        // Tu implementación aquí
+        SPAWNER.SpawnObjects(new Chomper(Vector2(RM->WINDOW_WIDTH + 100.f , RM->WINDOW_HEIGHT - (i * 60.f) - 200.f), i));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
@@ -209,19 +241,20 @@ void WaveManager::SpawnAmoeba()
 
     for (int i = 0; i < amount; i++)
     {
-        // Tu implementación aquí
+        SPAWNER.SpawnObjects(new Amoeba(Vector2(-100.f, RM->WINDOW_HEIGHT / 2.f)));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
 }
 
-void WaveManager::SpawnUfo()
+
+void WaveManager::SpawnBoss()
 {
     int amount = amountEnemies[currentWave];
 
     for (int i = 0; i < amount; i++)
     {
-        // Tu implementación aquí
+        SPAWNER.SpawnObjects(new BioTitan(Vector2(RM->WINDOW_WIDTH + 100.f, RM->WINDOW_HEIGHT / 2.f)));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }

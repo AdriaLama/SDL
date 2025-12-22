@@ -2,6 +2,7 @@
 #include "RenderManager.h"
 #include "TimeManager.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 Beholder::Beholder(Vector2 spawnPosition)
     : Enemy()
@@ -14,7 +15,7 @@ Beholder::Beholder(Vector2 spawnPosition)
     _moveTimer = 0.0f;
     _stopTimer = 0.0f;
     _movedDistance = 0.0f;
-
+    _physics->AddCollider(new AABB(_transform->position, _transform->size));
     float screenHeight = 720.0f;
     if (spawnPosition.y < screenHeight / 2.0f) {
         _currentDirection = Vector2(0.0f, 1.0f);
@@ -47,6 +48,12 @@ void Beholder::Update()
 {
     Behaviour();
     Enemy::Update();
+
+    if (_transform->position.y < -100.f || _transform->position.y > RM->WINDOW_HEIGHT + 100.f || _transform->position.x > RM->WINDOW_WIDTH + 100.f || _transform->position.x < - 100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }
 
 void Beholder::Behaviour()
@@ -113,6 +120,7 @@ void Beholder::OnCollisionEnter(Object* object)
         health--;
         if (health <= 0)
         {
+            WAVE_MANAGER.OnEnemyDestroyed();
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }

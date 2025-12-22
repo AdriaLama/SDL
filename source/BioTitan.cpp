@@ -6,6 +6,16 @@
 
 void BioTitan::Behaviour()
 {
+    if (currentState == SIMPLE_MOVE) {
+        _physics->AddForce(Vector2(-1500.f, 0.f));
+        _physics->SetLinearDrag(10.f);
+
+        if (_transform->position.x < RM->WINDOW_WIDTH - 300.f) {
+            currentState = STAY;
+            _physics->AddForce(Vector2(-0.f, 0.f));
+
+        }
+    }
 
     if (currentState == STAY)
     {
