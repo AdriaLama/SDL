@@ -6,18 +6,17 @@
 void KillerWhale::Behaviour()
 {
 
-    Player* player = GAME_MANAGER.GetPlayer();
-
     if (currentState == SIMPLE_MOVE) {
+
         _physics->SetVelocity(Vector2(-200.f, 0.f));
-    }
 
-    if (player != nullptr)
-    {
-        Vector2 playerPos = player->GetTransform()->position;
-        float distance = sqrt(pow(playerPos.x - _transform->position.x, 2));
+        if (!spawnedUpWhale && _transform->position.x < RM->WINDOW_WIDTH / 3.f)
+        {
+            currentState = CHASE;
+            _physics->SetVelocity(Vector2(0.f, 0.f));
+        }
 
-        if (distance < 400.f && currentState == SIMPLE_MOVE)
+        else if (spawnedUpWhale && _transform->position.x < RM->WINDOW_WIDTH / 1.5f)
         {
             currentState = CHASE;
             _physics->SetVelocity(Vector2(0.f, 0.f));

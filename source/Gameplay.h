@@ -49,7 +49,7 @@ public:
 
 		// Load level with WaveManager
 		WAVE_MANAGER.LoadLevel("lvl1.xml");
-
+		
 		// Audio
 		AM->PlaySound("resources/audio/sfx/defeat.wav");
 		AM->PlaySound("resources/audio/music/froggerSong.wav");

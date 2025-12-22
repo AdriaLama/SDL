@@ -2,6 +2,7 @@
 #include "TimeManager.h"
 #include "Bullet.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 Amoeba::Amoeba(Vector2 spawnPos)
     : Enemy()
@@ -63,6 +64,12 @@ void Amoeba::Update()
 {
     Enemy::Update();
     Behaviour();
+
+    if (_transform->position.x > RM->WINDOW_WIDTH + 100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }
 
 void Amoeba::OnCollisionEnter(Object* object)
@@ -78,6 +85,7 @@ void Amoeba::OnCollisionEnter(Object* object)
                 parentAmoeba->RemoveCopyReference(this);
                 parentAmoeba = nullptr;
                 HUD_MANAGER.AddScore(150);
+                WAVE_MANAGER.OnEnemyDestroyed();
 
             }
             Destroy();

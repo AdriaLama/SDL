@@ -1,9 +1,11 @@
 #include "Circler.h"
+#include "CircleChild.h"
+#include "GameManager.h"
 #include "Bullet.h"
 #include "ScoreManager.h"
 #include "WaveManager.h"
 
-void Circler::Behaviour()
+void CircleChild::Behaviour()
 {
     if (currentState == SIMPLE_MOVE)
     {
@@ -26,7 +28,7 @@ void Circler::Behaviour()
                 straightDistance = 0.f;
             }
         }
-       
+
         else if (isStraight)
         {
             _physics->AddForce(Vector2(1800.f, 0.f));
@@ -40,13 +42,13 @@ void Circler::Behaviour()
                 circleCenter.y = currentPos.y + 150.f;
                 angle = 0.f;
                 radius -= 50.f;
-               
+
 
                 isStraight = false;
                 currentState = CIRCLE_MOVE;
             }
         }
-       
+
         else
         {
             currentState = CIRCLE_MOVE;
@@ -65,14 +67,14 @@ void Circler::Behaviour()
         targetPos.y = circleCenter.y + sin(angle) * radius;
 
         Vector2 toTarget = targetPos - _transform->position;
-        float distance = sqrt(pow(toTarget.x + toTarget.y , 2));
+        float distance = sqrt(pow(toTarget.x + toTarget.y, 2));
 
-        float forceMagnitude = distance * 50.f; 
+        float forceMagnitude = distance * 50.f;
 
-        if (distance > 1.f) 
+        if (distance > 1.f)
         {
             Vector2 direction = toTarget;
-            direction.x /= distance; 
+            direction.x /= distance;
             direction.y /= distance;
 
             _physics->AddForce(direction * forceMagnitude);
@@ -105,23 +107,8 @@ void Circler::Behaviour()
     }
 }
 
-void Circler::OnCollisionEnter(Object* object)
-{
-    Bullet* bullet = dynamic_cast<Bullet*>(object);
-    if (bullet)
-    {
-        health--;
-        if (health <= 0)
-        {
-            WAVE_MANAGER.OnEnemyDestroyed();
-            HUD_MANAGER.AddScore(150);
-            this->Destroy();
-        }
-        bullet->Destroy();
-    }
-}
 
-void Circler::Update()
+void CircleChild::Update()
 {
     Enemy::Update();
     Behaviour();

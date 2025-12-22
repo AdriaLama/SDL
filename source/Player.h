@@ -6,6 +6,7 @@
 #include "TimeManager.h"
 #include "Spawner.h"
 #include "Enemy.h"
+#include "BioTitanBullets.h"
 
 
 class Player : public ImageObject
@@ -128,7 +129,9 @@ public:
 	void OnCollisionEnter(Object* other) override
 	{
 		Enemy* enemy = dynamic_cast<Enemy*>(other);
-		if (enemy != nullptr && !_isImmune)
+		BioTitanBullets* bioTitanBullets = dynamic_cast<BioTitanBullets*>(other);
+	
+		if (enemy != nullptr || bioTitanBullets != nullptr && !_isImmune)
 		{
 			TakeDamage(_damagePerHit);
 		}
