@@ -307,7 +307,6 @@ void WaveManager::SpawnBoss()
     }
 }
 
-
 void WaveManager::SpawnTorpedo()
 {
     int amount = amountEnemies[currentWave];
@@ -319,7 +318,6 @@ void WaveManager::SpawnTorpedo()
         OnEnemySpawned();
     }
 }
-
 
 void WaveManager::SpawnChainsaw()
 {

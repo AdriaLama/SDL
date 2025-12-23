@@ -9,12 +9,10 @@ VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
     _renderer = new ImageRenderer(_transform, "resources/verticalMedusa.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
     _transform->size = Vector2(90.f, 90.f);
     _transform->position = spawnPosition;
-
     stopTimer = 0.f;
     stopDuration = 1.5f; 
     isMoving = true;
     moveSpeed = 100.f;
-
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = SIMPLE_MOVE;
     health = 2;

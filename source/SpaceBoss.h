@@ -1,4 +1,3 @@
-// BioTitan.h
 #pragma once
 #include "Enemy.h"
 

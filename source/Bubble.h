@@ -23,7 +23,7 @@ public:
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = SIMPLE_MOVE;
-        health = 2;
+        health = 1;
 
         
     }

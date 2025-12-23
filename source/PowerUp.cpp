@@ -105,8 +105,6 @@ void PowerUp::ApplyPowerUp(Player* player)
     }
 }
 
-
-
 std::string PowerUp::GetTexturePathForType(PowerUpType type)
 {
     return "resources/boss1.png";

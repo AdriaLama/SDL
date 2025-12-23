@@ -46,7 +46,6 @@ void Nuke::OnCollisionEnter(Object* object)
     }
 }
 
-
 void Nuke::Update()
 {
 	Enemy::Update();

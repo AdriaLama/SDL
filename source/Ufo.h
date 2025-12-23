@@ -9,8 +9,8 @@ private:
     float initialX;
     float centerX;
     float fastSpeed;  
-    const float DECELERATION = 800.0f;
-    const float STOP_THRESHOLD = 5.0f;
+    float DECELERATION = 800.0f;
+    float STOP_THRESHOLD = 5.0f;
 
 public:
     UFO(int index = 0);

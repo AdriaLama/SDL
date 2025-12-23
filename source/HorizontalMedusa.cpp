@@ -30,7 +30,6 @@ void HorizontalMedusa::OnCollisionEnter(Object* object)
     }
 }
 
-
 void HorizontalMedusa::Update()
 {
 	Enemy::Update();

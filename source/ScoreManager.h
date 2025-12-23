@@ -16,7 +16,6 @@ private:
     TextObject* _livesText;
     TextObject* _cannonText;
     TextObject* _laserText;
-
     int _currentScore;
     int _highScore;
     int _lives;
@@ -56,24 +55,16 @@ public:
         _scoreText = new TextObject("0000000");
         _scoreText->GetTransform()->position = Vector2(150.f, RM->WINDOW_HEIGHT - 20.f);
         _scoreText->GetTransform()->scale = Vector2(1.5f, 1.5f);
-
         _highScoreText = new TextObject("0000000");
         _highScoreText->GetTransform()->position = Vector2(100.f, RM->WINDOW_HEIGHT - 50.f);
         _highScoreText->GetTransform()->scale = Vector2(1.5f, 1.5f);
-
         _shieldText = new TextObject("SHIELD: 100");
         _shieldText->GetTransform()->position = Vector2(500.0f, RM->WINDOW_HEIGHT - 50.f);
         _shieldText->GetTransform()->scale = Vector2(1.5f, 1.5f);
-
-        /*_livesText = new TextObject("LIVES: 3");
-        _livesText->GetTransform()->position = Vector2(600.0f, 50.0f);
-        _livesText->GetTransform()->scale = Vector2(1.5, 1.5f);*/
-
         _cannonText = new TextObject("CANNON: --");
         _cannonText->GetTransform()->position = Vector2(800.0f, RM->WINDOW_HEIGHT - 50.f);
         _cannonText->GetTransform()->scale = Vector2(1.5f, 1.5f);
         _cannonText->GetRenderer()->SetColor({ 150, 150, 150, 255 });
-
         _laserText = new TextObject("LASER: --");
         _laserText->GetTransform()->position = Vector2(1100.0f, RM->WINDOW_HEIGHT - 50.f);
         _laserText->GetTransform()->scale = Vector2(1.5f, 1.5f);
@@ -156,16 +147,7 @@ public:
                     _laserText->GetRenderer()->SetColor({ 255, 0, 0, 255 });
             }
         }
-    }
-
-    void UpdateLives(int lives)
-    {
-        _lives = lives;
-        if (_livesText)
-        {
-            _livesText->SetText("LIVES: " + std::to_string(_lives));
-        }
-    }
+    }  
 
     void ResetScore()
     {
@@ -184,7 +166,6 @@ public:
             UpdateLaserEnergy(player->GetLaserEnergy(), player->GetMaxLaserEnergy(), player->HasLaser());
         }
     }
-
     int GetCurrentScore() const { return _currentScore; }
     int GetHighScore() const { return _highScore; }
 
@@ -206,7 +187,7 @@ private:
         if (_highScoreText)
         {
             _highScoreText->SetText("SCORE: " + FormatScore(_highScore));
-            _highScoreText->GetRenderer()->SetColor({ 200, 200, 200, 255 }); // Gris claro
+            _highScoreText->GetRenderer()->SetColor({ 200, 200, 200, 255 }); 
         }
     }
 };

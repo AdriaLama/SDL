@@ -16,14 +16,12 @@ private:
     float _initialMoveDistance;
     float _movedDistance;
     bool _isInAttackSequence;  
-
-    const float MOVE_DURATION = 3.5f;
-    const float STOP_DURATION = 4.0f;
-    const float SPEED = 120.0f;
-    const float SLOW_SPEED = 200.0f;
-    const float INITIAL_MOVE_AMOUNT = 150.0f;
-    const float Y_ALIGNMENT_THRESHOLD = 30.0f;  
-
+    float MOVE_DURATION = 3.5f;
+    float STOP_DURATION = 4.0f;
+    float SPEED = 120.0f;
+    float SLOW_SPEED = 200.0f;
+    float INITIAL_MOVE_AMOUNT = 150.0f;
+    float Y_ALIGNMENT_THRESHOLD = 30.0f;  
     Vector2 GetLeftDirection();
     Vector2 GetDirectionToPlayer();
 

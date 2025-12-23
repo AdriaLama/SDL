@@ -12,7 +12,6 @@ void Circler::Behaviour()
         if (!isDiagonal && !isStraight && _transform->position.y < RM->WINDOW_HEIGHT / 2.f - 150.f)
         {
             _physics->AddForce(Vector2(50.f, 150.f));
-
         }
 
         else if (isDiagonal)
@@ -61,14 +60,11 @@ void Circler::Behaviour()
     {
         float speed = 2.f;
         angle += speed * TM.GetDeltaTime();
-
         Vector2 targetPos;
         targetPos.x = circleCenter.x + cos(angle) * radius;
         targetPos.y = circleCenter.y + sin(angle) * radius;
-
         Vector2 toTarget = targetPos - _transform->position;
         float distance = sqrt(pow(toTarget.x + toTarget.y , 2));
-
         float forceMagnitude = distance * 50.f; 
 
         if (distance > 1.f) 

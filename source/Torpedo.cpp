@@ -6,7 +6,6 @@
 void Torpedo::Behaviour()
 {
     Player* player = GAME_MANAGER.GetPlayer();
-
     _physics->AddForce(Vector2(-900.f, 0.f));
     _physics->SetLinearDrag(10.f);
     if (player != nullptr)

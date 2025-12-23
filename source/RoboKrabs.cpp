@@ -24,7 +24,6 @@ void RoboKrabs::Behaviour()
         }
     }
 
-
     if (currentState == STAY)
     {
         jumpTimer += TM.GetDeltaTime();
@@ -34,10 +33,7 @@ void RoboKrabs::Behaviour()
         if (jumpTimer >= jumpCooldown && player != nullptr)
         {
             currentState = CHASE;
-
             Vector2 playerPos = player->GetTransform()->position;
-
- 
             float dx = playerPos.x - _transform->position.x;
             float dy = playerPos.y - _transform->position.y;
             float length = sqrt(dx * dx + dy * dy);
@@ -50,7 +46,6 @@ void RoboKrabs::Behaviour()
 
             _physics->SetVelocity(Vector2(dx * 500.f, dy * 500.f));
             _physics->SetLinearDrag(1.f);
-
             jumpTimer = 0.f;
         }
     }

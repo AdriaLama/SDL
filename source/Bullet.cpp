@@ -5,8 +5,7 @@
 void Bullet::Update()
 {
     DestroyBullet();
-
-   
+ 
     if (_useCustomDirection)
     {
         _physics->AddForce(_direction * 4000.f);
@@ -15,7 +14,6 @@ void Bullet::Update()
     {
         _physics->AddForce(Vector2(4000.f, 0.f));
     }
-
     Object::Update();
 }
 

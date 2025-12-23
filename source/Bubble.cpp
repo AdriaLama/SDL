@@ -21,8 +21,7 @@ void Bubble::Behaviour()
             angle = 0.f; 
         }
     }
-
-    
+  
     else if (currentState == CIRCLE_MOVE)
     {
         float radius = 100.f; 
@@ -42,7 +41,6 @@ void Bubble::Behaviour()
         }
     }
 
- 
     else if (currentState == RETURN)
     {
        

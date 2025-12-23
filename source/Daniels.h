@@ -7,7 +7,6 @@ private:
     Vector2 startPosition;
     Vector2 targetPosition;
     bool startedFromTop;
-
     float enterSpeed;
     float crossSpeed;
 
