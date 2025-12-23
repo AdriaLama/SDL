@@ -21,7 +21,7 @@ protected:
     bool isDying;
 public:
     Enemy()
-        : ImageObject("resources/enemy.png", Vector2(0.f, 0.f), Vector2(50.f, 50.f)), isDying(false)
+        : ImageObject("resources/boss1.png", Vector2(0.f, 0.f), Vector2(50.f, 50.f)), isDying(false)
     {
 
 
