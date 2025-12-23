@@ -228,21 +228,16 @@ void WaveManager::SpawnVerticalMedusas()
 void WaveManager::SpawnCircler()
 {
     int amount = amountEnemies[currentWave];
+    
+    SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f), Vector2(100.f, 100.f)));
+    enemiesSpawnedInCurrentWave++;
+    OnEnemySpawned();
 
     for (int i = 1; i <= amount; i++)
     {
-        if (i == 1) {
-            SPAWNER.SpawnObjects(new Circler(Vector2(500.f, 0.f), Vector2(100.f, 100.f)));
-            enemiesSpawnedInCurrentWave++;
-            OnEnemySpawned();
-        }
-
         SPAWNER.SpawnObjects(new CircleChild(Vector2(500.f, 0.f - (i * 60.f)), Vector2(50.f, 50.f)));
-        enemiesSpawnedInCurrentWave++;
-        OnEnemySpawned();
     }
 }
-
 void WaveManager::SpawnBeholder()
 {
     int amount = amountEnemies[currentWave];
