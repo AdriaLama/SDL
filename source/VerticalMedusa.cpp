@@ -17,7 +17,7 @@ VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
 
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = SIMPLE_MOVE;
-    health = 1;
+    health = 2;
 }
 
 void VerticalMedusa::Behaviour()
@@ -56,6 +56,7 @@ void VerticalMedusa::OnCollisionEnter(Object* object)
     if (bullet)
     {
         health--;
+        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
             isDying = true;

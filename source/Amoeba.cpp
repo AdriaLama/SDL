@@ -79,6 +79,7 @@ void Amoeba::OnCollisionEnter(Object* object)
     if (bullet != nullptr) {
 
         health--;
+        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0) {
             
             if (isCopy && parentAmoeba != nullptr) {

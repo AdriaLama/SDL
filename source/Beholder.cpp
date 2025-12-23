@@ -10,7 +10,7 @@ Beholder::Beholder(Vector2 spawnPosition)
     _renderer = new ImageRenderer(_transform, "resources/beholder.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
     _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPosition;
-    health = 1;
+    health = 2;
     currentState = SIMPLE_MOVE; 
     _moveTimer = 0.0f;
     _stopTimer = 0.0f;
@@ -118,6 +118,7 @@ void Beholder::OnCollisionEnter(Object* object)
     if (bullet)
     {
         health--;
+        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
             isDying = true;
