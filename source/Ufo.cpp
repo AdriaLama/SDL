@@ -110,6 +110,7 @@ void UFO::OnCollisionEnter(Object* other)
 
         if (health <= 0)
         {
+            AM->PlaySound("resources/450616__breviceps__8-bit-error.wav");
             isDying = true;
             WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);

@@ -44,6 +44,14 @@ void Game::Init()
 	RM->LoadTexture("resources/powerup6.png");
 	AM->LoadSoundsData("resources/audio/music/froggerSong.wav");
 	AM->LoadSoundsData("resources/audio/sfx/defeat.wav");
+	AM->LoadSoundsData("resources/455911__bolkmar__machine-gun-shoot-only.wav");
+	AM->LoadSoundsData("resources/138481__justinvoke__bullet-blood-4.wav");
+	AM->LoadSoundsData("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
+	AM->LoadSoundsData("resources/414209__jacksonacademyashmore__death.wav");
+	AM->LoadSoundsData("resources/501104__evretro__8-bit-damage-sound.wav");
+	AM->LoadSoundsData("resources/538151__fupicat__8bit-fall.wav");
+	AM->LoadSoundsData("resources/436507__doctor_dreamchip__2018-08-02.wav");
+	AM->LoadSoundsData("resources/450616__breviceps__8-bit-error.wav");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
 	RM->LoadTexture("resources/turret.png");
 	assert(SM.AddScene("Gameplay", new Gameplay()));
