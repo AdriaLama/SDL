@@ -22,7 +22,7 @@ UFO::UFO(int index)
     centerX = RM->WINDOW_WIDTH / 2;
 
    
-    float verticalSpacing = 80.0f;  
+    float verticalSpacing = 120.0f;  
     float startY = 100.0f; 
 
     _transform->position = Vector2(initialX, startY + (index * verticalSpacing));

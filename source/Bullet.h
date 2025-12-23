@@ -85,7 +85,7 @@ private:
         case BulletType::LASER:
             return Vector2(0.3f, 0.3f);
         case BulletType::TURRET:
-            return Vector2(0.4f, 0.4f);
+            return Vector2(0.75f, 0.75f);
         case BulletType::NORMAL:
         default:
             return Vector2(0.5f, 0.5f);
