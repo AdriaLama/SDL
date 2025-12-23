@@ -82,14 +82,14 @@ void Amoeba::OnCollisionEnter(Object* object)
         AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0) {
             WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
-
+            AM->PlaySound("resources/450616__breviceps__8-bit-error.wav");
             if (isCopy && parentAmoeba != nullptr) {
                 parentAmoeba->health--; 
                 parentAmoeba->RemoveCopyReference(this);
                 parentAmoeba = nullptr;
                 HUD_MANAGER.AddScore(150);
                 WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
-
+                AM->PlaySound("resources/450616__breviceps__8-bit-error.wav");
             }
             isDying = true;
             Destroy();
