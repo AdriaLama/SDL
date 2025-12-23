@@ -15,6 +15,7 @@ Annoyer::Annoyer(Vector2 spawnPosition)
     _moveTimer = 0.0f;
     _stopTimer = 0.0f;
     _movedDistance = 0.0f;
+    _physics->AddCollider(new AABB(_transform->position, _transform->size));
 
     float screenHeight = 720.0f;
     if (spawnPosition.y < screenHeight / 2.0f) {

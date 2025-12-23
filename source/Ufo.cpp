@@ -18,7 +18,7 @@ UFO::UFO(int index)
    
     fastSpeed = (rand() % 301) + 200.0f;  
 
-    initialX = RM->WINDOW_WIDTH + 50.0f;
+    initialX = RM->WINDOW_WIDTH + 100.0f;
     centerX = RM->WINDOW_WIDTH / 2;
 
    
