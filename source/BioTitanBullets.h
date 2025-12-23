@@ -18,7 +18,6 @@ public:
     void Update() override
     {
        Enemy::Update();
-
        _physics->AddForce(Vector2(-3500.f, 0.f));
        _physics->SetLinearDrag(10.f);
 

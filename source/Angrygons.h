@@ -10,15 +10,13 @@ private:
     Vector2 spinCenter;
     float spinRadius;
     float startDelay;  
-
-    const float DOWN_DURATION = 1.9f;
-    const float RIGHT_1_DURATION = 0.7f;
-    const float UP_DURATION = 0.7f;
-    const float RIGHT_SPIN_DURATION = 0.6f;
-    const float SPIN_DURATION = 2.0f;
-    const float MOVE_SPEED = 300.0f;
-    const float SPIN_SPEED = 150.0f;
-
+    float DOWN_DURATION = 1.9f;
+    float RIGHT_1_DURATION = 0.7f;
+    float UP_DURATION = 0.7f;
+    float RIGHT_SPIN_DURATION = 0.6f;
+    float SPIN_DURATION = 2.0f;
+    float MOVE_SPEED = 300.0f;
+    float SPIN_SPEED = 150.0f;
     void PerformSpin(float deltaTime);
     void InitializeSpin();
     void StayBehaviour();

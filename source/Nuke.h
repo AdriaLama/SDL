@@ -8,7 +8,6 @@ public:
     {
 
         _renderer = new ImageRenderer(_transform, "resources/nuke.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
-
         _transform->size = Vector2(125.f, 125.f);
         _transform->position = spawnPosition;
         health = 5;
