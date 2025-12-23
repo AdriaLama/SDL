@@ -27,7 +27,7 @@ Amoeba::Amoeba(Vector2 spawnPos, int index, bool copy, Amoeba* parent)
     : Enemy()
 {
     _renderer = new ImageRenderer(_transform, "resources/amoeba.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
-    _transform->size = Vector2(50.f, 50.f);
+    _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPos;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
     currentState = CIRCLE_MOVE;
@@ -81,7 +81,8 @@ void Amoeba::OnCollisionEnter(Object* object)
         health--;
         AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0) {
-            
+            WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
+
             if (isCopy && parentAmoeba != nullptr) {
                 parentAmoeba->health--; 
                 parentAmoeba->RemoveCopyReference(this);

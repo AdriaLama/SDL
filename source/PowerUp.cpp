@@ -40,7 +40,7 @@ void PowerUp::Update()
 void PowerUp::OnCollisionEnter(Object* other)
 {
     Bullet* bullet = dynamic_cast<Bullet*>(other);
-    if (bullet != nullptr)
+    if (bullet != nullptr && bullet->GetBulletType() == BulletType::NORMAL)
     {
         OnHit();
         bullet->Destroy();
