@@ -22,7 +22,9 @@ private:
         activeEnemiesInWave(0),
         isWaveActive(false),
         waitingForNextWave(false),
-        lastEnemyPosition(Vector2(0.0f, 0.0f))
+        lastEnemyPosition(Vector2(0.0f, 0.0f)),
+        levelCompleted(false),
+        currentLevel("lvl1.xml")
     {
     }
     WaveManager(const WaveManager&) = delete;
@@ -42,11 +44,12 @@ private:
     bool isWaveActive;
     bool waitingForNextWave;
     float spawnYTimer;
-
+    bool levelCompleted;
+    std::string currentLevel;
 
     Vector2 lastEnemyPosition;
-    int totalEnemiesInWave;      
-    int enemiesKilledInWave;     
+    int totalEnemiesInWave;
+    int enemiesKilledInWave;
 
 public:
     static WaveManager& Instance()
@@ -81,11 +84,15 @@ public:
             spawnTimer = 0.0f;
             totalEnemiesInWave = 0;
             enemiesKilledInWave = 0;
+            levelCompleted = false;
+            currentLevel = levelPath;
         }
     }
 
     int GetCurrentWave() const { return currentWave; }
     bool IsWaveActive() const { return isWaveActive; }
+    bool IsLevelCompleted() const { return levelCompleted; }
+    std::string GetCurrentLevel() const { return currentLevel; }
 
     void OnEnemySpawned()
     {
@@ -93,7 +100,6 @@ public:
         totalEnemiesInWave++;
     }
 
- 
     void OnEnemyDestroyed(const Vector2& position)
     {
         if (activeEnemiesInWave > 0)
@@ -101,17 +107,26 @@ public:
             activeEnemiesInWave--;
             enemiesKilledInWave++;
             lastEnemyPosition = position;
+
+            
+            if (activeEnemiesInWave == 0 && currentWave >= maxWaves - 1 && isWaveActive)
+            {
+                levelCompleted = true;
+            }
         }
     }
 
-   
     void OnEnemyDestroyed()
     {
         if (activeEnemiesInWave > 0)
         {
             activeEnemiesInWave--;
-          
         }
+    }
+
+    void ResetLevelCompletion()
+    {
+        levelCompleted = false;
     }
 
     int GetActiveEnemies() const { return activeEnemiesInWave; }
@@ -141,6 +156,4 @@ private:
     void SpawnAnnoyer();
     void SpawnAngrygons();
     void SpawnSpaceBoss();
-
-
 };
