@@ -51,6 +51,12 @@ public:
 		WAVE_MANAGER.LoadLevel("lvl1.xml");
 
 		AM->LoadSoundsData("resources/455911__bolkmar__machine-gun-shoot-only.wav");
+		AM->LoadSoundsData("resources/138481__justinvoke__bullet-blood-4.wav");
+		AM->LoadSoundsData("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
+		AM->LoadSoundsData("resources/414209__jacksonacademyashmore__death.wav");
+		AM->LoadSoundsData("resources/455911__bolkmar__machine-gun-shoot-only.wav");
+		AM->LoadSoundsData("resources/501104__evretro__8-bit-damage-sound.wav");
+		AM->LoadSoundsData("resources/538151__fupicat__8bit-fall.wav");
 		
 		// Audio
 		AM->Init();

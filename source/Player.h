@@ -33,7 +33,7 @@ private:
 	float _lastXPosition;
 	bool _isImmune;
 	float _immunityTimer;
-	const float _immunityDuration = 0.2f;
+	const float _immunityDuration = 0.5f;
 	const int _damagePerHit = 5;
 
 public:
@@ -135,6 +135,14 @@ public:
 	
 		if (enemy != nullptr || bioTitanBullets != nullptr && !_isImmune)
 		{
+			static auto lastSoundTime = std::chrono::steady_clock::now();
+			auto currentTime = std::chrono::steady_clock::now();
+			auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastSoundTime).count();	
+			if (elapsed >= 130) {
+				AM->PlaySound("resources/138481__justinvoke__bullet-blood-4.wav");
+				lastSoundTime = currentTime;
+			}
+			
 			TakeDamage(_damagePerHit);
 		}
 	}
@@ -155,7 +163,9 @@ public:
 	}
 	void OnPlayerDeath()
 	{
+		AM->PlaySound("resources/538151__fupicat__8bit-fall.wav");
 		Destroy();
+		
 	}
 	void ReplenishCannonEnergy() {
 		_cannonEnergy = _maxCannonEnergy;
