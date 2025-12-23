@@ -4,6 +4,7 @@
 #include "RenderManager.h"
 #include "InputManager.h"
 #include "TimeManager.h"
+#include "SceneManager.h"
 #include "Spawner.h"
 #include "Enemy.h"
 #include "BioTitanBullets.h"
@@ -167,6 +168,7 @@ public:
 	{
 		AM->PlaySound("resources/538151__fupicat__8bit-fall.wav");
 		Destroy();
+		SM.SetNextScene("Gameplay");
 		
 	}
 	void ReplenishCannonEnergy() {
@@ -255,7 +257,6 @@ private:
 		Vector2 direction1 = Vector2(cos(radians1), sin(radians1));		
 		float radians2 = _turretAngle2 * (3.14159f / 180.f);
 		Vector2 direction2 = Vector2(cos(radians2), sin(radians2));
-	
 		Bullet* turretBullet1 = new Bullet(turretPos1, BulletType::TURRET, direction1);
 		Bullet* turretBullet2 = new Bullet(turretPos2, BulletType::TURRET, direction2);
 		SPAWNER.SpawnObjects(turretBullet1);
@@ -273,14 +274,10 @@ private:
 		if (_distanceTravelled >= 100.f)
 		{
 			float rotationAmount = (deltaX > 0 ? 45.f : -45.f);
-
-			
 			_turretAngle1 += rotationAmount;
 			_turretAngle2 -= rotationAmount;  
-
 			_distanceTravelled = 0.f;
 
-			
 			if (_turretAngle1 > 45.f)
 				_turretAngle1 = 45.f;
 			else if (_turretAngle1 < -45.f)
