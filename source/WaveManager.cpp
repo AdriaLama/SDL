@@ -98,7 +98,7 @@ void WaveManager::SpawnCurrentWave()
 
     switch (enemyID)
     {
-    case 1:
+    case 18:
         SpawnWaveBubble();
         break;
     case 2:
@@ -149,7 +149,7 @@ void WaveManager::SpawnCurrentWave()
     case 17:
         SpawnAnnoyer();
         break;
-    case 18:
+    case 1:
         SpawnAngrygons();
         break;
     case 19:
@@ -465,11 +465,11 @@ void WaveManager::SpawnAngrygons()
     int amount = amountEnemies[currentWave];
 
     for (int i = 0; i < amount; i++) {
-        SPAWNER.SpawnObjects(new Angrygons(Vector2(-100.f + (i * 80.f), 100.f)));
+       
+        SPAWNER.SpawnObjects(new Angrygons(Vector2(100.f, -50.f), i));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }
-    
 }
 
 void WaveManager::SpawnSpaceBoss()

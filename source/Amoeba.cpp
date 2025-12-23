@@ -8,7 +8,7 @@ Amoeba::Amoeba(Vector2 spawnPos)
     : Enemy()
 {
     _renderer = new ImageRenderer(_transform, "resources/amoeba.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
-    _transform->size = Vector2(50.f, 50.f);
+    _transform->size = Vector2(150.f, 150.f);
     _transform->position = spawnPos;
     spawnPosition = spawnPos;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));

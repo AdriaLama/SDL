@@ -5,19 +5,23 @@
 #include "ScoreManager.h"
 #include "WaveManager.h"
 
-Angrygons::Angrygons(Vector2 startPos)
-    : Enemy()
+Angrygons::Angrygons(Vector2 startPos, int index)
+    : Enemy(), globalTimer(0.0f), startDelay(index * 0.3f)
 {
     _renderer = new ImageRenderer(_transform, "resources/angrygons.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
     _transform->size = Vector2(50.f, 50.f);
     _transform->position = startPos;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
 
-    currentState = SIMPLE_MOVE;
+    currentState = STAY;
     stateTimer = 0.0f;
     spinAngle = 0.0f;
     spinRadius = 155.0f;
     health = 2;
+}
+
+Angrygons::~Angrygons()
+{
 }
 
 void Angrygons::InitializeSpin()
@@ -29,41 +33,55 @@ void Angrygons::InitializeSpin()
 
 void Angrygons::Behaviour()
 {
+    
+    if (globalTimer < startDelay)
+    {
+        StayBehaviour();
+        return;
+    }
+
+    float adjustedTimer = stateTimer - startDelay;
+
     switch (currentState)
     {
     case STAY:
-        StayBehaviour();
+       
+        if (globalTimer >= startDelay)
+        {
+            currentState = SIMPLE_MOVE;
+            stateTimer = startDelay; 
+        }
+        else
+        {
+            StayBehaviour();
+        }
         break;
 
     case SIMPLE_MOVE:
-        
-        if (stateTimer < DOWN_DURATION)
+        if (adjustedTimer < DOWN_DURATION)
         {
             SimpleMoveDown();
         }
-        else if (stateTimer < DOWN_DURATION + RIGHT_1_DURATION)
+        else if (adjustedTimer < DOWN_DURATION + RIGHT_1_DURATION)
         {
             SimpleMoveRight1();
         }
-        else if (stateTimer < DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION)
+        else if (adjustedTimer < DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION)
         {
             SimpleMoveUp();
         }
-        else if (stateTimer < DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION + RIGHT_SPIN_DURATION)
+        else if (adjustedTimer < DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION + RIGHT_SPIN_DURATION)
         {
             SimpleMoveRightSpin1();
         }
         else
         {
-            
             InitializeSpin();
             currentState = CIRCLE_MOVE;
-            stateTimer = 0.0f;
         }
         break;
 
     case CIRCLE_MOVE:
-        
         if (spinAngle < 540.0f)
         {
             CircleMove1();
@@ -71,24 +89,26 @@ void Angrygons::Behaviour()
         else
         {
             currentState = RETURN;
-            stateTimer = 0.0f;
             _physics->SetVelocity(Vector2(MOVE_SPEED, 0.0f));
         }
         break;
 
     case RETURN:
-       
-        if (stateTimer < RIGHT_SPIN_DURATION)
+        if (adjustedTimer < DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION + RIGHT_SPIN_DURATION + SPIN_DURATION + RIGHT_SPIN_DURATION)
         {
             SimpleMoveRightSpin2();
         }
-        else if (spinAngle < 540.0f || stateTimer < RIGHT_SPIN_DURATION + SPIN_DURATION)
-        {         
-            if (stateTimer >= RIGHT_SPIN_DURATION && spinAngle >= 540.0f)
+        else if (spinAngle < 540.0f || adjustedTimer < DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION + RIGHT_SPIN_DURATION + SPIN_DURATION + RIGHT_SPIN_DURATION + SPIN_DURATION)
+        {
+            if (adjustedTimer >= DOWN_DURATION + RIGHT_1_DURATION + UP_DURATION + RIGHT_SPIN_DURATION + SPIN_DURATION + RIGHT_SPIN_DURATION && spinAngle >= 540.0f)
             {
                 InitializeSpin();
             }
             CircleMove2();
+        }
+        else
+        {
+            SimpleMoveExit();
         }
         break;
     }
@@ -134,10 +154,17 @@ void Angrygons::CircleMove2()
     PerformSpin(TM.GetDeltaTime());
 }
 
+void Angrygons::SimpleMoveExit()
+{
+    _physics->SetVelocity(Vector2(MOVE_SPEED, 0.0f));
+}
 
 void Angrygons::Update()
 {
-    stateTimer += TM.GetDeltaTime();
+    float deltaTime = TM.GetDeltaTime();
+    stateTimer += deltaTime;
+    globalTimer += deltaTime;
+
     Behaviour();
     Object::Update();
 
@@ -166,7 +193,6 @@ void Angrygons::OnCollisionEnter(Object* object)
         }
         bullet->Destroy();
     }
-
 }
 
 void Angrygons::PerformSpin(float deltaTime)
