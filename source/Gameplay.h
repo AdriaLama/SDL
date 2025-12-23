@@ -17,9 +17,16 @@
 #include "Ufo.h"  
 #include "PowerUp.h"
 #include "WaveManager.h"
+#include "SceneManager.h"
 
 class Gameplay : public Scene
 {
+private:
+	bool victoryMessageShown = false;
+	float victoryTimer = 0.0f;
+	const float victoryDelay = 3.0f; 
+	TextObject* victoryText = nullptr;
+
 public:
 	Gameplay() = default;
 
@@ -28,29 +35,47 @@ public:
 		srand(time(nullptr));
 		AM->Init();
 
-		// Setup backgrounds
-		BackgroundGameplay* bg1 = new BackgroundGameplay(0.f);      
+		
+		victoryMessageShown = false;
+		victoryTimer = 0.0f;
+		victoryText = nullptr;
+
+		
+		BackgroundGameplay* bg1 = new BackgroundGameplay(0.f);
 		BackgroundGameplay* bg2 = new BackgroundGameplay(1360.f);
 		_objects.push_back(bg1);
 		_objects.push_back(bg2);
 
-		// Setup player
+		
 		Player* player = new Player();
 		GAME_MANAGER.SetPlayer(player);
 		SPAWNER.SpawnObjects((Object*)player);
 
-		// Setup HUD
+		
 		HUD_MANAGER.Initialize();
 		_objects.push_back(HUD_MANAGER.GetScoreText());
 		_objects.push_back(HUD_MANAGER.GetHighScoreText());
 		_objects.push_back(HUD_MANAGER.GetShieldText());
-		/*_objects.push_back(HUD_MANAGER.GetLivesText());*/
 		_objects.push_back(HUD_MANAGER.GetCannonText());
 		_objects.push_back(HUD_MANAGER.GetLaserText());
 
-		// Load level with WaveManager
-		WAVE_MANAGER.LoadLevel("lvl2.xml");
+		
+		std::string currentLevel = WAVE_MANAGER.GetCurrentLevel();
+		if (currentLevel.empty() || currentLevel == "lvl1.xml")
+		{
+			WAVE_MANAGER.LoadLevel("lvl1.xml");
+		}
+		else if (currentLevel == "lvl2.xml")
+		{
+			WAVE_MANAGER.LoadLevel("lvl2.xml");
+		}
+		else
+		{
+			
+			WAVE_MANAGER.LoadLevel("lvl1.xml"); 
+		}
 
+		// Load sounds
 		AM->LoadSoundsData("resources/455911__bolkmar__machine-gun-shoot-only.wav");
 		AM->LoadSoundsData("resources/138481__justinvoke__bullet-blood-4.wav");
 		AM->LoadSoundsData("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
@@ -58,29 +83,74 @@ public:
 		AM->LoadSoundsData("resources/501104__evretro__8-bit-damage-sound.wav");
 		AM->LoadSoundsData("resources/538151__fupicat__8bit-fall.wav");
 		AM->LoadSoundsData("resources/436507__doctor_dreamchip__2018-08-02.wav");
-		
 
 		
-		// Audio
-		
 		AM->PlaySound("resources/436507__doctor_dreamchip__2018-08-02.wav");
-		
 	}
 
 	void OnExit() override
 	{
+		if (victoryText)
+		{
+			delete victoryText;
+			victoryText = nullptr;
+		}
 		Scene::OnExit();
 	}
 
 	void Update() override
 	{
+		
+		if (WAVE_MANAGER.IsLevelCompleted() && !victoryMessageShown)
+		{
+			victoryMessageShown = true;
+			AM->PlaySound("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
+
+			
+			victoryText = new TextObject("LEVEL COMPLETE!");
+			victoryText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.f - 200.f, RM->WINDOW_HEIGHT / 2.f);
+			victoryText->GetTransform()->scale = Vector2(3.0f, 3.0f);
+			victoryText->GetRenderer()->SetColor({ 255, 215, 0, 255 }); 
+			
+		}
+
+		
+		if (victoryMessageShown)
+		{
+			victoryTimer += TM.GetDeltaTime();
+
+			if (victoryTimer >= victoryDelay)
+			{
+				
+				std::string currentLevel = WAVE_MANAGER.GetCurrentLevel();
+
+				if (currentLevel == "lvl1.xml")
+				{					
+					WAVE_MANAGER.ResetLevelCompletion();
+					WAVE_MANAGER.LoadLevel("lvl2.xml");
+					SM.SetNextScene("Gameplay"); 
+				}
+				else if (currentLevel == "lvl2.xml")
+				{			
+					WAVE_MANAGER.ResetLevelCompletion();
+					WAVE_MANAGER.LoadLevel("lvl1.xml");
+					SM.SetNextScene("Gameplay"); 
+				}
+			}
+		}
+
 		HUD_MANAGER.Update();
-		WAVE_MANAGER.Update();  // Update wave spawning system
+		WAVE_MANAGER.Update();
 		Scene::Update();
 	}
 
 	void Render() override
 	{
 		Scene::Render();
+
+		if (victoryText != nullptr)
+		{
+			victoryText->Render();
+		}
 	}
 };

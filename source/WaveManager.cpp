@@ -31,20 +31,23 @@ void WaveManager::Update()
     if (isWaveActive)
     {
         if (activeEnemiesInWave <= 0)
-        {           
-           
+        {
             if (enemiesKilledInWave == totalEnemiesInWave && totalEnemiesInWave > 0)
             {
-          
                 SpawnPowerUpAtLastEnemy();
             }
-                  
+
             totalEnemiesInWave = 0;
             enemiesKilledInWave = 0;
             isWaveActive = false;
             waitingForNextWave = true;
             spawnTimer = 0.0f;
             currentWave++;
+
+            if (currentWave >= maxWaves)
+            {
+                levelCompleted = true;
+            }
         }
     }
     else if (waitingForNextWave)
