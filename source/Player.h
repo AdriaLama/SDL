@@ -32,6 +32,8 @@ private:
 	float _distanceTravelled;
 	float _lastXPosition;
 	bool _isImmune;
+	float _turretAngle1;  
+	float _turretAngle2;  
 	float _immunityTimer;
 	const float _immunityDuration = 0.5f;
 	const int _damagePerHit = 5;
@@ -249,13 +251,13 @@ private:
 		Vector2 turretOffset = Vector2(-40.f, 0.f);
 		Vector2 turretPos1 = _transform->position + turretOffset + Vector2(0.f, -25.f);
 		Vector2 turretPos2 = _transform->position + turretOffset + Vector2(0.f, 25.f);
-
-		float radians = _turretAngle * (3.14159f / 180.f);
-		Vector2 direction = Vector2(cos(radians), sin(radians));
-
-		Bullet* turretBullet1 = new Bullet(turretPos1);
-		Bullet* turretBullet2 = new Bullet(turretPos2);
-
+		float radians1 = _turretAngle1 * (3.14159f / 180.f);
+		Vector2 direction1 = Vector2(cos(radians1), sin(radians1));		
+		float radians2 = _turretAngle2 * (3.14159f / 180.f);
+		Vector2 direction2 = Vector2(cos(radians2), sin(radians2));
+	
+		Bullet* turretBullet1 = new Bullet(turretPos1, BulletType::TURRET, direction1);
+		Bullet* turretBullet2 = new Bullet(turretPos2, BulletType::TURRET, direction2);
 		SPAWNER.SpawnObjects(turretBullet1);
 		SPAWNER.SpawnObjects(turretBullet2);
 	}
@@ -270,10 +272,24 @@ private:
 
 		if (_distanceTravelled >= 100.f)
 		{
-			_turretAngle += (deltaX > 0 ? -45.f : 45.f);
+			float rotationAmount = (deltaX > 0 ? 45.f : -45.f);
+
+			
+			_turretAngle1 += rotationAmount;
+			_turretAngle2 -= rotationAmount;  
+
 			_distanceTravelled = 0.f;
-			while (_turretAngle < 0.f) _turretAngle += 360.f;
-			while (_turretAngle >= 360.f) _turretAngle -= 360.f;
+
+			
+			if (_turretAngle1 > 45.f)
+				_turretAngle1 = 45.f;
+			else if (_turretAngle1 < -45.f)
+				_turretAngle1 = -45.f;
+
+			if (_turretAngle2 > 45.f)
+				_turretAngle2 = 45.f;
+			else if (_turretAngle2 < -45.f)
+				_turretAngle2 = -45.f;
 		}
 	}
 };
