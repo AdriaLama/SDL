@@ -11,7 +11,7 @@ void Bubble::Behaviour()
     {
         if (_transform->position.x > RM->WINDOW_WIDTH / 3.f)
         {
-            _physics->AddForce(Vector2(-400.f, 0.f));
+            _physics->AddForce(Vector2(-300.f, 0.f));
             _physics->SetLinearDrag(1.f);
         }
         else
