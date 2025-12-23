@@ -98,7 +98,7 @@ void WaveManager::SpawnCurrentWave()
 
     switch (enemyID)
     {
-    case 18:
+    case 1:
         SpawnWaveBubble();
         break;
     case 2:
@@ -149,7 +149,7 @@ void WaveManager::SpawnCurrentWave()
     case 17:
         SpawnAnnoyer();
         break;
-    case 1:
+    case 18:
         SpawnAngrygons();
         break;
     case 19:
