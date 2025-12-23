@@ -48,7 +48,7 @@ public:
 		_objects.push_back(HUD_MANAGER.GetLaserText());
 
 		// Load level with WaveManager
-		WAVE_MANAGER.LoadLevel("lvl1.xml");
+		WAVE_MANAGER.LoadLevel("lvl2.xml");
 
 		AM->LoadSoundsData("resources/455911__bolkmar__machine-gun-shoot-only.wav");
 		AM->LoadSoundsData("resources/138481__justinvoke__bullet-blood-4.wav");

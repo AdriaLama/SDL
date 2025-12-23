@@ -12,7 +12,7 @@ private:
     float crossSpeed;
 
 public:
-    Daniels(bool fromTop);
+    Daniels(bool fromTop, int index = 0);
     ~Daniels() = default;
 
     void Update() override;

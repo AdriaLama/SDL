@@ -3,6 +3,7 @@
 #include <cmath>
 #include "Bullet.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 Angrygons::Angrygons(Vector2 startPos)
     : Enemy()
@@ -16,7 +17,7 @@ Angrygons::Angrygons(Vector2 startPos)
     stateTimer = 0.0f;
     spinAngle = 0.0f;
     spinRadius = 155.0f;
-    health = 1;
+    health = 2;
 }
 
 void Angrygons::InitializeSpin()
@@ -89,10 +90,6 @@ void Angrygons::Behaviour()
             }
             CircleMove2();
         }
-        else
-        {
-            SimpleMoveExit();
-        }
         break;
     }
 }
@@ -137,31 +134,32 @@ void Angrygons::CircleMove2()
     PerformSpin(TM.GetDeltaTime());
 }
 
-void Angrygons::SimpleMoveExit()
-{
-    _physics->SetVelocity(Vector2(MOVE_SPEED, 0.0f));
-
-    if (_transform->position.x > RM->WINDOW_WIDTH + 50.0f)
-    {
-        Destroy();
-    }
-}
 
 void Angrygons::Update()
 {
     stateTimer += TM.GetDeltaTime();
     Behaviour();
     Object::Update();
+
+    if (_transform->position.x > RM->WINDOW_WIDTH + 100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }
 
 void Angrygons::OnCollisionEnter(Object* object)
 {
+    if (isDying) return;
     Bullet* bullet = dynamic_cast<Bullet*>(object);
     if (bullet)
     {
         health--;
+        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
+            isDying = true;
+            WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }

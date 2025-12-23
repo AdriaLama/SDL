@@ -24,7 +24,9 @@ public:
         _transform->position = spawnPosition;
         currentState = SIMPLE_MOVE;
         jumpCooldown = (rand() % 3) + 1;
-        health = 1;
+        health = 2;
+        _physics->AddCollider(new AABB(_transform->position, _transform->size));
+
     }
 
     void Behaviour();

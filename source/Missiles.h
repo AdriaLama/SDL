@@ -16,8 +16,8 @@ public:
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = SIMPLE_MOVE;
-        health = 1;
-        velocityX = (rand() % 1500) + 1300;
+        health = 2;
+        velocityX = (rand() % 2000) + 1700;
 
     }
     void Update() override;

@@ -12,6 +12,16 @@
 #include "Amoeba.h"
 #include "BioTitan.h"
 #include "PowerUp.h"
+#include "Torpedo.h"
+#include "Chainsaw.h"
+#include "Nuke.h"
+#include "Missiles.h"
+#include "Daniels.h"
+#include "Annoyer.h"
+#include "Angrygons.h"
+#include "SpaceBoss.h"
+#include "Ufo.h"
+#include "RoboKrabs.h"
 #include <cstdlib>
 
 void WaveManager::Update()
@@ -78,7 +88,6 @@ void WaveManager::SpawnPowerUpAtLastEnemy()
 
 void WaveManager::SpawnCurrentWave()
 {
-    // IMPORTANTE: Resetear los contadores al inicio de cada wave
     totalEnemiesInWave = 0;
     enemiesKilledInWave = 0;
 
@@ -112,6 +121,36 @@ void WaveManager::SpawnCurrentWave()
         break;
     case 9:
         SpawnBoss();
+        break;
+    case 10:
+        SpawnTorpedo();
+        break;
+    case 11:
+        SpawnChainsaw();
+        break;
+    case 12:
+        SpawnRoboKrabs();
+        break;
+    case 13:
+        SpawnNuke();
+        break;
+    case 14:
+        SpawnMissile();
+        break;
+    case 15:
+        SpawnDaniels();
+        break;
+    case 16:
+        SpawnUfo();
+        break;
+    case 17:
+        SpawnAnnoyer();
+        break;
+    case 18:
+        SpawnAngrygons();
+        break;
+    case 19:
+        SpawnSpaceBoss();
         break;
     default:
         break;
@@ -265,6 +304,182 @@ void WaveManager::SpawnBoss()
     for (int i = 0; i < amount; i++)
     {
         SPAWNER.SpawnObjects(new BioTitan(Vector2(RM->WINDOW_WIDTH + 100.f, RM->WINDOW_HEIGHT / 2.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+
+void WaveManager::SpawnTorpedo()
+{
+    int amount = amountEnemies[currentWave];
+    for (int i = 0; i < amount; i++)
+    {
+        float randomY = (rand() % RM->WINDOW_HEIGHT - 200) + 200;
+        SPAWNER.SpawnObjects(new Torpedo(Vector2(RM->WINDOW_WIDTH + 100.f, randomY)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+
+void WaveManager::SpawnChainsaw()
+{
+    int amount = amountEnemies[currentWave];
+    for (int i = 0; i < amount / 2; i++)
+    {
+        float delaySpawn = i * 0.5f;
+        SPAWNER.SpawnObjects(new Chainsaw(Vector2(-50.f - (i * 80.f), RM->WINDOW_HEIGHT / 2.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+
+    }
+    for (int i = 0; i < amount / 2; i++)
+    {
+        float delaySpawn = i * 0.5f;
+        SPAWNER.SpawnObjects(new Chainsaw(Vector2(RM->WINDOW_WIDTH + 50.f + (i * 80.f), RM->WINDOW_HEIGHT / 2.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnRoboKrabs()
+{
+    int amount = amountEnemies[currentWave];
+
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new RoboKrabs(Vector2(100.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new RoboKrabs(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new RoboKrabs(Vector2(100.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new RoboKrabs(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnNuke()
+{
+    int amount = amountEnemies[currentWave];
+
+    for (int i = 0; i < amount; i++) {
+        SPAWNER.SpawnObjects(new Nuke(Vector2(500.f + (i * 150), RM->WINDOW_HEIGHT + 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnMissile()
+{
+    int amount = amountEnemies[currentWave];
+
+    for (int i = 0; i < amount; i++)
+    {
+        float randomY = (rand() % RM->WINDOW_HEIGHT - 200) + 200;
+        SPAWNER.SpawnObjects(new Missiles(Vector2(RM->WINDOW_WIDTH + 100.f, randomY)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnDaniels()
+{
+    int amount = amountEnemies[currentWave];
+    for (int i = 0; i < amount / 2; i++)
+    {
+        SPAWNER.SpawnObjects(new Daniels(true, i));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+    for (int i = 0; i < amount / 2; i++)
+    {
+        SPAWNER.SpawnObjects(new Daniels(false, i));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnUfo()
+{
+    int amount = amountEnemies[currentWave];
+    for (int i = 0; i < amount; i++)
+    {
+        SPAWNER.SpawnObjects(new UFO(i));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnAnnoyer()
+{
+    int amount = amountEnemies[currentWave];
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Annoyer(Vector2(100.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Annoyer(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Annoyer(Vector2(100.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+
+    for (int i = 0; i < amount / 4; i++)
+    {
+        SPAWNER.SpawnObjects(new Annoyer(Vector2(RM->WINDOW_WIDTH - 300.f + (i * 80.f), RM->WINDOW_HEIGHT - 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+}
+
+void WaveManager::SpawnAngrygons()
+{
+    int amount = amountEnemies[currentWave];
+
+    for (int i = 0; i < amount; i++) {
+        SPAWNER.SpawnObjects(new Angrygons(Vector2(-100.f + (i * 80.f), 100.f)));
+        enemiesSpawnedInCurrentWave++;
+        OnEnemySpawned();
+    }
+    
+}
+
+void WaveManager::SpawnSpaceBoss()
+{
+    int amount = amountEnemies[currentWave];
+    for (int i = 0; i < amount; i++)
+    {
+        SPAWNER.SpawnObjects(new SpaceBoss(Vector2(RM->WINDOW_WIDTH + 100.f, RM->WINDOW_HEIGHT / 2.f)));
         enemiesSpawnedInCurrentWave++;
         OnEnemySpawned();
     }

@@ -43,10 +43,10 @@ private:
     bool waitingForNextWave;
     float spawnYTimer;
 
-    // Variables para power-ups
+
     Vector2 lastEnemyPosition;
-    int totalEnemiesInWave;      // Total de enemigos spawneados en la wave
-    int enemiesKilledInWave;     // Enemigos eliminados (no escapados)
+    int totalEnemiesInWave;      
+    int enemiesKilledInWave;     
 
 public:
     static WaveManager& Instance()
@@ -93,7 +93,7 @@ public:
         totalEnemiesInWave++;
     }
 
-    // Método para cuando un enemigo es DESTRUIDO (matado por el jugador)
+ 
     void OnEnemyDestroyed(const Vector2& position)
     {
         if (activeEnemiesInWave > 0)
@@ -104,13 +104,13 @@ public:
         }
     }
 
-    // Sobrecarga para enemigos que salen de pantalla (NO fueron derrotados)
+   
     void OnEnemyDestroyed()
     {
         if (activeEnemiesInWave > 0)
         {
             activeEnemiesInWave--;
-            // NO incrementamos enemiesKilledInWave porque escapó
+          
         }
     }
 
@@ -130,6 +130,17 @@ private:
     void SpawnBeholder();
     void SpawnComper();
     void SpawnAmoeba();
-    void SpawnUfo();
     void SpawnBoss();
+    void SpawnTorpedo();
+    void SpawnChainsaw();
+    void SpawnRoboKrabs();
+    void SpawnNuke();
+    void SpawnMissile();
+    void SpawnDaniels();
+    void SpawnUfo();
+    void SpawnAnnoyer();
+    void SpawnAngrygons();
+    void SpawnSpaceBoss();
+
+
 };

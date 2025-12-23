@@ -8,13 +8,12 @@ private:
     int cycleCount;
     float initialX;
     float centerX;
-
-    const float FAST_SPEED = 400.0f;
+    float fastSpeed;  
     const float DECELERATION = 800.0f;
     const float STOP_THRESHOLD = 5.0f;
 
 public:
-    UFO();
+    UFO(int index = 0);
     void Behaviour() override;
     void Update() override;
     void OnCollisionEnter(Object* other);

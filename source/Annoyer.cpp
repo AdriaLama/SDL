@@ -2,6 +2,7 @@
 #include "RenderManager.h"
 #include "TimeManager.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
 Annoyer::Annoyer(Vector2 spawnPosition)
     : Enemy()
@@ -9,7 +10,7 @@ Annoyer::Annoyer(Vector2 spawnPosition)
     _renderer = new ImageRenderer(_transform, "resources/annoyer.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
     _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPosition;
-    health = 1;
+    health = 2;
     currentState = SIMPLE_MOVE;
     _moveTimer = 0.0f;
     _stopTimer = 0.0f;
@@ -47,6 +48,12 @@ void Annoyer::Update()
 {
     Behaviour();
     Enemy::Update();
+
+    if (_transform->position.y < -100.f || _transform->position.y > RM->WINDOW_HEIGHT + 100.f || _transform->position.x > RM->WINDOW_WIDTH + 100.f || _transform->position.x < -100.f)
+    {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }
 
 void Annoyer::Behaviour()
@@ -107,12 +114,16 @@ void Annoyer::Behaviour()
 
 void Annoyer::OnCollisionEnter(Object* object)
 {
+    if (isDying) return;
     Bullet* bullet = dynamic_cast<Bullet*>(object);
     if (bullet)
     {
         health--;
+        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
+            isDying = true;
+            WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }

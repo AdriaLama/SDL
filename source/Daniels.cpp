@@ -3,11 +3,12 @@
 #include <cmath>
 #include "Bullet.h"
 #include "ScoreManager.h"
+#include "WaveManager.h"
 
-Daniels::Daniels(bool fromTop)
+Daniels::Daniels(bool fromTop, int index)
     : Enemy()
 {
-    health = 1;
+    health = 2;
     currentState = State::SIMPLE_MOVE;
     startedFromTop = fromTop;
     enterSpeed = 150.0f;
@@ -19,12 +20,12 @@ Daniels::Daniels(bool fromTop)
 
     if (fromTop)
     {
-        startPosition = Vector2(-_transform->size.x, 100.0f);
+        startPosition = Vector2(-100.f - (index * 150.f), 100.0f);
         targetPosition = Vector2(screenWidth + _transform->size.x, 100.0f);
     }
     else
     {
-        startPosition = Vector2(-_transform->size.x, screenHeight - 100.0f);
+        startPosition = Vector2(-100.f - (index * 150.f), screenHeight - 100.0f);
         targetPosition = Vector2(screenWidth + _transform->size.x, screenHeight - 100.0f);
     }
     _transform->position = startPosition;
@@ -36,6 +37,11 @@ void Daniels::Update()
 {
     Behaviour();
     Enemy::Update();
+
+    if (_transform->position.x < -600.f) {
+        WAVE_MANAGER.OnEnemyDestroyed();
+        Destroy();
+    }
 }
 
 void Daniels::Behaviour()
@@ -91,11 +97,6 @@ void Daniels::Behaviour()
     case State::CHASE:
     {
         _transform->position.x -= crossSpeed * dt; 
-
-        if (_transform->position.x < -_transform->size.x) 
-        {
-            Destroy();
-        }
         break;
     }
     default:
@@ -105,12 +106,16 @@ void Daniels::Behaviour()
 
 void Daniels::OnCollisionEnter(Object* object)
 {
+    if (isDying) return;
     Bullet* bullet = dynamic_cast<Bullet*>(object);
     if (bullet)
     {
         health--;
+        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
+            isDying = true;
+            WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);
             this->Destroy();
         }
