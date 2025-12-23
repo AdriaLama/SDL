@@ -1,7 +1,7 @@
 #pragma once 
 #include "SDL3/SDL.h"
 #include <math.h>
-# define TM TimeManager::Instance()
+#define TM TimeManager::Instance()
 
 class TimeManager
 {
@@ -35,6 +35,7 @@ public:
 	float GetDeltaTime() const { return _deltaTime; }
 	float GetElapsedTime() const { return _elapsedTime; }
 	bool ShouldUpdateGame() const { return _deltaTime >= _frameTime; }
+	float GetFrameTime() const { return _frameTime; }
 
 	void ResetDeltaTime()
 	{

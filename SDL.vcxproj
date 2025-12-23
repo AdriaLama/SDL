@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -20,35 +20,95 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\AABB.cpp" />
+    <ClCompile Include="source\Amoeba.cpp" />
+    <ClCompile Include="source\Angrygons.cpp" />
+    <ClCompile Include="source\Annoyer.cpp" />
+    <ClCompile Include="source\Beholder.cpp" />
+    <ClCompile Include="source\BioTitan.cpp" />
+    <ClCompile Include="source\Bubble.cpp" />
+    <ClCompile Include="source\Bullet.cpp" />
+    <ClCompile Include="source\Chainsaw.cpp" />
+    <ClCompile Include="source\Chomper.cpp" />
+    <ClCompile Include="source\CircleChild.cpp" />
+    <ClCompile Include="source\Circler.cpp" />
+    <ClCompile Include="source\Daniels.cpp" />
+    <ClCompile Include="source\Enemy.cpp" />
     <ClCompile Include="source\Game.cpp" />
+    <ClCompile Include="source\HorizontalMedusa.cpp" />
     <ClCompile Include="source\ImageRenderer.cpp" />
     <ClCompile Include="source\InputManager.cpp" />
+    <ClCompile Include="source\KillerWhale.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\Missiles.cpp" />
+    <ClCompile Include="source\Nuke.cpp" />
+    <ClCompile Include="source\PowerUp.cpp" />
     <ClCompile Include="source\RenderManager.cpp" />
     <ClCompile Include="source\RigidBody.cpp" />
+    <ClCompile Include="source\RoboKrabs.cpp" />
+    <ClCompile Include="source\SpaceBoss.cpp" />
+    <ClCompile Include="source\Ufo.cpp" />
+    <ClCompile Include="source\Torpedo.cpp" />
+    <ClCompile Include="source\VerticalMedusa.cpp" />
+    <ClCompile Include="source\WaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\AABB.h" />
+    <ClInclude Include="source\Amoeba.h" />
+    <ClInclude Include="source\Angrygons.h" />
     <ClInclude Include="source\AnimatedImageObject.h" />
     <ClInclude Include="source\AnimatedImageRenderer.h" />
+    <ClInclude Include="source\Annoyer.h" />
+    <ClInclude Include="source\AtomicWrapper.h" />
+    <ClInclude Include="source\AudioManager.h" />
+    <ClInclude Include="source\BackgroundGameplay.h" />
+    <ClInclude Include="source\Beholder.h" />
+    <ClInclude Include="source\BioTitan.h" />
+    <ClInclude Include="source\BioTitanBullets.h" />
+    <ClInclude Include="source\Bubble.h" />
+    <ClInclude Include="source\Bullet.h" />
+    <ClInclude Include="source\Chainsaw.h" />
+    <ClInclude Include="source\Chomper.h" />
+    <ClInclude Include="source\CircleChild.h" />
+    <ClInclude Include="source\Circler.h" />
+    <ClInclude Include="source\Daniels.h" />
+    <ClInclude Include="source\Enemy.h" />
     <ClInclude Include="source\Game.h" />
+    <ClInclude Include="source\GameManager.h" />
     <ClInclude Include="source\Gameplay.h" />
+    <ClInclude Include="source\HorizontalMedusa.h" />
     <ClInclude Include="source\ImageObject.h" />
     <ClInclude Include="source\ImageRenderer.h" />
     <ClInclude Include="source\InputManager.h" />
+    <ClInclude Include="source\KillerWhale.h" />
+    <ClInclude Include="source\MenuScene.h" />
+    <ClInclude Include="source\Missiles.h" />
+    <ClInclude Include="source\Nuke.h" />
     <ClInclude Include="source\Object.h" />
+    <ClInclude Include="source\Player.h" />
+    <ClInclude Include="source\PowerUp.h" />
     <ClInclude Include="source\Renderer.h" />
     <ClInclude Include="source\RenderManager.h" />
     <ClInclude Include="source\RigidBody.h" />
+    <ClInclude Include="source\RoboKrabs.h" />
     <ClInclude Include="source\Scene.h" />
     <ClInclude Include="source\SceneManager.h" />
+    <ClInclude Include="source\ScoreManager.h" />
+    <ClInclude Include="source\SpaceBoss.h" />
+    <ClInclude Include="source\SpaceBossBullets.h" />
     <ClInclude Include="source\Spawner.h" />
+    <ClInclude Include="source\Stream.h" />
     <ClInclude Include="source\TestObject.h" />
+    <ClInclude Include="source\TextAnimation.h" />
     <ClInclude Include="source\TextObject.h" />
     <ClInclude Include="source\TextRenderer.h" />
     <ClInclude Include="source\TimeManager.h" />
+    <ClInclude Include="source\Torpedo.h" />
     <ClInclude Include="source\Transform.h" />
+    <ClInclude Include="source\Ufo.h" />
     <ClInclude Include="source\vector2.h" />
+    <ClInclude Include="source\VerticalMedusa.h" />
+    <ClInclude Include="source\LevelLoad.h" />
+    <ClInclude Include="source\WaveManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

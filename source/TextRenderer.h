@@ -57,7 +57,9 @@ public:
 
 		// 3) Crear textura
 		_textTexture = SDL_CreateTextureFromSurface(RM->GetRenderer(), surf);
+		SDL_DestroySurface(surf);
 		assert(_textTexture);
+
 
 		// 4) Definir source rect
 		_sourceRect = { 0.f, 0.f, (float)surf->w, (float)surf->h };
