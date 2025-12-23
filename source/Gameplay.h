@@ -91,15 +91,15 @@ public:
 	void Update() override
 	{
 		
-		if (WAVE_MANAGER.IsLevelCompleted())
+		if (WAVE_MANAGER.IsLevelCompleted() && !victoryMessageShown)
 		{
-			
+			victoryMessageShown = true;
 			AM->PlaySound("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
 			
 		}
 
 		
-		if (WAVE_MANAGER.IsLevelCompleted())
+		if (victoryMessageShown)
 		{
 			victoryTimer += TM.GetDeltaTime();
 
