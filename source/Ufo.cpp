@@ -16,8 +16,10 @@ UFO::UFO(int index)
     cycleCount = 0;  
     fastSpeed = (rand() % 301) + 200.0f;  
     initialX = RM->WINDOW_WIDTH + 100.0f;
-    centerX = RM->WINDOW_WIDTH / 2; 
-    float verticalSpacing = 80.0f;  
+    centerX = RM->WINDOW_WIDTH / 2;
+
+   
+    float verticalSpacing = 120.0f;  
     float startY = 100.0f; 
     _transform->position = Vector2(initialX, startY + (index * verticalSpacing));
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
