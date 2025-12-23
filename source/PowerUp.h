@@ -10,7 +10,7 @@ enum class PowerUpType {
     ENGINE_BOOST,  
     SHIELD_ENERGY,
     TWIN_TURRETS,
-    COUNT // Para saber cuántos tipos hay
+    COUNT 
 };
 
 class PowerUp : public ImageObject {
@@ -31,11 +31,8 @@ public:
     void CycleToNextType();
     PowerUpType GetType() const { return _type; }
 
-    // Ya no se usa GetRandomType() - lo elimino o lo dejo deprecado
-    // static PowerUpType GetRandomType();
-
 private:
     std::string GetTexturePathForType(PowerUpType type);
     Vector2 GetSourceOffsetForType(PowerUpType type);
-    void UpdateSpriteForType();
+    void UpdateSpriteForType(PowerUpType type);
 };

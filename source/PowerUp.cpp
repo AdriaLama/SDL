@@ -18,7 +18,7 @@ PowerUp::PowerUp(Vector2 position, PowerUpType type)
     _transform->scale = Vector2(_originalScale, _originalScale);
     AABB* collider = new AABB(_transform->position, Vector2(64.f, 64.f));
     _physics->AddCollider(collider);
-    UpdateSpriteForType();
+    UpdateSpriteForType(type);
 }
 
 void PowerUp::Update()
@@ -68,7 +68,7 @@ void PowerUp::CycleToNextType()
         currentType = currentType + 1;
         _type = static_cast<PowerUpType>(currentType);
 
-        UpdateSpriteForType();
+        UpdateSpriteForType(_type);
     }
 }
 
@@ -133,30 +133,33 @@ Vector2 PowerUp::GetSourceOffsetForType(PowerUpType type)
     }
 }
 
-void PowerUp::UpdateSpriteForType()
+void PowerUp::UpdateSpriteForType(PowerUpType type)
 {
-    if (_renderer)
+    std::string texturePath;
+
+    switch (type)
     {
-        switch (_type)
-        {
-        case PowerUpType::SCORE_BONUS:
-            _renderer->SetColor({ 255, 215, 0, 255 });
-            break;
-        case PowerUpType::CANNON_ENERGY:
-            _renderer->SetColor({ 255, 100, 100, 255 });
-            break;
-        case PowerUpType::LASER_ENERGY:
-            _renderer->SetColor({ 100, 100, 255, 255 });
-            break;
-        case PowerUpType::ENGINE_BOOST:
-            _renderer->SetColor({ 255, 165, 0, 255 });
-            break;
-        case PowerUpType::TWIN_TURRETS:
-            _renderer->SetColor({ 200, 100, 255, 255 });
-            break;
-        case PowerUpType::SHIELD_ENERGY:
-            _renderer->SetColor({ 100, 255, 100, 255 });
-            break;
-        }
+    case PowerUpType::SCORE_BONUS:
+        texturePath = "resources/powerup1.png";
+        break;
+    case PowerUpType::CANNON_ENERGY:
+        texturePath = "resources/powerup2.png";
+        break;
+    case PowerUpType::LASER_ENERGY:
+        texturePath = "resources/powerup3.png";
+        break;
+    case PowerUpType::ENGINE_BOOST:
+        texturePath = "resources/powerup4.png";
+        break;
+    case PowerUpType::TWIN_TURRETS:
+        texturePath = "resources/powerup5.png";
+        break;
+    case PowerUpType::SHIELD_ENERGY:
+        texturePath = "resources/powerup6.png";
+        break;
+    default:
+        break;
     }
+
+    UpdateTexture(texturePath, Vector2(0.f, 0.f), Vector2(64.f, 64.f));
 }

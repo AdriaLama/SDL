@@ -36,6 +36,12 @@ void Game::Init()
 	RM->LoadTexture("resources/turboChainsaw.png");
 	RM->LoadTexture("resources/ufo.png");
 	RM->LoadTexture("resources/verticalMedusa.png");
+	RM->LoadTexture("resources/powerup1.png");
+	RM->LoadTexture("resources/powerup2.png");
+	RM->LoadTexture("resources/powerup3.png");
+	RM->LoadTexture("resources/powerup4.png");
+	RM->LoadTexture("resources/powerup5.png");
+	RM->LoadTexture("resources/powerup6.png");
 	AM->LoadSoundsData("resources/audio/music/froggerSong.wav");
 	AM->LoadSoundsData("resources/audio/sfx/defeat.wav");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
