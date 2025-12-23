@@ -91,21 +91,15 @@ public:
 	void Update() override
 	{
 		
-		if (WAVE_MANAGER.IsLevelCompleted() && !victoryMessageShown)
+		if (WAVE_MANAGER.IsLevelCompleted())
 		{
-			victoryMessageShown = true;
-			AM->PlaySound("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
-
 			
-			victoryText = new TextObject("LEVEL COMPLETE!");
-			victoryText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.f - 200.f, RM->WINDOW_HEIGHT / 2.f);
-			victoryText->GetTransform()->scale = Vector2(3.0f, 3.0f);
-			victoryText->GetRenderer()->SetColor({ 255, 215, 0, 255 }); 
+			AM->PlaySound("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
 			
 		}
 
 		
-		if (victoryMessageShown)
+		if (WAVE_MANAGER.IsLevelCompleted())
 		{
 			victoryTimer += TM.GetDeltaTime();
 
@@ -137,10 +131,5 @@ public:
 	void Render() override
 	{
 		Scene::Render();
-
-		if (victoryText != nullptr)
-		{
-			victoryText->Render();
-		}
 	}
 };
