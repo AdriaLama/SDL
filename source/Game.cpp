@@ -39,6 +39,7 @@ void Game::Init()
 	AM->LoadSoundsData("resources/audio/music/froggerSong.wav");
 	AM->LoadSoundsData("resources/audio/sfx/defeat.wav");
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
+	RM->LoadTexture("resources/turret.png");
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
 	assert(SM.InitFirstScene("MenuScene"));
