@@ -49,10 +49,12 @@ public:
 
 		// Load level with WaveManager
 		WAVE_MANAGER.LoadLevel("lvl1.xml");
+
+		AM->LoadSoundsData("resources/455911__bolkmar__machine-gun-shoot-only.wav");
 		
 		// Audio
-		AM->PlaySound("resources/audio/sfx/defeat.wav");
-		AM->PlaySound("resources/audio/music/froggerSong.wav");
+		AM->Init();
+		
 	}
 
 	void OnExit() override

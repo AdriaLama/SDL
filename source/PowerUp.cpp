@@ -109,7 +109,7 @@ void PowerUp::ApplyPowerUp(Player* player)
 
 std::string PowerUp::GetTexturePathForType(PowerUpType type)
 {
-    return "resources/image.png";
+    return "resources/boss1.png";
 }
 
 Vector2 PowerUp::GetSourceOffsetForType(PowerUpType type)

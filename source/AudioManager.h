@@ -97,8 +97,8 @@ public:
 
 		//Creamos el thread
 		threadsDone.push_back(std::atomic<bool>(false));
-		////std::thread thread(&AudioManager::PlaySoundCallback, this, path, (threadsDone.size() - 1), false);
-		//thread.detach();
+		std::thread thread(&AudioManager::PlaySoundCallback, this, path, (threadsDone.size() - 1));
+		thread.detach();
 	}
 
 	void PlaySoundLooping(std::string path) {

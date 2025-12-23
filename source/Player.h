@@ -7,6 +7,7 @@
 #include "Spawner.h"
 #include "Enemy.h"
 #include "BioTitanBullets.h"
+#include "AudioManager.h"
 
 
 class Player : public ImageObject
@@ -118,6 +119,7 @@ public:
 		if (IM->GetEvent(SDLK_SPACE, DOWN) && _currentCooldown <= 0.f)
 		{
 			Shoot();
+			AM->PlaySound("resources/455911__bolkmar__machine-gun-shoot-only.wav");
 			_currentCooldown = _shootCooldown;
 		}
 
