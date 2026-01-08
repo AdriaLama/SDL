@@ -71,11 +71,10 @@ public:
 		}
 		else
 		{
-			
 			WAVE_MANAGER.LoadLevel("lvl1.xml"); 
 		}
 
-		AM->PlaySound("resources/436507__doctor_dreamchip__2018-08-02.wav");
+		AM->PlaySoundLooping("resources/455911__bolkmar__machine-gun-shoot-only.wav");
 	}
 
 	void OnExit() override
@@ -95,12 +94,6 @@ public:
 		{
 			victoryMessageShown = true;
 			AM->PlaySound("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
-
-			
-			victoryText = new TextObject("LEVEL COMPLETE!");
-			victoryText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.f - 200.f, RM->WINDOW_HEIGHT / 2.f);
-			victoryText->GetTransform()->scale = Vector2(3.0f, 3.0f);
-			victoryText->GetRenderer()->SetColor({ 255, 215, 0, 255 }); 
 			
 		}
 
@@ -137,10 +130,5 @@ public:
 	void Render() override
 	{
 		Scene::Render();
-
-		if (victoryText != nullptr)
-		{
-			victoryText->Render();
-		}
 	}
 };
