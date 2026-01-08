@@ -71,11 +71,10 @@ public:
 		}
 		else
 		{
-			
 			WAVE_MANAGER.LoadLevel("lvl1.xml"); 
 		}
 
-		AM->PlaySound("resources/436507__doctor_dreamchip__2018-08-02.wav");
+		AM->PlaySoundLooping("resources/455911__bolkmar__machine-gun-shoot-only.wav");
 	}
 
 	void OnExit() override
