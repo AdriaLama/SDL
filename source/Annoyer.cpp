@@ -7,7 +7,7 @@
 Annoyer::Annoyer(Vector2 spawnPosition)
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/annoyer.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
+    _renderer = new ImageRenderer(_transform, "resources/images/annoyer.png", Vector2(0.f, 0.f), Vector2(100.f, 100.f));
     _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPosition;
     health = 2;
@@ -120,10 +120,10 @@ void Annoyer::OnCollisionEnter(Object* object)
     if (bullet)
     {
         health--;
-        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
+        AM->PlaySound("resources/audio/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
-            AM->PlaySound("resources/450616__breviceps__8-bit-error.wav");
+            AM->PlaySound("resources/audio/450616__breviceps__8-bit-error.wav");
             isDying = true;
             WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);

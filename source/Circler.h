@@ -18,7 +18,7 @@ public:
         : Enemy()
     {
 
-        _renderer = new ImageRenderer(_transform, "resources/circler.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+        _renderer = new ImageRenderer(_transform, "resources/images/circler.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
 
         _transform->size = size;
         _transform->position = spawnPosition;

@@ -15,7 +15,7 @@ private:
 public:
     BioTitan(Vector2 spawnPosition) : Enemy()
     {
-        _renderer = new ImageRenderer(_transform, "resources/boss1.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+        _renderer = new ImageRenderer(_transform, "resources/images/boss1.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
         _transform->size = Vector2(300.f, 300.f);
         _transform->position = spawnPosition;
         _physics->AddCollider(new AABB(_transform->position, _transform->size));

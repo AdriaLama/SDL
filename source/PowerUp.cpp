@@ -107,7 +107,7 @@ void PowerUp::ApplyPowerUp(Player* player)
 
 std::string PowerUp::GetTexturePathForType(PowerUpType type)
 {
-    return "resources/boss1.png";
+    return "resources/images/boss1.png";
 }
 
 Vector2 PowerUp::GetSourceOffsetForType(PowerUpType type)
@@ -138,22 +138,22 @@ void PowerUp::UpdateSpriteForType(PowerUpType type)
     switch (type)
     {
     case PowerUpType::SCORE_BONUS:
-        texturePath = "resources/powerup1.png";
+        texturePath = "resources/images/powerup1.png";
         break;
     case PowerUpType::CANNON_ENERGY:
-        texturePath = "resources/powerup2.png";
+        texturePath = "resources/images/powerup2.png";
         break;
     case PowerUpType::LASER_ENERGY:
-        texturePath = "resources/powerup3.png";
+        texturePath = "resources/images/powerup3.png";
         break;
     case PowerUpType::ENGINE_BOOST:
-        texturePath = "resources/powerup4.png";
+        texturePath = "resources/images/powerup4.png";
         break;
     case PowerUpType::TWIN_TURRETS:
-        texturePath = "resources/powerup5.png";
+        texturePath = "resources/images/powerup5.png";
         break;
     case PowerUpType::SHIELD_ENERGY:
-        texturePath = "resources/powerup6.png";
+        texturePath = "resources/images/powerup6.png";
         break;
     default:
         break;
