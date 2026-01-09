@@ -74,7 +74,7 @@ public:
 			WAVE_MANAGER.LoadLevel("lvl1.xml"); 
 		}
 
-		AM->PlaySoundLooping("resources/455911__bolkmar__machine-gun-shoot-only.wav");
+		AM->PlaySoundLooping("resources/audio/455911__bolkmar__machine-gun-shoot-only.wav");
 	}
 
 	void OnExit() override
@@ -93,7 +93,7 @@ public:
 		if (WAVE_MANAGER.IsLevelCompleted() && !victoryMessageShown)
 		{
 			victoryMessageShown = true;
-			AM->PlaySound("resources/270333__littlerobotsoundfactory__jingle_win_00.wav");
+			AM->PlaySound("resources/audio/270333__littlerobotsoundfactory__jingle_win_00.wav");
 			
 		}
 

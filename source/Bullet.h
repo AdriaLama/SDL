@@ -65,14 +65,14 @@ private:
         switch (type)
         {
         case BulletType::CANNON:
-            return "resources/cannon.png";
+            return "resources/images/cannon.png";
         case BulletType::LASER:
-            return "resources/laser.png";
+            return "resources/images/laser.png";
         case BulletType::TURRET:
-            return "resources/turret.png";
+            return "resources/images/turret.png";
         case BulletType::NORMAL:
         default:
-            return "resources/bullet.png";
+            return "resources/images/bullet.png";
         }
     }
 

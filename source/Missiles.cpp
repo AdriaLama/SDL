@@ -16,10 +16,10 @@ void Missiles::OnCollisionEnter(Object* object)
     if (bullet)
     {
         health--;
-        AM->PlaySound("resources/501104__evretro__8-bit-damage-sound.wav");
+        AM->PlaySound("resources/audio/501104__evretro__8-bit-damage-sound.wav");
         if (health <= 0)
         {
-            AM->PlaySound("resources/450616__breviceps__8-bit-error.wav");
+            AM->PlaySound("resources/audio/450616__breviceps__8-bit-error.wav");
             isDying = true;
             WAVE_MANAGER.OnEnemyDestroyed(_transform->position);
             HUD_MANAGER.AddScore(150);

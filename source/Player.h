@@ -41,7 +41,7 @@ private:
 
 public:
 	Player()
-		: ImageObject("resources/player.png", Vector2(0.f, 0.f), Vector2(500.f, 500.f)),
+		: ImageObject("resources/images/player.png", Vector2(0.f, 0.f), Vector2(500.f, 500.f)),
 		_currentCooldown(0.f),
 		_shields(100),
 		_maxShields(100),
@@ -122,7 +122,7 @@ public:
 		if (IM->GetEvent(SDLK_SPACE, DOWN) && _currentCooldown <= 0.f)
 		{
 			Shoot();
-			AM->PlaySound("resources/455911__bolkmar__machine-gun-shoot-only.wav");
+			AM->PlaySound("resources/audio/455911__bolkmar__machine-gun-shoot-only.wav");
 			_currentCooldown = _shootCooldown;
 		}
 
@@ -142,7 +142,7 @@ public:
 			auto currentTime = std::chrono::steady_clock::now();
 			auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastSoundTime).count();	
 			if (elapsed >= 130) {
-				AM->PlaySound("resources/138481__justinvoke__bullet-blood-4.wav");
+				AM->PlaySound("resources/audio/138481__justinvoke__bullet-blood-4.wav");
 				lastSoundTime = currentTime;
 			}
 			
@@ -166,7 +166,7 @@ public:
 	}
 	void OnPlayerDeath()
 	{
-		AM->PlaySound("resources/538151__fupicat__8bit-fall.wav");
+		AM->PlaySound("resources/audio/538151__fupicat__8bit-fall.wav");
 		Destroy();
 		SM.SetNextScene("Gameplay");
 		

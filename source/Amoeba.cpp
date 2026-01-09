@@ -7,7 +7,7 @@
 Amoeba::Amoeba(Vector2 spawnPos)
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/amoeba.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+    _renderer = new ImageRenderer(_transform, "resources/images/amoeba.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
     _transform->size = Vector2(150.f, 150.f);
     _transform->position = spawnPos;
     spawnPosition = spawnPos;
@@ -26,7 +26,7 @@ Amoeba::Amoeba(Vector2 spawnPos)
 Amoeba::Amoeba(Vector2 spawnPos, int index, bool copy, Amoeba* parent)
     : Enemy()
 {
-    _renderer = new ImageRenderer(_transform, "resources/amoeba.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
+    _renderer = new ImageRenderer(_transform, "resources/images/amoeba.png", Vector2(0.f, 0.f), Vector2(0.f, 0.f));
     _transform->size = Vector2(100.f, 100.f);
     _transform->position = spawnPos;
     _physics->AddCollider(new AABB(_transform->position, _transform->size));
