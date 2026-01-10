@@ -33,8 +33,6 @@ public:
 	void OnEnter() override
 	{
 		srand(time(nullptr));
-		AM->Init();
-
 		
 		victoryMessageShown = false;
 		victoryTimer = 0.0f;

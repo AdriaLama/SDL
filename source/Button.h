@@ -9,13 +9,12 @@ class Button : public ImageObject
 {
 public:
     typedef std::function<void()> OnClick;
-
 private:
     bool _isHovered = false;
+    bool _wasPressed = false;  
     OnClick _onClick;
     SDL_Color _normalColor;
     SDL_Color _hoverColor;
-
 public:
     Button(OnClick onClick, Vector2 position, Vector2 size, std::string texturePath = "resources/images/boss1.png")
         : ImageObject(texturePath, Vector2(0.f, 0.f), size)
@@ -24,12 +23,9 @@ public:
         _transform->position = position;
         _transform->size = size;
         _transform->scale = Vector2(1.f, 1.f);
-
         _normalColor = { 255, 255, 255, 255 };
         _hoverColor = { 255, 215, 0, 255 };
-
         _renderer->SetColor(_normalColor);
-
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
     }
 
@@ -42,13 +38,30 @@ public:
     virtual void Update() override
     {
         Vector2 mousePos = Vector2(IM->GetMouseX(), IM->GetMouseY());
+        bool isOverlapping = _physics->CheckOverlappingPoint(mousePos);
+        bool isLeftClickPressed = IM->GetLeftClick();
 
-        if (!_isHovered && _physics->CheckOverlappingPoint(mousePos))
+        if (!_isHovered && isOverlapping)
             OnHoverEnter();
-        else if (_isHovered && !_physics->CheckOverlappingPoint(mousePos))
+        else if (_isHovered && !isOverlapping)
             OnHoverExit();
-        else if (_isHovered && IM->GetLeftClick())
-            OnClicked();
+
+        if (_isHovered && isOverlapping)
+        {
+            if (isLeftClickPressed)
+            {
+                _wasPressed = true;  
+            }
+            else if (_wasPressed)  
+            {
+                OnClicked();
+                _wasPressed = false;
+            }
+        }
+        else
+        {
+            _wasPressed = false;  
+        }
 
         Object::Update();
     }
