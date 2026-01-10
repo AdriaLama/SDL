@@ -5,12 +5,14 @@
 #include "SceneManager.h"
 #include "Gameplay.h"
 #include "MenuScene.h"
+#include "SplashScreen.h"
 #include "AudioManager.h"
 #include <cassert>
 
 void Game::Init()
 {
 	RM->Init();
+
 	RM->LoadTexture("resources/images/player.png");
 	RM->LoadTexture("resources/images/bullet.png");
 	RM->LoadTexture("resources/images/backgroundGameplay.png");
@@ -42,6 +44,9 @@ void Game::Init()
 	RM->LoadTexture("resources/images/powerup4.png");
 	RM->LoadTexture("resources/images/powerup5.png");
 	RM->LoadTexture("resources/images/powerup6.png");
+	RM->LoadTexture("resources/images/SplashScreen.png");
+	RM->LoadTexture("resources/images/turret.png");
+
 	AM->LoadSoundData("resources/audio/music/froggerSong.wav");
 	AM->LoadSoundData("resources/audio/sfx/defeat.wav");
 	AM->LoadSoundData("resources/audio/455911__bolkmar__machine-gun-shoot-only.wav");
@@ -51,11 +56,15 @@ void Game::Init()
 	AM->LoadSoundData("resources/audio/501104__evretro__8-bit-damage-sound.wav");
 	AM->LoadSoundData("resources/audio/538151__fupicat__8bit-fall.wav");
 	AM->LoadSoundData("resources/audio/450616__breviceps__8-bit-error.wav");
+
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
-	RM->LoadTexture("resources/images/turret.png");
+	
+
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
-	assert(SM.InitFirstScene("MenuScene"));
+	assert(SM.AddScene("SplashScreen", new SplashScreen()));
+
+	assert(SM.InitFirstScene("SplashScreen"));
 	_isRunning = true;
 	
 }
