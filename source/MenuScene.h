@@ -17,6 +17,7 @@ public:
     void OnEnter() override
     {
         _audioEnabled = true;
+        AM->Init();
 
         TextObject* titleText = new TextObject("MENACE-PC");
         titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 200.f, 100.f);
@@ -64,6 +65,7 @@ public:
         exitText->GetTransform()->position = Vector2(centerX + 100.f, buttonStartY + buttonSpacing * 3 + 15.f);
         exitText->GetTransform()->scale = Vector2(2.f, 2.f);
         _ui.push_back(exitText);
+
     }
 
     void ToggleAudio()
