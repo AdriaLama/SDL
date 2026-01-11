@@ -8,6 +8,7 @@
 #include "SplashScreen.h"
 #include "RankingScene.h"
 #include "RankingNameScene.h"
+#include "LevelSelectorScene.h"
 #include "AudioManager.h"
 #include <cassert>
 
@@ -66,6 +67,7 @@ void Game::Init()
 	assert(SM.AddScene("SplashScreen", new SplashScreen()));	
 	assert(SM.AddScene("Ranking", new RankingScene()));
 	assert(SM.AddScene("RankingNameScene", new RankingNameScene()));
+	assert(SM.AddScene("LevelSelector", new LevelSelectorScene()));
 
 
 	assert(SM.InitFirstScene("SplashScreen"));
