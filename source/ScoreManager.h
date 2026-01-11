@@ -166,6 +166,7 @@ public:
             UpdateLaserEnergy(player->GetLaserEnergy(), player->GetMaxLaserEnergy(), player->HasLaser());
         }
     }
+
     int GetCurrentScore() const { return _currentScore; }
     int GetHighScore() const { return _highScore; }
 

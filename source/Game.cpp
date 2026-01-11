@@ -6,6 +6,8 @@
 #include "Gameplay.h"
 #include "MenuScene.h"
 #include "SplashScreen.h"
+#include "RankingScene.h"
+#include "RankingNameScene.h"
 #include "AudioManager.h"
 #include <cassert>
 
@@ -62,7 +64,10 @@ void Game::Init()
 
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
-	assert(SM.AddScene("SplashScreen", new SplashScreen()));
+	assert(SM.AddScene("SplashScreen", new SplashScreen()));	
+	assert(SM.AddScene("Ranking", new RankingScene()));
+	assert(SM.AddScene("RankingNameScene", new RankingNameScene()));
+
 
 	assert(SM.InitFirstScene("SplashScreen"));
 	_isRunning = true;

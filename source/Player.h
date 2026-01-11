@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "ImageObject.h"
 #include "Bullet.h"
 #include "RenderManager.h"
@@ -9,6 +9,8 @@
 #include "Enemy.h"
 #include "BioTitanBullets.h"
 #include "AudioManager.h"
+#include "ScoreManager.h"
+#include "RankingNameScene.h"
 
 
 class Player : public ImageObject
@@ -167,8 +169,16 @@ public:
 	void OnPlayerDeath()
 	{
 		AM->PlaySound("resources/audio/538151__fupicat__8bit-fall.wav");
+		
+		int finalScore = HUD_MANAGER.GetCurrentScore();
+
+		RankingNameScene* rankingNameScene = dynamic_cast<RankingNameScene*>(SM.GetScene("RankingNameScene"));
+		if (rankingNameScene)
+		{
+			rankingNameScene->SetFinalScore(finalScore);
+		}
 		Destroy();
-		SM.SetNextScene("Gameplay");
+		SM.SetNextScene("RankingNameScene");
 		
 	}
 	void ReplenishCannonEnergy() {
