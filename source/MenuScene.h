@@ -30,16 +30,23 @@ public:
         float buttonHeight = 60.f;
         float centerX = RM->WINDOW_WIDTH / 2.0f - buttonWidth / 2.0f;
 
- 
-        Button* playButton = new Button([]() { SM.SetNextScene("Gameplay"); },Vector2(centerX, buttonStartY), Vector2(buttonWidth, buttonHeight));
-
+        Button* playButton = new Button(
+            []() { SM.SetNextScene("LevelSelector"); },
+            Vector2(centerX, buttonStartY),
+            Vector2(buttonWidth, buttonHeight)
+        );
         _ui.push_back(playButton);
+
         TextObject* playText = new TextObject("PLAY");
         playText->GetTransform()->position = Vector2(centerX + 100.f, buttonStartY + 15.f);
         playText->GetTransform()->scale = Vector2(2.f, 2.f);
         _ui.push_back(playText);
 
-        Button* rankingButton = new Button( []() { SM.SetNextScene("Ranking"); }, Vector2(centerX, buttonStartY + buttonSpacing),Vector2(buttonWidth, buttonHeight));
+        Button* rankingButton = new Button(
+            []() { SM.SetNextScene("Ranking"); },
+            Vector2(centerX, buttonStartY + buttonSpacing),
+            Vector2(buttonWidth, buttonHeight)
+        );
         _ui.push_back(rankingButton);
 
         TextObject* rankingText = new TextObject("RANKING");
@@ -47,8 +54,11 @@ public:
         rankingText->GetTransform()->scale = Vector2(2.f, 2.f);
         _ui.push_back(rankingText);
 
-   
-        Button* audioButton = new Button( [this]() { ToggleAudio(); }, Vector2(centerX, buttonStartY + buttonSpacing * 2), Vector2(buttonWidth, buttonHeight) );
+        Button* audioButton = new Button(
+            [this]() { ToggleAudio(); },
+            Vector2(centerX, buttonStartY + buttonSpacing * 2),
+            Vector2(buttonWidth, buttonHeight)
+        );
         _ui.push_back(audioButton);
 
         _audioText = new TextObject("AUDIO: ON");
@@ -56,8 +66,11 @@ public:
         _audioText->GetTransform()->scale = Vector2(2.f, 2.f);
         _ui.push_back(_audioText);
 
-
-        Button* exitButton = new Button( []() { SDL_Quit(); exit(0); },Vector2(centerX, buttonStartY + buttonSpacing * 3), Vector2(buttonWidth, buttonHeight));
+        Button* exitButton = new Button(
+            []() { SDL_Quit(); exit(0); },
+            Vector2(centerX, buttonStartY + buttonSpacing * 3),
+            Vector2(buttonWidth, buttonHeight)
+        );
         _ui.push_back(exitButton);
 
         TextObject* exitText = new TextObject("EXIT");
