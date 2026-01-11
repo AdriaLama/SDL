@@ -3,6 +3,8 @@
 
 #define GAME_MANAGER GameManager::Instance()
 
+class Player;
+
 class GameManager
 {
 public:
