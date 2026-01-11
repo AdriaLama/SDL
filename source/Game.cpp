@@ -60,7 +60,6 @@ void Game::Init()
 	AM->LoadSoundData("resources/audio/450616__breviceps__8-bit-error.wav");
 
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
-	
 
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
@@ -71,7 +70,6 @@ void Game::Init()
 
 	assert(SM.InitFirstScene("SplashScreen"));
 	_isRunning = true;
-	
 }
 
 void Game::InitSDL()
@@ -97,20 +95,16 @@ void Game::HandleEvents()
 	_isRunning = !IM->Listen();
 }
 
-
 void Game::Update()
 {
-
 	SM.UpdateCurrentScene();
-
 }
 
 void Game::Render()
 {
-
-	 RM -> ClearScreen();
-	 SM.GetCurrentScene()->Render();
-	 RM -> RenderScreen();
+	RM->ClearScreen();
+	SM.GetCurrentScene()->Render();
+	RM->RenderScreen();
 }
 
 void Game::Release()
