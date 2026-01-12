@@ -48,6 +48,7 @@ void Game::Init()
 	RM->LoadTexture("resources/images/powerup5.png");
 	RM->LoadTexture("resources/images/powerup6.png");
 	RM->LoadTexture("resources/images/SplashScreen.png");
+	RM->LoadTexture("resources/images/button.png");
 	RM->LoadTexture("resources/images/turret.png");
 
 	AM->LoadSoundData("resources/audio/music/froggerSong.wav");

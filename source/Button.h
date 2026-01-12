@@ -16,7 +16,7 @@ private:
     SDL_Color _normalColor;
     SDL_Color _hoverColor;
 public:
-    Button(OnClick onClick, Vector2 position, Vector2 size, std::string texturePath = "resources/images/boss1.png")
+    Button(OnClick onClick, Vector2 position, Vector2 size, std::string texturePath = "resources/images/button.png")
         : ImageObject(texturePath, Vector2(0.f, 0.f), size)
     {
         _onClick = onClick;
