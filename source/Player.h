@@ -35,8 +35,8 @@ private:
 	float _distanceTravelled;
 	float _lastXPosition;
 	bool _isImmune;
-	float _turretAngle1;  
-	float _turretAngle2;  
+	float _turretAngle1;
+	float _turretAngle2;
 	float _immunityTimer;
 	const float _immunityDuration = 0.5f;
 	const int _damagePerHit = 5;
@@ -77,7 +77,6 @@ public:
 
 	void Update() override
 	{
-
 		if (_isImmune)
 		{
 			_immunityTimer += TM.GetDeltaTime();
@@ -101,7 +100,6 @@ public:
 		{
 			_currentCooldown -= TM.GetDeltaTime();
 		}
-
 
 		float speed = 3000.f * _movementSpeedMultiplier;
 
@@ -128,6 +126,10 @@ public:
 			_currentCooldown = _shootCooldown;
 		}
 
+		
+		HUD_MANAGER.UpdatePlayerStats(_shields, _cannonEnergy, _maxCannonEnergy, _hasCannons,
+			_laserEnergy, _maxLaserEnergy, _hasLaser);
+
 		UpdateTurretRotation();
 		Object::Update();
 		ClampPosition();
@@ -137,17 +139,17 @@ public:
 	{
 		Enemy* enemy = dynamic_cast<Enemy*>(other);
 		BioTitanBullets* bioTitanBullets = dynamic_cast<BioTitanBullets*>(other);
-	
+
 		if (enemy != nullptr || bioTitanBullets != nullptr && !_isImmune)
 		{
 			static auto lastSoundTime = std::chrono::steady_clock::now();
 			auto currentTime = std::chrono::steady_clock::now();
-			auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastSoundTime).count();	
+			auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - lastSoundTime).count();
 			if (elapsed >= 130) {
 				AM->PlaySound("resources/audio/138481__justinvoke__bullet-blood-4.wav");
 				lastSoundTime = currentTime;
 			}
-			
+
 			TakeDamage(_damagePerHit);
 		}
 	}
@@ -166,9 +168,11 @@ public:
 			OnPlayerDeath();
 		}
 	}
+
 	void OnPlayerDeath()
 	{
 		AM->PlaySound("resources/audio/538151__fupicat__8bit-fall.wav");
+
 		
 		int finalScore = HUD_MANAGER.GetCurrentScore();
 
@@ -179,19 +183,21 @@ public:
 		}
 		Destroy();
 		SM.SetNextScene("RankingNameScene");
-		
 	}
+
 	void ReplenishCannonEnergy() {
 		_cannonEnergy = _maxCannonEnergy;
 		_hasCannons = true;
 	}
+
 	void ReplenishLaserEnergy() {
 		_laserEnergy = _maxLaserEnergy;
 		_hasLaser = true;
 	}
+
 	void UpgradeEngines() {
 		_movementSpeedMultiplier += 0.2f;
-	
+
 		if (_movementSpeedMultiplier > 2.5f) {
 			_movementSpeedMultiplier = 2.5f;
 		}
@@ -264,7 +270,7 @@ private:
 		Vector2 turretPos1 = _transform->position + turretOffset + Vector2(0.f, -25.f);
 		Vector2 turretPos2 = _transform->position + turretOffset + Vector2(0.f, 25.f);
 		float radians1 = _turretAngle1 * (3.14159f / 180.f);
-		Vector2 direction1 = Vector2(cos(radians1), sin(radians1));		
+		Vector2 direction1 = Vector2(cos(radians1), sin(radians1));
 		float radians2 = _turretAngle2 * (3.14159f / 180.f);
 		Vector2 direction2 = Vector2(cos(radians2), sin(radians2));
 		Bullet* turretBullet1 = new Bullet(turretPos1, BulletType::TURRET, direction1);
@@ -285,7 +291,7 @@ private:
 		{
 			float rotationAmount = (deltaX > 0 ? 45.f : -45.f);
 			_turretAngle1 += rotationAmount;
-			_turretAngle2 -= rotationAmount;  
+			_turretAngle2 -= rotationAmount;
 			_distanceTravelled = 0.f;
 
 			if (_turretAngle1 > 45.f)

@@ -1,6 +1,5 @@
 #pragma once
 #include "TextObject.h"
-#include "GameManager.h"
 #include <string>
 #include <sstream>
 #include <iomanip>
@@ -108,7 +107,7 @@ public:
             if (currentEnergy <= 1.f)
             {
                 _cannonText->SetText("CANNON: --");
-                _cannonText->GetRenderer()->SetColor({ 150, 150, 150, 255 }); 
+                _cannonText->GetRenderer()->SetColor({ 150, 150, 150, 255 });
             }
             else
             {
@@ -132,7 +131,7 @@ public:
             if (currentEnergy <= 1.f)
             {
                 _laserText->SetText("LASER: --");
-                _laserText->GetRenderer()->SetColor({ 150, 150, 150, 255 }); 
+                _laserText->GetRenderer()->SetColor({ 150, 150, 150, 255 });
             }
             else
             {
@@ -147,24 +146,22 @@ public:
                     _laserText->GetRenderer()->SetColor({ 255, 0, 0, 255 });
             }
         }
-    }  
+    }
+
+    // Método que recibe datos directamente sin depender de Player
+    void UpdatePlayerStats(int shields, float cannonEnergy, float maxCannonEnergy, bool hasCannons,
+        float laserEnergy, float maxLaserEnergy, bool hasLaser)
+    {
+        UpdateShield(shields);
+        UpdateCannonEnergy(cannonEnergy, maxCannonEnergy, hasCannons);
+        UpdateLaserEnergy(laserEnergy, maxLaserEnergy, hasLaser);
+    }
 
     void ResetScore()
     {
         _currentScore = 0;
         _scoreText->GetRenderer()->SetColor({ 255, 255, 255, 255 });
         UpdateScoreDisplay();
-    }
-
-    void Update()
-    {
-        Player* player = GAME_MANAGER.GetPlayer();
-        if (player)
-        {
-            UpdateShield(player->GetShields());
-            UpdateCannonEnergy(player->GetCannonEnergy(), player->GetMaxCannonEnergy(), player->HasCannons());
-            UpdateLaserEnergy(player->GetLaserEnergy(), player->GetMaxLaserEnergy(), player->HasLaser());
-        }
     }
 
     int GetCurrentScore() const { return _currentScore; }
@@ -188,7 +185,7 @@ private:
         if (_highScoreText)
         {
             _highScoreText->SetText("SCORE: " + FormatScore(_highScore));
-            _highScoreText->GetRenderer()->SetColor({ 200, 200, 200, 255 }); 
+            _highScoreText->GetRenderer()->SetColor({ 200, 200, 200, 255 });
         }
     }
 };
