@@ -33,7 +33,7 @@ public:
     {
         
         _titleText = new TextObject("SELECT LEVEL");
-        _titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 250.f, 100.f);
+        _titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 100.f, 300.f);
         _titleText->GetTransform()->scale = Vector2(4.f, 4.f);
         _titleText->GetRenderer()->SetColor({ 0, 255, 255, 255 });
         _ui.push_back(_titleText);
@@ -51,14 +51,14 @@ public:
                 WAVE_MANAGER.LoadLevel("lvl1.xml");
                 SM.SetNextScene("Gameplay");
             },
-            Vector2(centerX, startY),
-            Vector2(buttonWidth, buttonHeight)
+            Vector2(centerX + 190.f, startY + 25.f),
+            Vector2(buttonWidth + 200.f, buttonHeight)
         );
         _ui.push_back(_level1Button);
 
-        _level1Text = new TextObject("LEVEL 1 - OCEAN");
-        _level1Text->GetTransform()->position = Vector2(centerX + 50.f, startY + 20.f);
-        _level1Text->GetTransform()->scale = Vector2(2.5f, 2.5f);
+        _level1Text = new TextObject("Sea of Karnaugh");
+        _level1Text->GetTransform()->position = Vector2(centerX + 50.f, startY + 100.f);
+        _level1Text->GetTransform()->scale = Vector2(2.25f, 2.25f);
         _level1Text->GetRenderer()->SetColor({ 255, 255, 255, 255 });
         _ui.push_back(_level1Text);
 
@@ -67,27 +67,28 @@ public:
                 WAVE_MANAGER.LoadLevel("lvl2.xml");
                 SM.SetNextScene("Gameplay");
             },
-            Vector2(centerX, startY + spacing),
-            Vector2(buttonWidth, buttonHeight)
+            Vector2(centerX + 190.f, startY + 125.f),
+            Vector2(buttonWidth + 200.f, buttonHeight)
         );
         _ui.push_back(_level2Button);
 
-        _level2Text = new TextObject("LEVEL 2 - SPACE");
-        _level2Text->GetTransform()->position = Vector2(centerX + 50.f, startY + spacing + 20.f);
-        _level2Text->GetTransform()->scale = Vector2(2.5f, 2.5f);
+        _level2Text = new TextObject("Vanguard Warzone");
+        _level2Text->GetTransform()->position = Vector2(centerX + 50.f, startY + 200.f);
+        _level2Text->GetTransform()->scale = Vector2(2.25f, 2.25f);
         _level2Text->GetRenderer()->SetColor({ 255, 255, 255, 255 });
         _ui.push_back(_level2Text);
+
         _backButton = new Button(
             []() {
                 SM.SetNextScene("MenuScene");
             },
-            Vector2(centerX, startY + spacing * 2 + 50.f),
+            Vector2(centerX + 190.f, startY + 250.f),
             Vector2(buttonWidth, buttonHeight)
         );
         _ui.push_back(_backButton);
 
         _backText = new TextObject("BACK TO MENU");
-        _backText->GetTransform()->position = Vector2(centerX + 70.f, startY + spacing * 2 + 70.f);
+        _backText->GetTransform()->position = Vector2(centerX + 125.f, startY + 325.f);
         _backText->GetTransform()->scale = Vector2(2.f, 2.f);
         _backText->GetRenderer()->SetColor({ 200, 200, 200, 255 });
         _ui.push_back(_backText);
