@@ -148,7 +148,6 @@ public:
         }
     }
 
-    // Método que recibe datos directamente sin depender de Player
     void UpdatePlayerStats(int shields, float cannonEnergy, float maxCannonEnergy, bool hasCannons,
         float laserEnergy, float maxLaserEnergy, bool hasLaser)
     {

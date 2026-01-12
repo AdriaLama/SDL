@@ -83,7 +83,7 @@ public:
         }
 
         float buttonY = RM->WINDOW_HEIGHT - 100.f;
-        Button* backButton = new Button( []() { SM.SetNextScene("MenuScene"); }, Vector2(RM->WINDOW_WIDTH / 2.0f - 150.f, buttonY),Vector2(300.f, 60.f) );
+        Button* backButton = new Button( []() { SM.SetNextScene("MenuScene"); }, Vector2(RM->WINDOW_WIDTH / 2.0f - 75.f, buttonY - 40.f),Vector2(300.f, 60.f) );
         _ui.push_back(backButton);
 
         TextObject* backText = new TextObject("BACK TO MENU");
