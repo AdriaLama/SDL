@@ -120,7 +120,7 @@ public:
 			}
 		}
 
-		HUD_MANAGER.Update();
+		
 		WAVE_MANAGER.Update();
 		Scene::Update();
 	}

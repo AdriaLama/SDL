@@ -2,6 +2,7 @@
 #include "TimeManager.h"
 #include "ScoreManager.h"
 #include "WaveManager.h"
+#include "Bullet.h"
 
 VerticalMedusa::VerticalMedusa(Vector2 spawnPosition)
     : Enemy()

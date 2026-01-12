@@ -3,7 +3,7 @@
 #include "RenderManager.h"
 #include "Spawner.h"
 #include "TimeManager.h"
-
+#include "AudioManager.h"
 enum State
 {
     STAY,
