@@ -112,6 +112,9 @@ public:
 	//Crea un nou stream a partir de les dades del fitxer .wav associat a una ruta
 	void PlaySound(std::string path)
  	{
+		if (_muted)
+			return;
+
 		if (_soundsData.find(path) == _soundsData.end())
 			return;
 
@@ -123,6 +126,9 @@ public:
 
 	void PlaySoundLooping(std::string path)
 	{
+		if (_muted)
+			return;
+
 		if (_soundsData.find(path) == _soundsData.end())
 			return;
 

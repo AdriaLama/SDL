@@ -30,6 +30,8 @@ void PowerUp::Update()
         return;
     }
 
+    _physics->SetVelocity(Vector2(-100.f, 0.f));
+
     _pulseTimer += TM.GetDeltaTime() * 3.f;
     float pulse = 1.0f + sin(_pulseTimer) * 0.15f;
     _transform->scale = Vector2(_originalScale * pulse, _originalScale * pulse);
