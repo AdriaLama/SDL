@@ -77,7 +77,7 @@ public:
 	
 		GAME_STATE_MANAGER.Init();
 
-		AM->PlaySoundLooping("resources/audio/455911__bolkmar__machine-gun-shoot-only.wav");
+		AM->PlaySoundLooping("resources/audio/retro-arcade-game-music-396890.wav");
 	}
 
 	void OnExit() override
@@ -98,7 +98,13 @@ public:
 		if (WAVE_MANAGER.IsLevelCompleted() && !victoryMessageShown)
 		{
 			victoryMessageShown = true;
+			TextObject* victoryText = new TextObject("LEVEL COMPLETED");
+			victoryText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 200.f, 500.f);
+			victoryText->GetTransform()->scale = Vector2(4.f, 4.f);
+			victoryText->GetRenderer()->SetColor({ 255, 0, 0, 255 });
+			_ui.push_back(victoryText);
 			AM->PlaySound("resources/audio/270333__littlerobotsoundfactory__jingle_win_00.wav");
+
 		}
 
 		if (victoryMessageShown)
@@ -118,8 +124,18 @@ public:
 				else if (currentLevel == "lvl2.xml")
 				{
 					WAVE_MANAGER.ResetLevelCompletion();
-					WAVE_MANAGER.LoadLevel("lvl1.xml");
-					SM.SetNextScene("Gameplay");
+				
+					int finalScore = HUD_MANAGER.GetCurrentScore();
+
+					RankingNameScene* rankingNameScene = dynamic_cast<RankingNameScene*>(SM.GetScene("RankingNameScene"));
+					if (rankingNameScene)
+					{
+						rankingNameScene->SetFinalScore(finalScore);
+					}
+
+					HUD_MANAGER.ResetScore();
+					SM.SetNextScene("RankingNameScene");
+			
 				}
 			}
 		}
