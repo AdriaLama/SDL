@@ -30,13 +30,6 @@ public:
             _nextState = GameStates::DEATH;
             return;
         }
-
-        if (WAVE_MANAGER.IsLevelCompleted())
-        {
-            _nextState = GameStates::FINISH_STAGE;
-            return;
-        }
-
         SM.GetCurrentScene()->Update();
     }
 
