@@ -18,13 +18,14 @@
 #include "PowerUp.h"
 #include "WaveManager.h"
 #include "SceneManager.h"
+#include "GameStateManager.h"
 
 class Gameplay : public Scene
 {
 private:
 	bool victoryMessageShown = false;
 	float victoryTimer = 0.0f;
-	const float victoryDelay = 3.0f; 
+	const float victoryDelay = 3.0f;
 	TextObject* victoryText = nullptr;
 
 public:
@@ -33,23 +34,25 @@ public:
 	void OnEnter() override
 	{
 		srand(time(nullptr));
-		
+
 		victoryMessageShown = false;
 		victoryTimer = 0.0f;
 		victoryText = nullptr;
 
-		
+	
+		GAME_STATE_MANAGER.SetInGameplay(true);
+
+		SPAWNER.ClearSpawner();
+
 		BackgroundGameplay* bg1 = new BackgroundGameplay(0.f);
 		BackgroundGameplay* bg2 = new BackgroundGameplay(1360.f);
 		_objects.push_back(bg1);
 		_objects.push_back(bg2);
 
-		
 		Player* player = new Player();
 		GAME_MANAGER.SetPlayer(player);
 		SPAWNER.SpawnObjects((Object*)player);
 
-		
 		HUD_MANAGER.Initialize();
 		_objects.push_back(HUD_MANAGER.GetScoreText());
 		_objects.push_back(HUD_MANAGER.GetHighScoreText());
@@ -57,7 +60,6 @@ public:
 		_objects.push_back(HUD_MANAGER.GetCannonText());
 		_objects.push_back(HUD_MANAGER.GetLaserText());
 
-		
 		std::string currentLevel = WAVE_MANAGER.GetCurrentLevel();
 		if (currentLevel.empty() || currentLevel == "lvl1.xml")
 		{
@@ -69,14 +71,20 @@ public:
 		}
 		else
 		{
-			WAVE_MANAGER.LoadLevel("lvl1.xml"); 
+			WAVE_MANAGER.LoadLevel("lvl1.xml");
 		}
+
+	
+		GAME_STATE_MANAGER.Init();
 
 		AM->PlaySoundLooping("resources/audio/455911__bolkmar__machine-gun-shoot-only.wav");
 	}
 
 	void OnExit() override
 	{
+	
+		GAME_STATE_MANAGER.SetInGameplay(false);
+
 		if (victoryText)
 		{
 			delete victoryText;
@@ -87,40 +95,35 @@ public:
 
 	void Update() override
 	{
-		
 		if (WAVE_MANAGER.IsLevelCompleted() && !victoryMessageShown)
 		{
 			victoryMessageShown = true;
 			AM->PlaySound("resources/audio/270333__littlerobotsoundfactory__jingle_win_00.wav");
-			
 		}
 
-		
 		if (victoryMessageShown)
 		{
 			victoryTimer += TM.GetDeltaTime();
 
 			if (victoryTimer >= victoryDelay)
 			{
-				
 				std::string currentLevel = WAVE_MANAGER.GetCurrentLevel();
 
 				if (currentLevel == "lvl1.xml")
-				{					
+				{
 					WAVE_MANAGER.ResetLevelCompletion();
 					WAVE_MANAGER.LoadLevel("lvl2.xml");
-					SM.SetNextScene("Gameplay"); 
+					SM.SetNextScene("Gameplay");
 				}
 				else if (currentLevel == "lvl2.xml")
-				{			
+				{
 					WAVE_MANAGER.ResetLevelCompletion();
 					WAVE_MANAGER.LoadLevel("lvl1.xml");
-					SM.SetNextScene("Gameplay"); 
+					SM.SetNextScene("Gameplay");
 				}
 			}
 		}
 
-		
 		WAVE_MANAGER.Update();
 		Scene::Update();
 	}

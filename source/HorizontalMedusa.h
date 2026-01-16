@@ -13,6 +13,7 @@ public:
 
         _transform->size = Vector2(100.f, 100.f);
         _transform->position = spawnPosition;
+        _transform->rotation = -90.f;
 
         _physics->AddCollider(new AABB(_transform->position, _transform->size));
         currentState = SIMPLE_MOVE;

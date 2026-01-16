@@ -165,24 +165,8 @@ public:
 		if (_shields <= 0)
 		{
 			_shields = 0;
-			OnPlayerDeath();
+			Destroy();
 		}
-	}
-
-	void OnPlayerDeath()
-	{
-		AM->PlaySound("resources/audio/538151__fupicat__8bit-fall.wav");
-
-		
-		int finalScore = HUD_MANAGER.GetCurrentScore();
-
-		RankingNameScene* rankingNameScene = dynamic_cast<RankingNameScene*>(SM.GetScene("RankingNameScene"));
-		if (rankingNameScene)
-		{
-			rankingNameScene->SetFinalScore(finalScore);
-		}
-		Destroy();
-		SM.SetNextScene("RankingNameScene");
 	}
 
 	void ReplenishCannonEnergy() {

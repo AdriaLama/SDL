@@ -72,10 +72,14 @@
     <ClInclude Include="source\CircleChild.h" />
     <ClInclude Include="source\Circler.h" />
     <ClInclude Include="source\Daniels.h" />
+    <ClInclude Include="source\DeathState.h" />
     <ClInclude Include="source\Enemy.h" />
     <ClInclude Include="source\Game.h" />
     <ClInclude Include="source\GameManager.h" />
     <ClInclude Include="source\Gameplay.h" />
+    <ClInclude Include="source\GameplayState.h" />
+    <ClInclude Include="source\GameState.h" />
+    <ClInclude Include="source\GameStateManager.h" />
     <ClInclude Include="source\HorizontalMedusa.h" />
     <ClInclude Include="source\ImageObject.h" />
     <ClInclude Include="source\ImageRenderer.h" />
@@ -86,6 +90,7 @@
     <ClInclude Include="source\Missiles.h" />
     <ClInclude Include="source\Nuke.h" />
     <ClInclude Include="source\Object.h" />
+    <ClInclude Include="source\PauseState.h" />
     <ClInclude Include="source\Player.h" />
     <ClInclude Include="source\PowerUp.h" />
     <ClInclude Include="source\RankingManager.h" />

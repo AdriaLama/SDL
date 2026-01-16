@@ -36,21 +36,21 @@ public:
     void OnEnter() override {
       
         TextObject* titleText = new TextObject("GAME OVER");
-        titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 200.f, 100.f);
+        titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 200.f, 250.f);
         titleText->GetTransform()->scale = Vector2(3.f, 3.f);
         titleText->GetRenderer()->SetColor({ 255, 0, 0, 255 });
         _ui.push_back(titleText);
 
-        // Mostrar score final
+     
         _scoreText = new TextObject("FINAL SCORE: " + std::to_string(_finalScore));
-        _scoreText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 250.f, 200.f);
+        _scoreText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 250.f, 300.f);
         _scoreText->GetTransform()->scale = Vector2(2.f, 2.f);
         if (_isTopScore) {
-            _scoreText->GetRenderer()->SetColor({ 255, 215, 0, 255 }); // Dorado
+            _scoreText->GetRenderer()->SetColor({ 255, 215, 0, 255 }); 
         }
         _ui.push_back(_scoreText);
 
-        // Mensaje según si es top score o no
+        
         if (_isTopScore) {
             _instructionText = new TextObject("NEW HIGH SCORE! ENTER YOUR NAME:");
             _instructionText->GetRenderer()->SetColor({ 0, 255, 0, 255 });
@@ -58,18 +58,18 @@ public:
         else {
             _instructionText = new TextObject("ENTER YOUR NAME:");
         }
-        _instructionText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 300.f, 300.f);
+        _instructionText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 300.f, 400.f);
         _instructionText->GetTransform()->scale = Vector2(1.5f, 1.5f);
         _ui.push_back(_instructionText);
 
         _nameDisplay = new TextObject("_");
-        _nameDisplay->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 150.f, 380.f);
+        _nameDisplay->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 150.f, 500.f);
         _nameDisplay->GetTransform()->scale = Vector2(2.5f, 2.5f);
         _nameDisplay->GetRenderer()->SetColor({ 255, 255, 255, 255 });
         _ui.push_back(_nameDisplay);
 
         TextObject* hintText = new TextObject("PRESS ENTER TO SUBMIT");
-        hintText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 250.f, 500.f);
+        hintText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 250.f, 550.f);
         hintText->GetTransform()->scale = Vector2(1.2f, 1.2f);
         hintText->GetRenderer()->SetColor({ 150, 150, 150, 255 });
         _ui.push_back(hintText);

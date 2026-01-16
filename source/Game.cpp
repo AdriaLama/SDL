@@ -10,6 +10,7 @@
 #include "RankingNameScene.h"
 #include "LevelSelectorScene.h"
 #include "AudioManager.h"
+#include "GameStateManager.h"
 #include <cassert>
 
 void Game::Init()
@@ -65,13 +66,13 @@ void Game::Init()
 
 	assert(SM.AddScene("Gameplay", new Gameplay()));
 	assert(SM.AddScene("MenuScene", new MenuScene()));
-	assert(SM.AddScene("SplashScreen", new SplashScreen()));	
+	assert(SM.AddScene("SplashScreen", new SplashScreen()));
 	assert(SM.AddScene("Ranking", new RankingScene()));
 	assert(SM.AddScene("RankingNameScene", new RankingNameScene()));
 	assert(SM.AddScene("LevelSelector", new LevelSelectorScene()));
 
-
 	assert(SM.InitFirstScene("SplashScreen"));
+
 	_isRunning = true;
 }
 
@@ -100,13 +101,13 @@ void Game::HandleEvents()
 
 void Game::Update()
 {
-	SM.UpdateCurrentScene();
+	GAME_STATE_MANAGER.Update(TM.GetDeltaTime());
 }
 
 void Game::Render()
 {
 	RM->ClearScreen();
-	SM.GetCurrentScene()->Render();
+	GAME_STATE_MANAGER.Render();
 	RM->RenderScreen();
 }
 
