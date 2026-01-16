@@ -35,7 +35,9 @@ public:
     }
 
     bool IsTopScore(int score) const {
-        if (_rankings.size() < MAX_ENTRIES) return true;
+        if (_rankings.size() < MAX_ENTRIES) 
+            return true;
+
         return score > _rankings.back().score;
     }
 

@@ -10,7 +10,7 @@ private:
 	SceneManager& operator =(const SceneManager&) = delete;
 
 	std::unordered_map <std::string, Scene*> _scenes;
-	Scene * _currentScene = nullptr;
+	Scene* _currentScene = nullptr;
 	std::string _nextScene = "";
 
 public:
@@ -42,35 +42,39 @@ public:
 		if (_scenes.find(name) != _scenes.end())
 		{
 			_currentScene = _scenes[name];
-			_currentScene -> OnEnter();
+			_currentScene->OnEnter();
 			return true;
 		}
-		
+
 		return false;
 	}
 
-	Scene * GetCurrentScene() const { return _currentScene; }
+	Scene* GetCurrentScene() const { return _currentScene; }
 
 	bool SetNextScene(std::string name)
 	{
-	    if (_scenes.find(name) == _scenes.end())
-		  return false;
-		
+		if (_scenes.find(name) == _scenes.end())
+			return false;
+
 		_nextScene = name;
 		return true;
+	}
+
+	bool HasPendingSceneChange() const
+	{
+		return _nextScene != "";
 	}
 
 	void UpdateCurrentScene()
 	{
 		if (_nextScene != "")
 		{
-			_currentScene -> OnExit();
+			_currentScene->OnExit();
 			_currentScene = _scenes[_nextScene];
-			_currentScene -> OnEnter();
+			_currentScene->OnEnter();
 			_nextScene = "";
 		}
-		
-			_currentScene -> Update();
+
+		_currentScene->Update();
 	}
 };
-
