@@ -76,6 +76,7 @@ private:
     {
         _renderer->SetColor(_hoverColor);
         _isHovered = true;
+        AM->PlaySound("resources/audio/button_hover.wav");
     }
 
     void OnHoverExit()
@@ -87,5 +88,6 @@ private:
     void OnClicked()
     {
         _onClick();
+        AM->PlaySound("resources/audio/button_click.wav");
     }
 };

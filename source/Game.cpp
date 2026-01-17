@@ -62,6 +62,8 @@ void Game::Init()
 	AM->LoadSoundData("resources/audio/538151__fupicat__8bit-fall.wav");
 	AM->LoadSoundData("resources/audio/450616__breviceps__8-bit-error.wav");
 	AM->LoadSoundData("resources/audio/retro-arcade-game-music-396890.wav");
+	AM->LoadSoundData("resources/audio/button_hover.wav");
+	AM->LoadSoundData("resources/audio/button_click.wav");
 
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
 

@@ -82,9 +82,9 @@ public:
 
 	void OnExit() override
 	{
-	
-		GAME_STATE_MANAGER.SetInGameplay(false);
 
+		GAME_STATE_MANAGER.SetInGameplay(false);
+		
 		if (victoryText)
 		{
 			delete victoryText;
@@ -115,16 +115,10 @@ public:
 			{
 				std::string currentLevel = WAVE_MANAGER.GetCurrentLevel();
 
-				if (currentLevel == "lvl1.xml")
+				if (currentLevel == "lvl1.xml" || currentLevel == "lvl2.xml")
 				{
 					WAVE_MANAGER.ResetLevelCompletion();
-					WAVE_MANAGER.LoadLevel("lvl2.xml");
-					SM.SetNextScene("Gameplay");
-				}
-				else if (currentLevel == "lvl2.xml")
-				{
-					WAVE_MANAGER.ResetLevelCompletion();
-				
+
 					int finalScore = HUD_MANAGER.GetCurrentScore();
 
 					RankingNameScene* rankingNameScene = dynamic_cast<RankingNameScene*>(SM.GetScene("RankingNameScene"));
@@ -135,7 +129,7 @@ public:
 
 					HUD_MANAGER.ResetScore();
 					SM.SetNextScene("RankingNameScene");
-			
+				
 				}
 			}
 		}
@@ -148,4 +142,5 @@ public:
 	{
 		Scene::Render();
 	}
+
 };
