@@ -44,21 +44,11 @@ public:
             Vector2(buttonWidth, buttonHeight)
         );
 
-   /*     _backToMenuButton = new Button(
-            [this]() { SM.SetNextScene("MenuScene"); },
-            Vector2(RM->WINDOW_WIDTH / 2.0f - buttonWidth / 2.0f + 100.f, RM->WINDOW_HEIGHT / 2.0f - buttonHeight / 2.0f + 100),
-            Vector2(buttonWidth, buttonHeight)
-        );*/
-
         _resumeText = new TextObject("RESUME");
         _resumeText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 50.f, RM->WINDOW_HEIGHT / 2.0f + 35.f);
         _resumeText->GetTransform()->scale = Vector2(1.5f, 1.5f);
         _resumeText->GetRenderer()->SetColor({ 255, 255, 255, 255 });
 
-      /*  _backToMenuText = new TextObject("BACK TO MENU");
-        _backToMenuText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 100.f, RM->WINDOW_HEIGHT / 2.0f + 125.f);
-        _backToMenuText->GetTransform()->scale = Vector2(1.5f, 1.5f);
-        _backToMenuText->GetRenderer()->SetColor({ 255, 255, 255, 255 });*/
     }
 
     void Update(float elapsedTime) override
