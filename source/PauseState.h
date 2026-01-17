@@ -11,13 +11,17 @@ class PauseState : public GameState
 private:
     TextObject* _pauseText;
     TextObject* _resumeText;
+    TextObject* _backToMenuText;
     Button* _resumeButton;
+    Button* _backToMenuButton;
 
 public:
     PauseState()
         : _pauseText(nullptr)
         , _resumeText(nullptr)
         , _resumeButton(nullptr)
+        , _backToMenuButton(nullptr)
+        , _backToMenuText(nullptr)
     {
     }
 
@@ -27,27 +31,34 @@ public:
 
   
         _pauseText = new TextObject("PAUSED");
-        _pauseText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 150.f, 200.f);
-        _pauseText->GetTransform()->scale = Vector2(3.f, 3.f);
+        _pauseText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f, 400.f);
+        _pauseText->GetTransform()->scale = Vector2(4.f, 4.f);
         _pauseText->GetRenderer()->SetColor({ 255, 215, 0, 255 });
 
- 
-        float centerX = RM->WINDOW_WIDTH / 2.0f;
-        float centerY = RM->WINDOW_HEIGHT / 2.0f;
         float buttonWidth = 300.f;
         float buttonHeight = 60.f;
 
         _resumeButton = new Button(
             [this]() { _nextState = GameStates::GAMEPLAY; },
-            Vector2(centerX - buttonWidth / 2.0f, centerY - buttonHeight / 2.0f),
+            Vector2(RM->WINDOW_WIDTH / 2.0f - buttonWidth / 2.0f + 100.f, RM->WINDOW_HEIGHT / 2.0f - buttonHeight / 2.0f + 15),
             Vector2(buttonWidth, buttonHeight)
         );
 
-  
+   /*     _backToMenuButton = new Button(
+            [this]() { SM.SetNextScene("MenuScene"); },
+            Vector2(RM->WINDOW_WIDTH / 2.0f - buttonWidth / 2.0f + 100.f, RM->WINDOW_HEIGHT / 2.0f - buttonHeight / 2.0f + 100),
+            Vector2(buttonWidth, buttonHeight)
+        );*/
+
         _resumeText = new TextObject("RESUME");
-        _resumeText->GetTransform()->position = Vector2(centerX - 80.f, centerY - 10.f);
-        _resumeText->GetTransform()->scale = Vector2(2.f, 2.f);
+        _resumeText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 50.f, RM->WINDOW_HEIGHT / 2.0f + 35.f);
+        _resumeText->GetTransform()->scale = Vector2(1.5f, 1.5f);
         _resumeText->GetRenderer()->SetColor({ 255, 255, 255, 255 });
+
+      /*  _backToMenuText = new TextObject("BACK TO MENU");
+        _backToMenuText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 100.f, RM->WINDOW_HEIGHT / 2.0f + 125.f);
+        _backToMenuText->GetTransform()->scale = Vector2(1.5f, 1.5f);
+        _backToMenuText->GetRenderer()->SetColor({ 255, 255, 255, 255 });*/
     }
 
     void Update(float elapsedTime) override
@@ -57,36 +68,35 @@ public:
             _nextState = GameStates::GAMEPLAY;
             return;
         }
-
         if (_pauseText)
             _pauseText->Update();
-
         if (_resumeText)
             _resumeText->Update();
-
+        if (_backToMenuText)
+            _backToMenuText->Update();
         if (_resumeButton)
             _resumeButton->Update();
+        if (_backToMenuButton)
+            _backToMenuButton->Update();
     }
 
     void Render() const override
     {
-
         SM.GetCurrentScene()->Render();
-
-
         SDL_SetRenderDrawColor(RM->GetRenderer(), 0, 0, 0, 180);
         SDL_FRect overlayRect = { 0, 0, (float)RM->WINDOW_WIDTH, (float)RM->WINDOW_HEIGHT };
         SDL_RenderFillRect(RM->GetRenderer(), &overlayRect);
 
-   
         if (_pauseText)
             _pauseText->Render();
-
         if (_resumeButton)
             _resumeButton->Render();
-
         if (_resumeText)
             _resumeText->Render();
+        if (_backToMenuButton)
+            _backToMenuButton->Render();
+        if (_backToMenuText)
+            _backToMenuText->Render();
     }
 
     void End() override
@@ -96,17 +106,25 @@ public:
             delete _pauseText;
             _pauseText = nullptr;
         }
-
         if (_resumeText)
         {
             delete _resumeText;
             _resumeText = nullptr;
         }
-
+        if (_backToMenuText)
+        {
+            delete _backToMenuText;
+            _backToMenuText = nullptr;
+        }
         if (_resumeButton)
         {
             delete _resumeButton;
             _resumeButton = nullptr;
+        }
+        if (_backToMenuButton)
+        {
+            delete _backToMenuButton;
+            _backToMenuButton = nullptr;
         }
     }
 };
