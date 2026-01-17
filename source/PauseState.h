@@ -10,18 +10,15 @@ class PauseState : public GameState
 {
 private:
     TextObject* _pauseText;
-    TextObject* _resumeText;
-    TextObject* _backToMenuText;
+    TextObject* _resumeText;    
     Button* _resumeButton;
-    Button* _backToMenuButton;
+    
 
 public:
     PauseState()
         : _pauseText(nullptr)
         , _resumeText(nullptr)
-        , _resumeButton(nullptr)
-        , _backToMenuButton(nullptr)
-        , _backToMenuText(nullptr)
+        , _resumeButton(nullptr)       
     {
     }
 
@@ -61,13 +58,9 @@ public:
         if (_pauseText)
             _pauseText->Update();
         if (_resumeText)
-            _resumeText->Update();
-        if (_backToMenuText)
-            _backToMenuText->Update();
+            _resumeText->Update();  
         if (_resumeButton)
-            _resumeButton->Update();
-        if (_backToMenuButton)
-            _backToMenuButton->Update();
+           _resumeButton->Update();  
     }
 
     void Render() const override
@@ -83,10 +76,6 @@ public:
             _resumeButton->Render();
         if (_resumeText)
             _resumeText->Render();
-        if (_backToMenuButton)
-            _backToMenuButton->Render();
-        if (_backToMenuText)
-            _backToMenuText->Render();
     }
 
     void End() override
@@ -101,20 +90,12 @@ public:
             delete _resumeText;
             _resumeText = nullptr;
         }
-        if (_backToMenuText)
-        {
-            delete _backToMenuText;
-            _backToMenuText = nullptr;
-        }
+          
         if (_resumeButton)
         {
             delete _resumeButton;
             _resumeButton = nullptr;
         }
-        if (_backToMenuButton)
-        {
-            delete _backToMenuButton;
-            _backToMenuButton = nullptr;
-        }
+        
     }
 };
