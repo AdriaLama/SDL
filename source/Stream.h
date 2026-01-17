@@ -111,6 +111,7 @@ public:
 
 	void StopStream()
 	{
+		if (_state == STOPPED) return;
 		//1) Neteja el SDL_AudioStream
 		SDL_ClearAudioStream(_stream);
 
