@@ -102,6 +102,7 @@ public:
     void OnExit() override
     {
         _audioText = nullptr;
+        AM->HaltAudio();
         Scene::OnExit();
     }
 
