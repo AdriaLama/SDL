@@ -11,6 +11,7 @@
 #include "AudioManager.h"
 #include "ScoreManager.h"
 #include "RankingNameScene.h"
+#include <chrono>
 
 
 class Player : public ImageObject

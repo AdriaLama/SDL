@@ -18,6 +18,7 @@ public:
     {
         _audioEnabled = true;
         AM->Init();
+        AM->PlaySoundLooping("resources/audio/retro-game-arcade-236133.wav");
 
         TextObject* titleText = new TextObject("MENACE-PC");
         titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 100.f, 275.f);

@@ -64,6 +64,7 @@ void Game::Init()
 	AM->LoadSoundData("resources/audio/retro-arcade-game-music-396890.wav");
 	AM->LoadSoundData("resources/audio/button_hover.wav");
 	AM->LoadSoundData("resources/audio/button_click.wav");
+	AM->LoadSoundData("resources/audio/retro-game-arcade-236133.wav");
 
 	RM->LoadFont("resources/fonts/hyperspace.ttf");
 

@@ -122,7 +122,7 @@ public:
 		SDL_DestroyAudioStream(_stream);
 
 		//4) Actualitza estat
-		_state = STOPPED;
+			_state = STOPPED;
 	}
 
 };

@@ -34,6 +34,7 @@ public:
 	void OnEnter() override
 	{
 		srand(time(nullptr));
+		AM->HaltAudio();
 
 		victoryMessageShown = false;
 		victoryTimer = 0.0f;
@@ -82,7 +83,7 @@ public:
 
 	void OnExit() override
 	{
-
+		AM->HaltAudio();
 		GAME_STATE_MANAGER.SetInGameplay(false);
 		
 		if (victoryText)
@@ -91,6 +92,7 @@ public:
 			victoryText = nullptr;
 		}
 		Scene::OnExit();
+		
 	}
 
 	void Update() override
