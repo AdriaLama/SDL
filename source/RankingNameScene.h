@@ -34,7 +34,7 @@ public:
     }
 
     void OnEnter() override {
-        AM->Mute();
+        
         TextObject* titleText = new TextObject("GAME OVER");
         titleText->GetTransform()->position = Vector2(RM->WINDOW_WIDTH / 2.0f - 200.f, 250.f);
         titleText->GetTransform()->scale = Vector2(3.f, 3.f);

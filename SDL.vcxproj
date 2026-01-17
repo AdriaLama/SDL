@@ -23,6 +23,7 @@
     <ClCompile Include="source\Amoeba.cpp" />
     <ClCompile Include="source\Angrygons.cpp" />
     <ClCompile Include="source\Annoyer.cpp" />
+    <ClCompile Include="source\AudioManager.cpp" />
     <ClCompile Include="source\Beholder.cpp" />
     <ClCompile Include="source\BioTitan.cpp" />
     <ClCompile Include="source\Bubble.cpp" />
